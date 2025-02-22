@@ -9,18 +9,18 @@ import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 
 import cn.mcmod.sakura.data.loot.SakuraBlockLoot;
-import cn.mcmod_mmf.mmlib.data.AbstractLootTableProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.LootTable.Builder;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
-public class SakuraLootTableProvider extends AbstractLootTableProvider {
+public class SakuraLootTableProvider extends LootTableProvider {
 
     public SakuraLootTableProvider(DataGenerator gen) {
-        super(gen);
+        super(gen.getPackOutput());
     }
     
     private final List<Pair<Supplier<Consumer<BiConsumer<ResourceLocation, LootTable.Builder>>>, LootContextParamSet>> tables = ImmutableList.of(Pair.of(SakuraBlockLoot::new, LootContextParamSets.BLOCK));

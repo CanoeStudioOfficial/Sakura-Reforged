@@ -13,14 +13,15 @@ import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -37,7 +38,7 @@ public class DistillerCategory implements IRecipeCategory<DistillerRecipe> {
     private final IDrawable icon;
 
     public DistillerCategory(IGuiHelper helper) {
-        title = new TranslatableComponent("sakura.jei.distillation");
+        title = Component.translatable("sakura.jei.distillation");
         ResourceLocation backgroundImage = new ResourceLocation(SakuraMod.MODID, "textures/gui/distiller.png");
         background = helper.createDrawable(backgroundImage, 32, 10, 110, 66);
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockRegistry.DISTILLER.get()));
@@ -46,15 +47,15 @@ public class DistillerCategory implements IRecipeCategory<DistillerRecipe> {
         bubbles = helper.drawableBuilder(backgroundImage, 176, 35, 18, 18).buildAnimated(18, IDrawableAnimated.StartDirection.BOTTOM, false);
     }
 
-    @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
-    public Class<? extends DistillerRecipe> getRecipeClass() {
-        return DistillerRecipe.class;
-    }
+//    @Override
+//    public ResourceLocation getUid() {
+//        return UID;
+//    }
+//
+//    @Override
+//    public Class<? extends DistillerRecipe> getRecipeClass() {
+//        return DistillerRecipe.class;
+//    }
     
     @Override
     public RecipeType<DistillerRecipe> getRecipeType() {
@@ -106,9 +107,9 @@ public class DistillerCategory implements IRecipeCategory<DistillerRecipe> {
     }
 
     @Override
-    public void draw(DistillerRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
-        bubbles.draw(matrixStack, 46, 6);
-        arrow.draw(matrixStack, 44, 24);
-        heatIndicator.draw(matrixStack, 47, 43);
+    public void draw(DistillerRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        bubbles.draw(guiGraphics, 46, 6);
+        arrow.draw(guiGraphics, 44, 24);
+        heatIndicator.draw(guiGraphics, 47, 43);
     }
 }

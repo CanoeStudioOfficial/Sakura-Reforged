@@ -18,7 +18,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -33,8 +32,8 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
@@ -181,13 +180,13 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
                 : ItemStack.EMPTY;
         if (outStack.isEmpty()) {
             inventory.setStackInSlot(4, resultStack.copy());
-        } else if (outStack.sameItem(resultStack)) {
+        } else if (ItemStack.isSameItem(outStack, resultStack)) {
             outStack.grow(resultStack.getCount());
         }
         if (!resultExtraStack.isEmpty()) {
             if (extraStack.isEmpty()) {
                 inventory.setStackInSlot(5, resultExtraStack.copy());
-            } else if (extraStack.sameItem(resultExtraStack)) {
+            } else if (ItemStack.isSameItem(extraStack, resultExtraStack)) {
                 extraStack.grow(resultExtraStack.getCount());
             }
         }
@@ -232,7 +231,7 @@ public class StoneMortarBlockEntity extends SyncedBlockEntity implements MenuPro
     @Override
     @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
-        if (cap.equals(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)) {
+        if (cap.equals(ForgeCapabilities.ITEM_HANDLER)) {
             if (side == null || side.equals(Direction.UP)) {
                 return inputHandler.cast();
             } else {

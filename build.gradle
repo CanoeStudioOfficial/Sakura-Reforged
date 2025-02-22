@@ -2,109 +2,135 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.minecraftforge.gradle' version '[6.0,6.2)'
      // This should be below the net.minecraftforge.gradle plugin
-    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
-    id 'org.spongepowered.mixin' version '0.7-SNAPSHOT'
+//    id 'org.parchmentmc.librarian.forgegradle' version '1.+'
+
+    // Apply the plugin. You can find the latest version at https://projects.neoforged.net/neoforged/ModDevGradle
+    id 'net.neoforged.moddev.legacyforge' version '2.0.78'
 }
 
-// Mixin
-apply plugin: 'org.spongepowered.mixin'
-
-mixin {
-    // MixinGradle Settings
-    add sourceSets.main, 'mixins.umapyoi.refmap.json'
-}
-
-version = '1.5.33-1.20.1'
-group = 'net.tracen' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'umapyoi'
+version = '1.0.7-1.20.1'
+group = 'cn.mcmod.sakura' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'Sakura'
 
 // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
-minecraft {
-    mappings channel: 'parchment', version: '2023.09.03-1.20.1'
-    copyIdeResources = true
-    accessTransformer = file('src/main/resources/META-INF/accesstransformer.cfg')
+
+
+legacyForge {
+    // Develop against MinecraftForge version 47.3.0 for 1.20.1 (the versions can be found at https://files.minecraftforge.net/)
+    version = "1.20.1-47.3.0"
+
+    // Validate AT files and raise errors when they have invalid targets
+    // This option is false by default, but turning it on is recommended
+    validateAccessTransformers = false
+
+    parchment {
+        // Get versions from https://parchmentmc.org/docs/getting-started
+        // Omit the "v"-prefix in mappingsVersion
+        minecraftVersion = "1.20.1"
+        mappingsVersion = "2023.09.03"
+    }
+
     runs {
         client {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'umapyoi'
-            arg '-mixin.config=mixins.umapyoi.json'
-            // Export mixin-changed classes
-            property 'mixin.debug.export', 'true'
-			property 'mixin.env.remapRefMap', 'true'
-
-            mods {
-                umapyoi {
-                    source sourceSets.main
-                }
-            }
+            client()
         }
-
-        server {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'umapyoi'
-            arg '-mixin.config=mixins.umapyoi.json'
-            // Export mixin-changed classes
-            property 'mixin.debug.export', 'true'
-			property 'mixin.env.remapRefMap', 'true'
-
-            mods {
-                umapyoi {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        gameTestServer {
-            workingDirectory project.file('run')
-
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'umapyoi'
-            arg '-mixin.config=mixins.umapyoi.json'
-            // Export mixin-changed classes
-            property 'mixin.debug.export', 'true'
-			property 'mixin.env.remapRefMap', 'true'
-
-            mods {
-                umapyoi {
-                    source sourceSets.main
-                }
-            }
-        }
-
         data {
-            workingDirectory project.file('run')
+            data()
+        }
+        server {
+            server()
+        }
+    }
 
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            property 'forge.enabledGameTestNamespaces', 'umapyoi'
-            arg '-mixin.config=mixins.umapyoi.json'
-            // Export mixin-changed classes
-            property 'mixin.debug.export', 'true'
-			property 'mixin.env.remapRefMap', 'true'
-
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', 'umapyoi', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-
-            mods {
-                umapyoi {
-                    source sourceSets.main
-                }
-            }
+    mods {
+        sakura {
+            sourceSet sourceSets.main
         }
     }
 }
+
+//minecraft {
+//    runs {
+//        client {
+//            workingDirectory project.file('run')
+//
+//            property 'forge.logging.markers', 'REGISTRIES'
+//            property 'forge.logging.console.level', 'debug'
+//            property 'forge.enabledGameTestNamespaces', 'sakura'
+//            arg '-mixin.config=mixins.sakura.json'
+//            // Export mixin-changed classes
+//            property 'mixin.debug.export', 'true'
+//			property 'mixin.env.remapRefMap', 'true'
+//
+//            mods {
+//                sakura {
+//                    source sourceSets.main
+//                }
+//            }
+//        }
+//
+//        server {
+//            workingDirectory project.file('run')
+//
+//            property 'forge.logging.markers', 'REGISTRIES'
+//            property 'forge.logging.console.level', 'debug'
+//            property 'forge.enabledGameTestNamespaces', 'sakura'
+//            arg '-mixin.config=mixins.sakura.json'
+//            // Export mixin-changed classes
+//            property 'mixin.debug.export', 'true'
+//			property 'mixin.env.remapRefMap', 'true'
+//
+//            mods {
+//                sakura {
+//                    source sourceSets.main
+//                }
+//            }
+//        }
+//
+//        gameTestServer {
+//            workingDirectory project.file('run')
+//
+//            property 'forge.logging.markers', 'REGISTRIES'
+//            property 'forge.logging.console.level', 'debug'
+//            property 'forge.enabledGameTestNamespaces', 'sakura'
+//            arg '-mixin.config=mixins.sakura.json'
+//            // Export mixin-changed classes
+//            property 'mixin.debug.export', 'true'
+//			property 'mixin.env.remapRefMap', 'true'
+//
+//            mods {
+//                sakura {
+//                    source sourceSets.main
+//                }
+//            }
+//        }
+//
+//        data {
+//            workingDirectory project.file('run')
+//
+//            property 'forge.logging.markers', 'REGISTRIES'
+//            property 'forge.logging.console.level', 'debug'
+//            property 'forge.enabledGameTestNamespaces', 'sakura'
+//            arg '-mixin.config=mixins.sakura.json'
+//            // Export mixin-changed classes
+//            property 'mixin.debug.export', 'true'
+//			property 'mixin.env.remapRefMap', 'true'
+//
+//            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
+//            args '--mod', 'sakura', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+//
+//            mods {
+//                umapyoi {
+//                    source sourceSets.main
+//                }
+//            }
+//        }
+//    }
+//}
 
 // Include resources generated by data generators.
 sourceSets.main.resources { srcDir 'src/generated/resources' }
@@ -131,40 +157,38 @@ repositories {
     }
 }
 
-dependencies {
-    minecraft 'net.minecraftforge:forge:1.20.1-47.2.32'
-    // Apply Mixin AP
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    implementation fg.deobf("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:1.4.12-1.20.1")
+dependencies {
+
+    modImplementation ("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:1.4.12-1.20.1")
     // Compile against only the API artifact
-    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.4.5+1.20.1:api"))
+    modCompileOnly(("top.theillusivec4.curios:curios-forge:5.4.5+1.20.1:api"))
     // Use the full Curios API jar at runtime
-    runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:5.4.5+1.20.1"))
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-83-FORGE")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.20.1-83-FORGE")
+    modRuntimeOnly(("top.theillusivec4.curios:curios-forge:5.4.5+1.20.1"))
+    modCompileOnly ("vazkii.patchouli:Patchouli:1.20.1-83-FORGE")
+    modRuntimeOnly ("vazkii.patchouli:Patchouli:1.20.1-83-FORGE")
 
     // compile against the JEI API but do not include it at runtime
-    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
-    compileOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
+    modCompileOnly(("mezz.jei:jei-${mc_version}-common-api:${jei_version}"))
+    modCompileOnly(("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
     // at runtime, use the full JEI jar for Forge
-    runtimeOnly(fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
+    modRuntimeOnly(("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
     
-    //implementation fg.deobf("maven.modrinth:epic-fight:20.9.2")
+    //implementation ("maven.modrinth:epic-fight:20.9.2")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.
 jar {
     manifest {
         attributes([
-                "Specification-Title"     : "umapyoi",
+                "Specification-Title"     : "sakura",
                 "Specification-Vendor"    : "tracen_minecraft_group",
                 "Specification-Version"   : "0.0.2",
                 "Implementation-Title"    : project.name,
                 "Implementation-Version"  : project.jar.archiveVersion,
                 "Implementation-Vendor"   : "tracen_minecraft_group",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
-                "MixinConfigs"            : "mixins.umapyoi.json"
+                "MixinConfigs"            : "mixins.sakura.json"
         ])
     }
 }

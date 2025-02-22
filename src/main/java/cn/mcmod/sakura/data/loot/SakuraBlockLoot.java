@@ -104,8 +104,8 @@ public class SakuraBlockLoot extends AbstartctBlockLoot {
         this.add(block, createTeishokuDrops(block, BlockItemRegistry.OBON.get(), block.asItem(), builder));
     }
 
-    protected static LootTable.Builder createTeishokuDrops(Block p_124143_, Item p_124144_, Item p_124145_,
-            LootItemCondition.Builder p_124146_) {
+    protected LootTable.Builder createTeishokuDrops(Block p_124143_, Item p_124144_, Item p_124145_,
+                                                    LootItemCondition.Builder p_124146_) {
         return applyExplosionDecay(p_124143_, LootTable.lootTable()
                 .withPool(LootPool.lootPool().add(
                         LootItem.lootTableItem(p_124145_).when(p_124146_)))

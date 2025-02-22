@@ -20,6 +20,7 @@ import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -43,15 +44,15 @@ public class ChoppingCategory implements IRecipeCategory<ChoppingRecipe> {
                 new ItemStack(BlockRegistry.CHOPPING_BOARD.get()));
     }
 
-    @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
-    public Class<? extends ChoppingRecipe> getRecipeClass() {
-        return ChoppingRecipe.class;
-    }
+//    @Override
+//    public ResourceLocation getUid() {
+//        return UID;
+//    }
+//
+//    @Override
+//    public Class<? extends ChoppingRecipe> getRecipeClass() {
+//        return ChoppingRecipe.class;
+//    }
 
     @Override
     public RecipeType<ChoppingRecipe> getRecipeType() {
@@ -78,7 +79,7 @@ public class ChoppingCategory implements IRecipeCategory<ChoppingRecipe> {
         NonNullList<Ingredient> recipeIngredients = recipe.getIngredients();
         builder.addSlot(RecipeIngredientRole.INPUT, 14, 7).addIngredients(recipeIngredients.get(0));
         builder.addSlot(RecipeIngredientRole.INPUT, 14, 29).addIngredients(recipe.getTool());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 62, 7).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 62, 7).addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
 
         NonNullList<ChanceResult> byproducts = recipe.getByproducts();
         for (int i = 0; i < Math.min(4, byproducts.size()); i++) {
@@ -95,19 +96,19 @@ public class ChoppingCategory implements IRecipeCategory<ChoppingRecipe> {
     }
     
     @Override
-    public void draw(ChoppingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack stack, double mouseX,
-            double mouseY) {
+    public void draw(ChoppingRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX,
+                     double mouseY) {
 
         NonNullList<ChanceResult> byproducts = recipe.getByproducts();
         for (int i = 0; i < Math.min(4, byproducts.size()); i++) {
             ChanceResult chanceResult = byproducts.get(i);
             if (chanceResult.chance() != 1) {
-                chancedSlot.draw(stack, i * 18 + 10, 50);
+                chancedSlot.draw(guiGraphics, i * 18 + 10, 50);
             }
         }
         Minecraft minecraft = Minecraft.getInstance();
         Font fontRenderer = minecraft.font;
-        fontRenderer.drawShadow(stack, new TranslatableComponent("sakura.jei.chopping.count", recipe.getRecipeTime()), 33, 32, 0xFEFEFE);
+        guiGraphics.drawString(fontRenderer, Component.translatable("sakura.jei.chopping.count", recipe.getRecipeTime()), 33, 32, 0xFEFEFE,true);
         RenderSystem.setShaderColor(1, 1, 1, 1);
     }
 

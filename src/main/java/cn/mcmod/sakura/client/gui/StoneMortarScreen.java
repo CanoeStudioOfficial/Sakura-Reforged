@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.container.StoneMortarContainer;
 import cn.mcmod_mmf.mmlib.client.RenderUtils;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -24,31 +25,31 @@ public class StoneMortarScreen extends AbstractContainerScreen<StoneMortarContai
     }
 
     @Override
-    public void render(PoseStack ms, final int mouseX, final int mouseY, float partialTicks) {
+    public void render(GuiGraphics ms, final int mouseX, final int mouseY, float partialTicks) {
         this.renderBackground(ms);
         super.render(ms, mouseX, mouseY, partialTicks);
         this.renderTooltip(ms, mouseX, mouseY);
     }
 
     @Override
-    protected void renderLabels(PoseStack ms, int mouseX, int mouseY) {
+    protected void renderLabels(GuiGraphics ms, int mouseX, int mouseY) {
         super.renderLabels(ms, mouseX, mouseY);
-        this.font.draw(ms, this.playerInventoryTitle, 8.0f, this.imageHeight - 96 + 2, 4210752);
+        ms.drawString(this.font, this.playerInventoryTitle, 8, this.imageHeight - 96 + 2, 4210752);
     }
 
     @Override
-    protected void renderBg(PoseStack ms, float partialTicks, int mouseX, int mouseY) {
+    protected void renderBg(GuiGraphics ms, float partialTicks, int mouseX, int mouseY) {
         // Render UI background
         if (this.minecraft == null) {
             return;
         }
-        RenderUtils.setup(BACKGROUND_TEXTURE);
-        this.blit(ms, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+//        RenderUtils.setup(BACKGROUND_TEXTURE);
+        ms.blit(BACKGROUND_TEXTURE, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
         int n = this.menu.getRolling();
-        this.blit(ms, this.leftPos + 81, this.topPos + 33, 176, n * 16, 14, 16);
+        ms.blit(BACKGROUND_TEXTURE, this.leftPos + 81, this.topPos + 33, 176, n * 16, 14, 16);
         // Render progress arrow
         int l = this.menu.getProgressionRoll();
-        this.blit(ms, this.leftPos + 80, this.topPos + 49, 190, l * 6, 16, 6);
+        ms.blit(BACKGROUND_TEXTURE, this.leftPos + 80, this.topPos + 49, 190, l * 6, 16, 6);
 
     }
 

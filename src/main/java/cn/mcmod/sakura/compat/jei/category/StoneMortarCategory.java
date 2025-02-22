@@ -9,14 +9,15 @@ import cn.mcmod.sakura.recipes.StoneMortarRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -31,7 +32,7 @@ public class StoneMortarCategory implements IRecipeCategory<StoneMortarRecipe> {
     protected final IDrawable basket;
 
     public StoneMortarCategory(IGuiHelper helper) {
-        title = new TranslatableComponent("sakura.jei.stone_mortar");
+        title = Component.translatable("sakura.jei.stone_mortar");
         ResourceLocation backgroundImage = new ResourceLocation(SakuraMod.MODID, "textures/gui/stonemortar.png");
         background = helper.createDrawable(backgroundImage, 39, 13, 87, 62);
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockRegistry.STONE_MORTAR.get()));
@@ -39,15 +40,15 @@ public class StoneMortarCategory implements IRecipeCategory<StoneMortarRecipe> {
         basket = helper.createDrawable(backgroundImage, 190, 18, 16, 6);
     }
 
-    @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
-    public Class<? extends StoneMortarRecipe> getRecipeClass() {
-        return StoneMortarRecipe.class;
-    }
+//    @Override
+//    public ResourceLocation getUid() {
+//        return UID;
+//    }
+//
+//    @Override
+//    public Class<? extends StoneMortarRecipe> getRecipeClass() {
+//        return StoneMortarRecipe.class;
+//    }
     
     @Override
     public RecipeType<StoneMortarRecipe> getRecipeType() {
@@ -89,8 +90,8 @@ public class StoneMortarCategory implements IRecipeCategory<StoneMortarRecipe> {
     }
 
     @Override
-    public void draw(StoneMortarRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
-        mortar.draw(matrixStack, 42, 20);
-        basket.draw(matrixStack, 41, 36);
+    public void draw(StoneMortarRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        mortar.draw(guiGraphics, 42, 20);
+        basket.draw(guiGraphics, 41, 36);
     }
 }

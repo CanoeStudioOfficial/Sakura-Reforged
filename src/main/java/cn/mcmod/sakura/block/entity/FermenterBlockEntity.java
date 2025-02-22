@@ -14,7 +14,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
@@ -27,12 +26,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
@@ -158,7 +156,7 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
                     ItemStack outputStack = inventory.getStackInSlot(i);
                     if (outputStack.isEmpty()) {
                         flag = true;
-                    } else if (!outputStack.sameItem(resultStack)) {
+                    } else if (!ItemStack.isSameItem(outputStack, resultStack)) {
                         flag = false;
                     } else if (outputStack.getCount() + resultStack.getCount() <= inventory.getSlotLimit(i)) {
                         flag = true;
@@ -191,7 +189,7 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
             ItemStack outStack = inventory.getStackInSlot(i);
             if (outStack.isEmpty()) {
                 inventory.setStackInSlot(i, resultStacks.get(i - 3).copy());
-            } else if (outStack.sameItem(resultStacks.get(i - 3))) {
+            } else if (ItemStack.isSameItem(outStack,resultStacks.get(i - 3))) {
                 outStack.grow(resultStacks.get(i - 3).getCount());
             }
         }
@@ -228,7 +226,7 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
     }
 
     public void clearUsedRecipes(Player player) {
-        grantStoredRecipeExperience(player.level, player.position());
+        grantStoredRecipeExperience(player.level(), player.position());
         experienceTracker.clear();
     }
 
@@ -243,14 +241,14 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
     @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
         if (!this.isRemoved()) {
-            if (cap.equals(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)) {
+            if (cap.equals(ForgeCapabilities.ITEM_HANDLER)) {
                 if (side == null || side.equals(Direction.UP)) {
                     return inputHandler.cast();
                 } else {
                     return outputHandler.cast();
                 }
             }
-            if (cap.equals(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)) {
+            if (cap.equals(ForgeCapabilities.FLUID_HANDLER)) {
                 if(side == null || !(side.equals(Direction.NORTH)||side.equals(Direction.SOUTH)))
                     return this.inputfluidTank.cast();
                 else return this.outputfluidTank.cast();
@@ -382,7 +380,7 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
 
             @Override
             public boolean isFluidValid(FluidStack stack) {
-                return !stack.getFluid().getAttributes().isLighterThanAir();
+                return !stack.getFluid().getFluidType().isLighterThanAir();
             }
         };
     }
@@ -394,7 +392,7 @@ public class FermenterBlockEntity extends SyncedBlockEntity implements MenuProvi
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("container.sakura.fermenter");
+        return Component.translatable("container.sakura.fermenter");
     }
 
     public LazyOptional<FluidTank> getInputFluidTank() {

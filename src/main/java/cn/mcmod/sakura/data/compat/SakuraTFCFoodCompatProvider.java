@@ -10,7 +10,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class SakuraTFCFoodCompatProvider extends TFCFoodDefinitionProvider {
 
     public SakuraTFCFoodCompatProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, existingFileHelper, SakuraMod.MODID);
+        super(generator.getPackOutput(), existingFileHelper, SakuraMod.MODID);
     }
     
     @Override

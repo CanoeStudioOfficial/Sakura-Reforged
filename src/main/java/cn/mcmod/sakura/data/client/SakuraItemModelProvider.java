@@ -12,7 +12,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class SakuraItemModelProvider extends AbstractItemModelProvider {
 
     public SakuraItemModelProvider(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper) {
-        super(generator, modid, existingFileHelper);
+        super(generator.getPackOutput(), modid, existingFileHelper);
     }
 
     @Override

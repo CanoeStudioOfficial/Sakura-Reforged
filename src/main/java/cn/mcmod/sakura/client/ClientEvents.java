@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraft.world.level.block.BushBlock;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -49,9 +50,8 @@ public class ClientEvents {
         });
     }
 
-    @SuppressWarnings("resource")
     @SubscribeEvent
-    public static void onParticleFactoryRegistration(ParticleFactoryRegisterEvent event) {
+    public static void onParticleFactoryRegistration(RegisterParticleProvidersEvent event) {
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.SAKURA_LEAF.get(),
                 FallenLeafParticle.Factory::new);
         Minecraft.getInstance().particleEngine.register(ParticleRegistry.RED_MAPLE_LEAF.get(),

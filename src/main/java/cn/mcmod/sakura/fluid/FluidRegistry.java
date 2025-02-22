@@ -1,6 +1,8 @@
 package cn.mcmod.sakura.fluid;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 import cn.mcmod.sakura.SakuraMod;
 import net.minecraft.resources.ResourceLocation;
@@ -9,6 +11,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.minecraftforge.common.SoundAction;
+import net.minecraftforge.common.SoundActions;
+import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -112,14 +118,34 @@ public class FluidRegistry {
             int color, 
             Supplier<? extends Item> bucket, 
             Supplier<? extends LiquidBlock> block){
-        return new ForgeFlowingFluid.Properties(still, flowing,
-                FluidAttributes.builder(new ResourceLocation("block/water_still"), 
-                        new ResourceLocation("block/water_flow"))
-                .sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY)
-                .color(color).density(3000).viscosity(1000))
-                .block(block)
-                .bucket(bucket)
-                .slopeFindDistance(3)
-                .explosionResistance(100F);
+
+        UnaryOperator<ForgeFlowingFluid.Properties> blockProperties = p->p.block(block).slopeFindDistance(3).explosionResistance(100F);
+
+        return blockProperties.apply(new ForgeFlowingFluid.Properties(()->new FluidType(FluidType.Properties.create()
+                .temperature(27)
+                .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+                .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+                .density(3000).viscosity(1000)){
+            @Override
+            public void initializeClient(Consumer<IClientFluidTypeExtensions> consumer) {
+                consumer.accept(new IClientFluidTypeExtensions() {
+                    @Override
+                    public int getTintColor() {
+                        return color;
+                    }
+
+                    @Override
+                    public ResourceLocation getStillTexture() {
+                        return new ResourceLocation("block/water_still");
+                    }
+
+                    @Override
+                    public ResourceLocation getFlowingTexture() {
+                        return new ResourceLocation("block/water_flow");
+                    }
+                });
+            }
+        }
+        ,still, flowing));
     }
 }

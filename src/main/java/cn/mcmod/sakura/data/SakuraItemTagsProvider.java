@@ -6,25 +6,28 @@ import cn.mcmod.sakura.item.ItemRegistry;
 import cn.mcmod.sakura.item.enums.SakuraFoodSet;
 import cn.mcmod.sakura.item.enums.SakuraNormalItemSet;
 import cn.mcmod.sakura.tags.SakuraItemTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class SakuraItemTagsProvider extends ItemTagsProvider {
 
-    public SakuraItemTagsProvider(DataGenerator generator, BlockTagsProvider blockTags, String modId,
-            ExistingFileHelper existingFileHelper) {
-        super(generator, blockTags, modId, existingFileHelper);
+    public SakuraItemTagsProvider(DataGenerator generator, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider blockTags, String modId,
+                                  ExistingFileHelper existingFileHelper) {
+        super(generator.getPackOutput(),lookupProvider, blockTags.contentsGetter(),modId,existingFileHelper);
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         copy(BlockTags.PLANKS, ItemTags.PLANKS);
         copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
         tag(ItemTags.LOGS).add(BlockItemRegistry.MAPLE_LOG.get(), BlockItemRegistry.SAKURA_LOG.get(),

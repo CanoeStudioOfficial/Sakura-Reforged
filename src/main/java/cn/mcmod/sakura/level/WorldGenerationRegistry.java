@@ -8,6 +8,8 @@ import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -28,9 +30,9 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class WorldGenerationRegistry {
     public static final DeferredRegister<ConfiguredFeature<?, ?>> FEATURES = DeferredRegister
-            .create(BuiltinRegistries.CONFIGURED_FEATURE.key(), SakuraMod.MODID);
+            .create(Registries.CONFIGURED_FEATURE, SakuraMod.MODID);
     public static final DeferredRegister<PlacedFeature> PATCHES = DeferredRegister
-            .create(BuiltinRegistries.PLACED_FEATURE.key(), SakuraMod.MODID);
+            .create(Registries.PLACED_FEATURE, SakuraMod.MODID);
     
     public static final RegistryObject<ConfiguredFeature<?, ?>> FEATURE_PATCH_BAMBOOSHOOT = FEATURES.register("patch_bambooshoot", 
             ()->wildPlantFeature(BlockRegistry.BAMBOOSHOOT, BlockTags.DIRT));
@@ -43,7 +45,7 @@ public class WorldGenerationRegistry {
 
     private static ConfiguredFeature<?, ?> wildPlantFeature(Supplier<Block> wildCrop, TagKey<Block> blockTag) {
         return new ConfiguredFeature<>(Feature.RANDOM_PATCH, getWildCropConfiguration(wildCrop.get(),
-                64, 1, BlockPredicate.matchesTag(blockTag, BLOCK_BELOW)));
+                64, 1, BlockPredicate.matchesTag(BLOCK_BELOW,blockTag)));
     }
     private static PlacedFeature wildPlantPatch(RegistryObject<ConfiguredFeature<?, ?>> feature,
             PlacementModifier... modifiers) {

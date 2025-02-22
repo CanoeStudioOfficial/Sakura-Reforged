@@ -10,7 +10,7 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 public class SakuraBlockStateProvider extends AbstractBlockStateProvider {
 
     public SakuraBlockStateProvider(DataGenerator gen, String modid, ExistingFileHelper exFileHelper) {
-        super(gen, modid, exFileHelper);
+        super(gen.getPackOutput(), modid, exFileHelper);
     }
 
     @Override
