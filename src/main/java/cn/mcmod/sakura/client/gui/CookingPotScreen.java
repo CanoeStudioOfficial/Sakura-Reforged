@@ -56,7 +56,7 @@ public class CookingPotScreen extends AbstractContainerScreen<CookingPotContaine
         this.menu.tileEntity.getFluidTank().ifPresent(fluidTank -> {
             int heightInd = (int) (52.0F * ((float)fluidTank.getFluidAmount() / (float)fluidTank.getCapacity()));
             if (heightInd > 0) {
-                ClientUtil.renderFluidStack(this.leftPos + 17, this.topPos + 69 - heightInd, 16, heightInd, 0.0F,
+                RenderUtils.renderFluidStack(this.leftPos + 17, this.topPos + 69 - heightInd, 16, heightInd, 0.0F,
                         fluidTank.getFluid());
             }
         });

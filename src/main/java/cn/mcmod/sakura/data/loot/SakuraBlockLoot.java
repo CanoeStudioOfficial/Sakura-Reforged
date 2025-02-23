@@ -26,12 +26,16 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 public class SakuraBlockLoot extends AbstartctBlockLoot {
 
-    protected SakuraBlockLoot(Set<Item> pExplosionResistant) {
+    public SakuraBlockLoot(Set<Item> pExplosionResistant) {
 		super(pExplosionResistant);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+    public SakuraBlockLoot() {
+        super(Set.of());
+    }
+
+    @Override
     public void addTables() {
         dropSelf(BlockRegistry.BAMBOO_BLOCK.get());
         BlockRegistry.BLOCKS.getEntries().forEach(block -> {

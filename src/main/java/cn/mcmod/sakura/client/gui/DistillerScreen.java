@@ -60,14 +60,14 @@ public class DistillerScreen extends AbstractContainerScreen<DistillerContainer>
         this.menu.tileEntity.getInputFluidTank().ifPresent(fluidTank -> {
             int heightInd = (int) (64.0F * ((float)fluidTank.getFluidAmount() / (float)fluidTank.getCapacity()));
             if (heightInd > 0) {
-                ClientUtil.renderFluidStack(this.leftPos + 33, this.topPos + 75 - heightInd, 16, heightInd, 0.0F,
+                RenderUtils.renderFluidStack(this.leftPos + 33, this.topPos + 75 - heightInd, 16, heightInd, 0.0F,
                         fluidTank.getFluid());
             }
         });
         this.menu.tileEntity.getOutputFluidTank().ifPresent(fluidTank -> {
             int heightInd = (int) (64.0F * ((float)fluidTank.getFluidAmount() / (float)fluidTank.getCapacity()));
             if (heightInd > 0) {
-                ClientUtil.renderFluidStack(this.leftPos + 125, this.topPos + 75 - heightInd, 16, heightInd, 0.0F,
+                RenderUtils.renderFluidStack(this.leftPos + 125, this.topPos + 75 - heightInd, 16, heightInd, 0.0F,
                         fluidTank.getFluid());
             }
         });

@@ -198,11 +198,11 @@ public class DistillerBlockEntity extends SyncedBlockEntity implements MenuProvi
 
         for (int i = 0; i < 3; ++i) {
             ItemStack slotStack = inventory.getStackInSlot(i);
-            if (slotStack.hasContainerItem()) {
+            if (slotStack.hasCraftingRemainingItem()) {
                 double x = worldPosition.getX() + 0.5;
                 double y = worldPosition.getY() + 0.7;
                 double z = worldPosition.getZ() + 0.5;
-                LevelUtils.spawnItemEntity(level, inventory.getStackInSlot(i).getContainerItem(), x, y, z, 0F, 0.25F,
+                LevelUtils.spawnItemEntity(level, inventory.getStackInSlot(i).getCraftingRemainingItem(), x, y, z, 0F, 0.25F,
                         0F);
             }
             if (!slotStack.isEmpty()) {
@@ -325,7 +325,7 @@ public class DistillerBlockEntity extends SyncedBlockEntity implements MenuProvi
 
             @Override
             public boolean isFluidValid(FluidStack stack) {
-                return !stack.getFluid().getAttributes().isLighterThanAir();
+                return !stack.getFluid().getFluidType().isLighterThanAir();
             }
         };
     }

@@ -8,6 +8,7 @@ import cn.mcmod.sakura.item.enums.SakuraNormalItemSet;
 import cn.mcmod.sakura.tags.SakuraItemTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -20,9 +21,9 @@ import java.util.concurrent.CompletableFuture;
 
 public class SakuraItemTagsProvider extends ItemTagsProvider {
 
-    public SakuraItemTagsProvider(DataGenerator generator, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider blockTags, String modId,
+    public SakuraItemTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, BlockTagsProvider blockTags, String modId,
                                   ExistingFileHelper existingFileHelper) {
-        super(generator.getPackOutput(),lookupProvider, blockTags.contentsGetter(),modId,existingFileHelper);
+        super(packOutput,lookupProvider, blockTags.contentsGetter(),modId,existingFileHelper);
     }
 
     @SuppressWarnings("unchecked")

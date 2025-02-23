@@ -25,6 +25,7 @@ import cn.mcmod_mmf.mmlib.data.AbstractRecipeProvider;
 import cn.mcmod_mmf.mmlib.fluid.FluidIngredient;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
@@ -39,11 +40,13 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.ConditionalRecipe;
 import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.fluids.FluidStack;
+import vectorwing.farmersdelight.FarmersDelight;
+import vectorwing.farmersdelight.common.registry.ModItems;
 
 public class SakuraRecipeProvider extends AbstractRecipeProvider {
 
-    public SakuraRecipeProvider(DataGenerator gen) {
-        super(gen.getPackOutput());
+    public SakuraRecipeProvider(PackOutput packOutput) {
+        super(packOutput);
     }
 
     @Override
@@ -444,30 +447,30 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
                 .requires(ModItems.RICE_PANICLE.get()), FarmersDelight.MODID, "farmer_rice_mortar_from_sakura")
                         .build(consumer, SakuraMod.MODID, "farmer_rice_mortar_from_sakura");
         whenModLoaded(
-                ShapedRecipeBuilder.shaped(ModItems.CANVAS.get()).pattern("##").pattern("##")
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItems.CANVAS.get()).pattern("##").pattern("##")
                         .define('#', SakuraItemTags.STRAW).unlockedBy("has_straw", has(SakuraItemTags.STRAW)),
-                FarmersDelight.MODID).build(consumer, SakuraMod.MODID, "canvas_from_sakura");
-        whenModLoaded(ShapedRecipeBuilder.shaped(ModItems.TATAMI.get(), 2).pattern("S#").pattern("#S")
+                FarmersDelight.MODID, "canvas_from_sakura").build(consumer, SakuraMod.MODID, "canvas_from_sakura");
+        whenModLoaded(ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItems.TATAMI.get(), 2).pattern("S#").pattern("#S")
                 .define('#', SakuraItemTags.STRAW).define('S', ModItems.CANVAS.get())
-                .unlockedBy("has_straw", has(SakuraItemTags.STRAW)), FarmersDelight.MODID).build(consumer,
+                .unlockedBy("has_straw", has(SakuraItemTags.STRAW)), FarmersDelight.MODID,"farmer_tatami_from_sakura").build(consumer,
                         SakuraMod.MODID, "farmer_tatami_from_sakura");
         whenModLoaded(
-                ShapedRecipeBuilder.shaped(ModItems.ROPE.get(), 3).pattern("s").pattern("s").pattern("s")
+                ShapedRecipeBuilder.shaped(RecipeCategory.MISC,ModItems.ROPE.get(), 3).pattern("s").pattern("s").pattern("s")
                         .define('s', SakuraItemTags.STRAW).unlockedBy("has_straw", has(SakuraItemTags.STRAW)),
-                FarmersDelight.MODID).build(consumer, SakuraMod.MODID, "rope_from_sakura");
-        whenModLoaded(ShapelessRecipeBuilder.shapeless(ModItems.ORGANIC_COMPOST.get(), 1).requires(Items.DIRT)
+                FarmersDelight.MODID,"rope_from_sakura").build(consumer, SakuraMod.MODID, "rope_from_sakura");
+        whenModLoaded(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,ModItems.ORGANIC_COMPOST.get(), 1).requires(Items.DIRT)
                 .requires(Items.ROTTEN_FLESH).requires(Items.ROTTEN_FLESH).requires(SakuraItemTags.STRAW)
                 .requires(SakuraItemTags.STRAW).requires(Items.BONE_MEAL).requires(Items.BONE_MEAL)
                 .requires(Items.BONE_MEAL).requires(Items.BONE_MEAL)
                 .unlockedBy("has_rotten_flesh", InventoryChangeTrigger.TriggerInstance.hasItems(Items.ROTTEN_FLESH))
-                .unlockedBy("has_straw", has(SakuraItemTags.STRAW)), FarmersDelight.MODID).build(consumer,
+                .unlockedBy("has_straw", has(SakuraItemTags.STRAW)), FarmersDelight.MODID,"organic_compost_rotten_flesh_from_sakura").build(consumer,
                         SakuraMod.MODID, "organic_compost_rotten_flesh_from_sakura");
-        whenModLoaded(ShapelessRecipeBuilder.shapeless(ModItems.ORGANIC_COMPOST.get(), 1).requires(Items.DIRT)
+        whenModLoaded(ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,ModItems.ORGANIC_COMPOST.get(), 1).requires(Items.DIRT)
                 .requires(SakuraItemTags.STRAW).requires(SakuraItemTags.STRAW).requires(Items.BONE_MEAL)
                 .requires(Items.BONE_MEAL).requires(ModItems.TREE_BARK.get()).requires(ModItems.TREE_BARK.get())
                 .requires(ModItems.TREE_BARK.get()).requires(ModItems.TREE_BARK.get())
                 .unlockedBy("has_tree_bark", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.TREE_BARK.get()))
-                .unlockedBy("has_straw", has(SakuraItemTags.STRAW)), FarmersDelight.MODID).build(consumer,
+                .unlockedBy("has_straw", has(SakuraItemTags.STRAW)), FarmersDelight.MODID,"organic_compost_bark_from_sakura").build(consumer,
                         SakuraMod.MODID, "organic_compost_bark_from_sakura");
     }
 
@@ -1018,7 +1021,12 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
                 .requires(Items.BUCKET);
     }
 
-    public ConditionalRecipe.Builder whenModLoaded(CookingPotRecipeBuilder recipe, String modid, String path) {
+    public ConditionalRecipe.Builder whenModLoaded(ShapedRecipeBuilder recipe, String modid, String path) {
+        return ConditionalRecipe.builder().addCondition(new ModLoadedCondition(modid))
+                .addRecipe(consumer -> recipe.save(consumer, new ResourceLocation(SakuraMod.MODID, path)));
+    }
+
+    public ConditionalRecipe.Builder whenModLoaded(ShapelessRecipeBuilder recipe, String modid, String path) {
         return ConditionalRecipe.builder().addCondition(new ModLoadedCondition(modid))
                 .addRecipe(consumer -> recipe.save(consumer, new ResourceLocation(SakuraMod.MODID, path)));
     }

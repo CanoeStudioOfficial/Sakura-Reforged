@@ -173,8 +173,9 @@ dependencies {
     modCompileOnly(("mezz.jei:jei-${mc_version}-forge-api:${jei_version}"))
     // at runtime, use the full JEI jar for Forge
     modRuntimeOnly(("mezz.jei:jei-${mc_version}-forge:${jei_version}"))
-    
+
     //implementation ("maven.modrinth:epic-fight:20.9.2")
+    modCompileOnly ("maven.modrinth:farmers-delight:1.20.1-1.2.7")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

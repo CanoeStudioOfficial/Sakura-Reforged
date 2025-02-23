@@ -10,23 +10,23 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber()
+//@Mod.EventBusSubscriber()
 public class BiomeEvent {
 
-    @SubscribeEvent
-    public static void onBiomeLoad(BiomeLoadingEvent event) {
-        setVegetalFeature(event, WorldGenerationRegistry.PATCH_BAMBOOSHOOT, SakuraConfig.GENERATE_BAMBOOSHOOT.get(),
-                0.4F, 1.0F);
-    }
-
-    public static void setVegetalFeature(BiomeLoadingEvent event, RegistryObject<PlacedFeature> feature, boolean canGen, float low,
-            float high) {
-        BiomeGenerationSettingsBuilder builder = event.getGeneration();
-        Biome.ClimateSettings climate = event.getClimate();
-        if (climate.temperature > low && climate.temperature <= high) {
-            if (canGen) {
-                builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, feature.getHolder().get());
-            }
-        }
-    }
+//    @SubscribeEvent
+//    public static void onBiomeLoad(BiomeLoadingEvent event) {
+//        setVegetalFeature(event, WorldGenerationRegistry.PATCH_BAMBOOSHOOT, SakuraConfig.GENERATE_BAMBOOSHOOT.get(),
+//                0.4F, 1.0F);
+//    }
+//
+//    public static void setVegetalFeature(BiomeLoadingEvent event, RegistryObject<PlacedFeature> feature, boolean canGen, float low,
+//            float high) {
+//        BiomeGenerationSettingsBuilder builder = event.getGeneration();
+//        Biome.ClimateSettings climate = event.getClimate();
+//        if (climate.temperature > low && climate.temperature <= high) {
+//            if (canGen) {
+//                builder.addFeature(GenerationStep.Decoration.VEGETAL_DECORATION, feature.getHolder().get());
+//            }
+//        }
+//    }
 }
