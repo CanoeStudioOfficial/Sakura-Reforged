@@ -1,9 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#L#",
-    "###"
-  ],
+  "category": "misc",
   "key": {
     "#": {
       "tag": "forge:ingots/iron"
@@ -12,7 +9,12 @@
       "tag": "forge:lumber"
     }
   },
+  "pattern": [
+    "#L#",
+    "###"
+  ],
   "result": {
     "item": "sakura:cooking_pot"
-  }
+  },
+  "show_notification": true
 }

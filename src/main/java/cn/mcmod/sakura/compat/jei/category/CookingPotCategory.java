@@ -13,14 +13,16 @@ import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -35,7 +37,7 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
     private final IDrawable icon;
 
     public CookingPotCategory(IGuiHelper helper) {
-        title = new TranslatableComponent("sakura.jei.cooking");
+        title = Component.translatable("sakura.jei.cooking");
         ResourceLocation backgroundImage = new ResourceLocation(SakuraMod.MODID, "textures/gui/pot.png");
         background = helper.createDrawable(backgroundImage, 16, 16, 144, 54);
         icon = helper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(BlockRegistry.COOKING_POT.get()));
@@ -43,15 +45,15 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
         arrow = helper.drawableBuilder(backgroundImage, 176, 18, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
-    @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
-    public Class<? extends CookingPotRecipe> getRecipeClass() {
-        return CookingPotRecipe.class;
-    }
+//    @Override
+//    public ResourceLocation getUid() {
+//        return UID;
+//    }
+//
+//    @Override
+//    public Class<? extends CookingPotRecipe> getRecipeClass() {
+//        return CookingPotRecipe.class;
+//    }
     
     @Override
     public RecipeType<CookingPotRecipe> getRecipeType() {
@@ -91,12 +93,12 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
             .setFluidRenderer(CookingPotBlockEntity.TANK_CAPACITY, true, 16, 52)
             .addIngredients(ForgeTypes.FLUID_STACK, recipe.getRequiredFluid().getMatchingFluidStacks());
         
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 120, 22).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 120, 22).addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
     }
 
     @Override
-    public void draw(CookingPotRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
-        arrow.draw(matrixStack, 82, 18);
-        heatIndicator.draw(matrixStack, 85, 36);
+    public void draw(CookingPotRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        arrow.draw(guiGraphics, 82, 18);
+        heatIndicator.draw(guiGraphics, 85, 36);
     }
 }

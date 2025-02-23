@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/porchcrawler",
+		"1": "sakura:block/models/porchcrawler",
 		"particle": "block/glass"
 	},
 	"elements": [

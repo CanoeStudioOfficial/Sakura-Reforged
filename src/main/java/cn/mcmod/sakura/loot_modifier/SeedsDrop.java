@@ -8,22 +8,41 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
 import cn.mcmod.sakura.item.ItemRegistry;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.*;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.common.loot.LootModifier;
 
 public class SeedsDrop {
 	public static class SeedDropModifier extends LootModifier {
-		protected SeedDropModifier(LootItemCondition[] conditionsIn) {
+		public SeedDropModifier(LootItemCondition[] conditionsIn) {
 			super(conditionsIn);
 		}
 
+		public static final Codec<SeedDropModifier> CODEC = Codec.of(
+				new Encoder<SeedDropModifier>() {
+					@Override
+					public <T> DataResult<T> encode(SeedDropModifier seedDropModifier, DynamicOps<T> dynamicOps, T t) {
+						return null;
+					}
+				},
+				new Decoder<SeedDropModifier>() {
+					@Override
+					public <T> DataResult<Pair<SeedDropModifier, T>> decode(DynamicOps<T> dynamicOps, T t) {
+						return null;
+					}
+				}
+		);
+
 		@Nonnull
 		@Override
-		protected List<ItemStack> doApply(List<ItemStack> generatedLoot, LootContext context) {
+		protected ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
 			List<Item> seeds = Lists.newArrayList(ItemRegistry.CABBAGE_SEEDS.get(), ItemRegistry.EGGPLANT_SEEDS.get(),
 					ItemRegistry.ONION_SEEDS.get(), ItemRegistry.RADISH_SEEDS.get(), ItemRegistry.TOMATO_SEEDS.get(),
 					ItemRegistry.RICE_SEEDS.get(), ItemRegistry.RAPESEEDS.get(), ItemRegistry.TARO.get(),
@@ -31,19 +50,12 @@ public class SeedsDrop {
 			generatedLoot.add(new ItemStack(seeds.get((int) (Math.random() * seeds.size()))));
 			return generatedLoot;
 		}
-	}
-
-	public static class Serializer extends GlobalLootModifierSerializer<SeedDropModifier> {
-		@Override
-		public SeedDropModifier read(ResourceLocation location, JsonObject object,
-				LootItemCondition[] ailootcondition) {
-			return new SeedDropModifier(ailootcondition);
-		}
 
 		@Override
-		public JsonObject write(SeedDropModifier instance) {
-			return new JsonObject();
+		public Codec<? extends IGlobalLootModifier> codec() {
+			return SeedDropModifier.DIRECT_CODEC;
 		}
 	}
+
 
 }

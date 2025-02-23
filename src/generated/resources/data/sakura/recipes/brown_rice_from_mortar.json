@@ -1,5 +1,6 @@
 {
   "type": "sakura:stone_mortar",
+  "experience": 0.0,
   "ingredients": [
     {
       "tag": "forge:seeds/rice"
@@ -14,6 +15,7 @@
       "tag": "forge:seeds/rice"
     }
   ],
+  "recipeTime": 200,
   "results": [
     {
       "item": "sakura:brown_rice"
@@ -21,7 +23,5 @@
     {
       "item": "sakura:brown_rice"
     }
-  ],
-  "experience": 0.0,
-  "recipeTime": 200
+  ]
 }

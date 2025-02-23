@@ -1,10 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "LLL",
-    "L#L",
-    "LLL"
-  ],
+  "category": "misc",
   "key": {
     "#": {
       "tag": "forge:lumber"
@@ -13,8 +9,14 @@
       "tag": "forge:straw"
     }
   },
+  "pattern": [
+    "LLL",
+    "L#L",
+    "LLL"
+  ],
   "result": {
-    "item": "sakura:tatami",
-    "count": 6
-  }
+    "count": 6,
+    "item": "sakura:tatami"
+  },
+  "show_notification": true
 }

@@ -12,10 +12,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
@@ -24,9 +26,9 @@ import net.minecraftforge.common.ToolActions;
 public class MapleTreeLogBlock extends RotatedPillarBlock {
 
     public MapleTreeLogBlock() {
-        super(Properties.of(Material.WOOD,
-                state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MaterialColor.WOOD
-                        : MaterialColor.PODZOL))
+        super(Properties.copy(Blocks.OAK_LOG).mapColor(
+                state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? MapColor.WOOD
+                        : MapColor.PODZOL))
                 .strength(2.0F).sound(SoundType.WOOD));
     }
 

@@ -1,9 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###",
-    "I I"
-  ],
+  "category": "misc",
   "key": {
     "#": {
       "tag": "forge:lumber"
@@ -12,7 +9,12 @@
       "tag": "forge:rods/wooden"
     }
   },
+  "pattern": [
+    "###",
+    "I I"
+  ],
   "result": {
     "item": "sakura:chopping_board"
-  }
+  },
+  "show_notification": true
 }

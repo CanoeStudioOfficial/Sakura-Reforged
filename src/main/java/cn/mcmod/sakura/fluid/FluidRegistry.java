@@ -1,6 +1,8 @@
 package cn.mcmod.sakura.fluid;
 
+import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 import cn.mcmod.sakura.SakuraMod;
 import net.minecraft.resources.ResourceLocation;
@@ -9,6 +11,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.minecraftforge.common.SoundAction;
+import net.minecraftforge.common.SoundActions;
+import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.ForgeFlowingFluid;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -74,52 +80,45 @@ public class FluidRegistry {
     
 
     private static final ForgeFlowingFluid.Properties FOOD_OIL_PROP = 
-            createProp(FOOD_OIL, FOOD_OIL_FLOWING, 0xFFFFF050, BucketItemRegistry.FOOD_OIL_BUCKET, FluidBlockRegistry.FOOD_OIL_BLOCK);
+            createProp(FOOD_OIL, FOOD_OIL_FLOWING, FluidTypeRegistry.FOOD_OIL, FluidBlockRegistry.FOOD_OIL_BLOCK);
 
     private static final ForgeFlowingFluid.Properties DOBUROKU_PROP = 
-            createProp(DOBUROKU, DOBUROKU_FLOWING, 0xFFCCC299, BucketItemRegistry.DOBUROKU_BUCKET, FluidBlockRegistry.DOBUROKU_BLOCK);
+            createProp(DOBUROKU, DOBUROKU_FLOWING, FluidTypeRegistry.DOBUROKU, FluidBlockRegistry.DOBUROKU_BLOCK);
     
     private static final ForgeFlowingFluid.Properties SAKE_PROP = 
-            createProp(SAKE, SAKE_FLOWING, 0xDDFFF8CC, BucketItemRegistry.SAKE_BUCKET, FluidBlockRegistry.SAKE_BLOCK);
+            createProp(SAKE, SAKE_FLOWING, FluidTypeRegistry.SAKE, FluidBlockRegistry.SAKE_BLOCK);
     
     private static final ForgeFlowingFluid.Properties SHOUCHU_PROP = 
-            createProp(SHOUCHU, SHOUCHU_FLOWING, 0xBBFFFCF2,BucketItemRegistry.SHOUCHU_BUCKET, FluidBlockRegistry.SHOUCHU_BLOCK);
+            createProp(SHOUCHU, SHOUCHU_FLOWING, FluidTypeRegistry.SHOUCHU, FluidBlockRegistry.SHOUCHU_BLOCK);
     
     private static final ForgeFlowingFluid.Properties BEER_PROP = 
-            createProp(BEER, BEER_FLOWING, 0xFFF2A918,BucketItemRegistry.BEER_BUCKET, FluidBlockRegistry.BEER_BLOCK);
+            createProp(BEER, BEER_FLOWING, FluidTypeRegistry.BEER, FluidBlockRegistry.BEER_BLOCK);
     
     private static final ForgeFlowingFluid.Properties BRANDY_PROP = 
-            createProp(BRANDY, BRANDY_FLOWING, 0xFFBF2F00,BucketItemRegistry.BRANDY_BUCKET, FluidBlockRegistry.BRANDY_BLOCK);
+            createProp(BRANDY, BRANDY_FLOWING, FluidTypeRegistry.BRANDY, FluidBlockRegistry.BRANDY_BLOCK);
     
     private static final ForgeFlowingFluid.Properties WHISKEY_PROP = 
-            createProp(WHISKEY, WHISKEY_FLOWING, 0xFFA52121,BucketItemRegistry.WHISKEY_BUCKET, FluidBlockRegistry.WHISKEY_BLOCK);
+            createProp(WHISKEY, WHISKEY_FLOWING, FluidTypeRegistry.WHISKEY, FluidBlockRegistry.WHISKEY_BLOCK);
     
     private static final ForgeFlowingFluid.Properties RUM_PROP = 
-            createProp(RUM, RUM_FLOWING, 0xFFFFAA32,BucketItemRegistry.RUM_BUCKET, FluidBlockRegistry.RUM_BLOCK);
+            createProp(RUM, RUM_FLOWING, FluidTypeRegistry.RUM, FluidBlockRegistry.RUM_BLOCK);
     
     private static final ForgeFlowingFluid.Properties RED_WINE_PROP = 
-            createProp(RED_WINE, RED_WINE_FLOWING, 0xFFA71844, BucketItemRegistry.RED_WINE_BUCKET, FluidBlockRegistry.RED_WINE_BLOCK);
+            createProp(RED_WINE, RED_WINE_FLOWING, FluidTypeRegistry.RED_WINE, FluidBlockRegistry.RED_WINE_BLOCK);
     
     private static final ForgeFlowingFluid.Properties WHITE_WINE_PROP = 
-            createProp(WHITE_WINE, WHITE_WINE_FLOWING, 0xFFFFF8B2, BucketItemRegistry.WHITE_WINE_BUCKET, FluidBlockRegistry.WHITE_WINE_BLOCK);
+            createProp(WHITE_WINE, WHITE_WINE_FLOWING, FluidTypeRegistry.WHITE_WINE, FluidBlockRegistry.WHITE_WINE_BLOCK);
     
     private static final ForgeFlowingFluid.Properties CHAMPAGNE_PROP = 
-            createProp(CHAMPAGNE, CHAMPAGNE_FLOWING, 0xFFFFE772, BucketItemRegistry.CHAMPAGNE_BUCKET, FluidBlockRegistry.CHAMPAGNE_BLOCK);
+            createProp(CHAMPAGNE, CHAMPAGNE_FLOWING, FluidTypeRegistry.CHAMPAGNE, FluidBlockRegistry.CHAMPAGNE_BLOCK);
     
     private static ForgeFlowingFluid.Properties createProp(
             Supplier<? extends Fluid> still, 
-            Supplier<? extends Fluid> flowing, 
-            int color, 
-            Supplier<? extends Item> bucket, 
+            Supplier<? extends Fluid> flowing,
+            RegistryObject<FluidType> fluidType,
             Supplier<? extends LiquidBlock> block){
-        return new ForgeFlowingFluid.Properties(still, flowing,
-                FluidAttributes.builder(new ResourceLocation("block/water_still"), 
-                        new ResourceLocation("block/water_flow"))
-                .sound(SoundEvents.BUCKET_FILL, SoundEvents.BUCKET_EMPTY)
-                .color(color).density(3000).viscosity(1000))
-                .block(block)
-                .bucket(bucket)
-                .slopeFindDistance(3)
-                .explosionResistance(100F);
+
+        UnaryOperator<ForgeFlowingFluid.Properties> blockProperties = p->p.block(block).slopeFindDistance(3).explosionResistance(100F);
+        return blockProperties.apply(new ForgeFlowingFluid.Properties(fluidType ,still, flowing));
     }
 }

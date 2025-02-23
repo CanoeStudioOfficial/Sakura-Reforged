@@ -2,20 +2,24 @@ package cn.mcmod.sakura.data;
 
 import cn.mcmod.sakura.fluid.FluidRegistry;
 import cn.mcmod.sakura.tags.SakuraFluidTags;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
+import java.util.concurrent.CompletableFuture;
+
 public class SakuraFluidTagsProvider extends FluidTagsProvider {
 
-    public SakuraFluidTagsProvider(DataGenerator datagen, String modId, ExistingFileHelper existingFileHelper) {
-        super(datagen, modId, existingFileHelper);
+    public SakuraFluidTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> provider, String modId, ExistingFileHelper existingFileHelper) {
+        super(packOutput,provider, modId, existingFileHelper);
     }
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         tag(FluidTags.WATER).add(FluidRegistry.FOOD_OIL.get(),FluidRegistry.FOOD_OIL_FLOWING.get());
         tag(FluidTags.WATER).add(FluidRegistry.DOBUROKU.get(),FluidRegistry.DOBUROKU_FLOWING.get());
         tag(FluidTags.WATER).add(FluidRegistry.SAKE.get(),FluidRegistry.SAKE_FLOWING.get());

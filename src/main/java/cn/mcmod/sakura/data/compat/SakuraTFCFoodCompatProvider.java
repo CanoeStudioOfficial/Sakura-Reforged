@@ -4,13 +4,13 @@ import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.item.FoodRegistry;
 import cn.mcmod.sakura.item.ItemRegistry;
 import cn.mcmod_mmf.mmlib.data.compat.TFCFoodDefinitionProvider;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 public class SakuraTFCFoodCompatProvider extends TFCFoodDefinitionProvider {
 
-    public SakuraTFCFoodCompatProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, existingFileHelper, SakuraMod.MODID);
+    public SakuraTFCFoodCompatProvider(PackOutput packOutput, ExistingFileHelper existingFileHelper) {
+        super(packOutput, existingFileHelper, SakuraMod.MODID);
     }
     
     @Override

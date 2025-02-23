@@ -1,5 +1,14 @@
 package cn.mcmod.sakura;
 
+import cn.mcmod.sakura.fluid.FluidTypeRegistry;
+import cn.mcmod.sakura.item.CreativeModeTabRegistry;
+import cn.mcmod.sakura.item.enums.SakuraFoodSet;
+import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -37,6 +46,7 @@ public class SakuraMod {
 //        }
 //    };
 
+
     public static Item.Properties defaultItemProperties() {
         return new Item.Properties();
     }
@@ -52,14 +62,14 @@ public class SakuraMod {
         FoodRegistry.ITEMS.register(modEventBus);
         FluidRegistry.FLUIDS.register(modEventBus);
         FluidBlockRegistry.BLOCKS.register(modEventBus);
+        FluidTypeRegistry.FLUID_TYPES.register(modEventBus);
         BucketItemRegistry.ITEMS.register(modEventBus);
-        WorldGenerationRegistry.FEATURES.register(modEventBus);
-        WorldGenerationRegistry.PATCHES.register(modEventBus);
         ParticleRegistry.PARTICLE_TYPES.register(modEventBus);
         ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
         LootModifiterRegistry.GLM.register(modEventBus);
         RecipeTypeRegistry.RECIPE_TYPES.register(modEventBus);
         RecipeTypeRegistry.RECIPE_SERIALIZERS.register(modEventBus);
+        CreativeModeTabRegistry.TABS.register(modEventBus);
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, SakuraConfig.COMMON_CONFIG);
 
     }

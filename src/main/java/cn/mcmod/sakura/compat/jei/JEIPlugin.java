@@ -98,10 +98,10 @@ public class JEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipeTransferHandlers(IRecipeTransferRegistration registration) {
-        registration.addRecipeTransferHandler(CookingPotContainer.class, COOKING_POT_JEI_TYPE, 0, 9, 10, 36);
-        registration.addRecipeTransferHandler(StoneMortarContainer.class, STONE_MORTAR_JEI_TYPE, 0, 4, 6, 36);
-        registration.addRecipeTransferHandler(FermenterContainer.class, FERMENTER_JEI_TYPE, 0, 3, 6, 36);
-        registration.addRecipeTransferHandler(DistillerContainer.class, DISTILLER_JEI_TYPE, 0, 3, 6, 36);
+        registration.addRecipeTransferHandler(CookingPotContainer.class,null, COOKING_POT_JEI_TYPE, 0, 9, 10, 36);
+        registration.addRecipeTransferHandler(StoneMortarContainer.class,null, STONE_MORTAR_JEI_TYPE, 0, 4, 6, 36);
+        registration.addRecipeTransferHandler(FermenterContainer.class, null,FERMENTER_JEI_TYPE, 0, 3, 6, 36);
+        registration.addRecipeTransferHandler(DistillerContainer.class, null,DISTILLER_JEI_TYPE, 0, 3, 6, 36);
     }
 
     @Override

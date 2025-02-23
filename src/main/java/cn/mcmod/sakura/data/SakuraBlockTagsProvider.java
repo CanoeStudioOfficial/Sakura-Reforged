@@ -1,19 +1,23 @@
 package cn.mcmod.sakura.data;
 
 import cn.mcmod.sakura.block.BlockRegistry;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.data.tags.BlockTagsProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.concurrent.CompletableFuture;
 
 public class SakuraBlockTagsProvider extends BlockTagsProvider {
 
-    public SakuraBlockTagsProvider(DataGenerator generator, String modId, ExistingFileHelper existingFileHelper) {
-        super(generator, modId, existingFileHelper);
+    public SakuraBlockTagsProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> lookupProvider, String modId, ExistingFileHelper existingFileHelper) {
+        super(packOutput,lookupProvider, modId, existingFileHelper);
     }
 
     @Override
-    protected void addTags() {
+    protected void addTags(HolderLookup.Provider provider) {
         this.tag(BlockTags.LOGS).add(BlockRegistry.STRIPPED_SAKURA_WOOD.get(), BlockRegistry.STRIPPED_MAPLE_WOOD.get(),
                 BlockRegistry.SAKURA_WOOD.get(), BlockRegistry.MAPLE_WOOD.get(),
                 BlockRegistry.STRIPPED_SAKURA_LOG.get(), BlockRegistry.STRIPPED_MAPLE_LOG.get(),
@@ -47,4 +51,6 @@ public class SakuraBlockTagsProvider extends BlockTagsProvider {
     public String getName() {
         return "Sakura Blocks' Tags";
     }
+
+
 }

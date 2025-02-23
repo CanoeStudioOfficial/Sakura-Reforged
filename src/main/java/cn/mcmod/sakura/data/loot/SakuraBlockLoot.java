@@ -26,12 +26,16 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 
 public class SakuraBlockLoot extends AbstartctBlockLoot {
 
-    protected SakuraBlockLoot(Set<Item> pExplosionResistant) {
+    public SakuraBlockLoot(Set<Item> pExplosionResistant) {
 		super(pExplosionResistant);
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+    public SakuraBlockLoot() {
+        super(Set.of());
+    }
+
+    @Override
     public void addTables() {
         dropSelf(BlockRegistry.BAMBOO_BLOCK.get());
         BlockRegistry.BLOCKS.getEntries().forEach(block -> {
@@ -104,8 +108,8 @@ public class SakuraBlockLoot extends AbstartctBlockLoot {
         this.add(block, createTeishokuDrops(block, BlockItemRegistry.OBON.get(), block.asItem(), builder));
     }
 
-    protected static LootTable.Builder createTeishokuDrops(Block p_124143_, Item p_124144_, Item p_124145_,
-            LootItemCondition.Builder p_124146_) {
+    protected LootTable.Builder createTeishokuDrops(Block p_124143_, Item p_124144_, Item p_124145_,
+                                                    LootItemCondition.Builder p_124146_) {
         return applyExplosionDecay(p_124143_, LootTable.lootTable()
                 .withPool(LootPool.lootPool().add(
                         LootItem.lootTableItem(p_124145_).when(p_124146_)))

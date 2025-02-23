@@ -1,9 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "LLL",
-    "L#L"
-  ],
+  "category": "misc",
   "key": {
     "#": {
       "item": "sakura:sakuraleaves"
@@ -12,7 +9,12 @@
       "tag": "forge:lumber"
     }
   },
+  "pattern": [
+    "LLL",
+    "L#L"
+  ],
   "result": {
     "item": "sakura:obon"
-  }
+  },
+  "show_notification": true
 }

@@ -1,5 +1,10 @@
 {
   "type": "sakura:cooking",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 125,
+    "fluidTag": "forge:food_oil"
+  },
   "ingredients": [
     {
       "tag": "sakura:rice/rice"
@@ -25,13 +30,8 @@
       "tag": "forge:tomatosauce"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:food_oil",
-    "amount": 125
-  },
+  "recipeTime": 200,
   "result": {
     "item": "sakura:omurice"
-  },
-  "experience": 0.0,
-  "recipeTime": 200
+  }
 }

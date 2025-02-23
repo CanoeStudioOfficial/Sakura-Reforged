@@ -13,11 +13,13 @@ import mezz.jei.api.forge.ForgeTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableAnimated;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.recipe.IFocusGroup;
 import mezz.jei.api.recipe.RecipeIngredientRole;
 import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -43,15 +45,15 @@ public class FermenterCategory implements IRecipeCategory<FermenterRecipe> {
         bubbles = helper.drawableBuilder(backgroundImage, 176, 35, 18, 18).buildAnimated(18, IDrawableAnimated.StartDirection.BOTTOM, false);
     }
 
-    @Override
-    public ResourceLocation getUid() {
-        return UID;
-    }
-
-    @Override
-    public Class<? extends FermenterRecipe> getRecipeClass() {
-        return FermenterRecipe.class;
-    }
+//    @Override
+//    public ResourceLocation getUid() {
+//        return UID;
+//    }
+//
+//    @Override
+//    public Class<? extends FermenterRecipe> getRecipeClass() {
+//        return FermenterRecipe.class;
+//    }
     
     @Override
     public RecipeType<FermenterRecipe> getRecipeType() {
@@ -103,8 +105,8 @@ public class FermenterCategory implements IRecipeCategory<FermenterRecipe> {
     }
 
     @Override
-    public void draw(FermenterRecipe recipe, PoseStack matrixStack, double mouseX, double mouseY) {
-        bubbles.draw(matrixStack, 46, 16);
-        arrow.draw(matrixStack, 44, 34);
+    public void draw(FermenterRecipe recipe, IRecipeSlotsView recipeSlotsView, GuiGraphics guiGraphics, double mouseX, double mouseY) {
+        bubbles.draw(guiGraphics, 46, 16);
+        arrow.draw(guiGraphics, 44, 34);
     }
 }

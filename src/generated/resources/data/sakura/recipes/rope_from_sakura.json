@@ -4,26 +4,28 @@
     {
       "conditions": [
         {
-          "modid": "farmersdelight",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "farmersdelight"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "s",
-          "s",
-          "s"
-        ],
+        "category": "misc",
         "key": {
           "s": {
             "tag": "forge:straw"
           }
         },
+        "pattern": [
+          "s",
+          "s",
+          "s"
+        ],
         "result": {
-          "item": "farmersdelight:rope",
-          "count": 3
-        }
+          "count": 3,
+          "item": "farmersdelight:rope"
+        },
+        "show_notification": true
       }
     }
   ]

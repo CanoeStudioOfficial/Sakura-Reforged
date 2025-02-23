@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:models/stone",
-		"1": "sakura:models/lantern",
-		"particle": "sakura:models/stone"
+		"0": "sakura:block/models/stone",
+		"1": "sakura:block/models/lantern",
+		"particle": "sakura:block/models/stone"
 	},
 	"elements": [
 		{

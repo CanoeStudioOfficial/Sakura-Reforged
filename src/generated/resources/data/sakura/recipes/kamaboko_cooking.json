@@ -1,5 +1,10 @@
 {
   "type": "sakura:cooking",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 125,
+    "fluidTag": "forge:water/water"
+  },
   "ingredients": [
     {
       "tag": "forge:salt"
@@ -8,14 +13,9 @@
       "item": "sakura:surimi"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:water/water",
-    "amount": 125
-  },
+  "recipeTime": 200,
   "result": {
-    "item": "sakura:kamaboko",
-    "count": 2
-  },
-  "experience": 0.0,
-  "recipeTime": 200
+    "count": 2,
+    "item": "sakura:kamaboko"
+  }
 }

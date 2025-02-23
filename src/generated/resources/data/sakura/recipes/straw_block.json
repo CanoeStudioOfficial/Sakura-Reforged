@@ -1,17 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "LLL",
-    "LLL",
-    "LLL"
-  ],
+  "category": "misc",
   "key": {
     "L": {
       "tag": "forge:straw"
     }
   },
+  "pattern": [
+    "LLL",
+    "LLL",
+    "LLL"
+  ],
   "result": {
-    "item": "sakura:straw_block",
-    "count": 4
-  }
+    "count": 4,
+    "item": "sakura:straw_block"
+  },
+  "show_notification": true
 }

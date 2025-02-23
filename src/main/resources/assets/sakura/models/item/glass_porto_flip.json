@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/porto_flip",
+		"1": "sakura:block/models/porto_flip",
 		"particle": "block/glass"
 	},
 	"elements": [

@@ -1,5 +1,10 @@
 {
   "type": "sakura:cooking",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 125,
+    "fluidTag": "forge:food_oil"
+  },
   "ingredients": [
     {
       "item": "sakura:tempura_batter"
@@ -8,13 +13,8 @@
       "tag": "forge:shrimp"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:food_oil",
-    "amount": 125
-  },
+  "recipeTime": 200,
   "result": {
     "item": "sakura:tempura"
-  },
-  "experience": 0.0,
-  "recipeTime": 200
+  }
 }

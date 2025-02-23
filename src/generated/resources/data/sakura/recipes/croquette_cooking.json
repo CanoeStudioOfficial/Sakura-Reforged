@@ -1,5 +1,10 @@
 {
   "type": "sakura:cooking",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 125,
+    "fluidTag": "forge:food_oil"
+  },
   "ingredients": [
     {
       "item": "sakura:mashed_potato"
@@ -11,14 +16,9 @@
       "tag": "forge:milk"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:food_oil",
-    "amount": 125
-  },
+  "recipeTime": 200,
   "result": {
-    "item": "sakura:croquette",
-    "count": 2
-  },
-  "experience": 0.0,
-  "recipeTime": 200
+    "count": 2,
+    "item": "sakura:croquette"
+  }
 }

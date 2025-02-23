@@ -35,6 +35,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
@@ -75,8 +76,8 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         boolean didInventoryChange = false;
         if (blockEntity.isHeated(level, pos) && blockEntity.hasInput()) {
             Optional<CookingPotRecipe> recipe = blockEntity.getMatchingRecipe(new RecipeWrapper(blockEntity.inventory));
-            if (recipe.isPresent() && blockEntity.canWork(recipe.get())) {
-                didInventoryChange = blockEntity.processRecipe(recipe.get());
+            if (recipe.isPresent() && blockEntity.canWork(recipe.get(),level)) {
+                didInventoryChange = blockEntity.processRecipe(recipe.get(),level);
             } else {
                 blockEntity.recipeTime = 0;
             }
@@ -132,16 +133,16 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         return Optional.empty();
     }
 
-    protected boolean canWork(CookingPotRecipe recipe) {
+    protected boolean canWork(CookingPotRecipe recipe,Level level) {
         if (hasInput()) {
-            ItemStack resultStack = recipe.getResultItem();
+            ItemStack resultStack = recipe.getResultItem(level.registryAccess());
             if (resultStack.isEmpty()) {
                 return false;
             } else {
                 ItemStack outputStack = inventory.getStackInSlot(9);
                 if (outputStack.isEmpty()) {
                     return true;
-                } else if (!outputStack.sameItem(resultStack)) {
+                } else if (!ItemStack.isSameItem(outputStack, resultStack)) {
                     return false;
                 } else if (outputStack.getCount() + resultStack.getCount() <= inventory.getSlotLimit(9)) {
                     return true;
@@ -154,7 +155,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
         }
     }
 
-    private boolean processRecipe(CookingPotRecipe recipe) {
+    private boolean processRecipe(CookingPotRecipe recipe,Level level) {
         if (level == null) {
             return false;
         }
@@ -167,12 +168,12 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
 
         recipeTime = 0;
 
-        ItemStack resultStack = recipe.getResultItem();
+        ItemStack resultStack = recipe.getResultItem(level.registryAccess());
         ItemStack outStack = inventory.getStackInSlot(9);
 
         if (outStack.isEmpty()) {
             inventory.setStackInSlot(9, resultStack.copy());
-        } else if (outStack.sameItem(resultStack)) {
+        } else if (ItemStack.isSameItem(outStack, resultStack)) {
             outStack.grow(resultStack.getCount());
         }
         if(recipe.getRequiredFluid() != FluidIngredient.EMPTY)
@@ -183,11 +184,11 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
 
         for (int i = 0; i < 9; ++i) {
             ItemStack slotStack = inventory.getStackInSlot(i);
-            if (slotStack.hasContainerItem()) {
+            if (slotStack.hasCraftingRemainingItem()) {
                 double x = worldPosition.getX() + 0.5;
                 double y = worldPosition.getY() + 0.7;
                 double z = worldPosition.getZ() + 0.5;
-                LevelUtils.spawnItemEntity(level, inventory.getStackInSlot(i).getContainerItem(), x, y, z, 0F, 0.25F,
+                LevelUtils.spawnItemEntity(level, inventory.getStackInSlot(i).getCraftingRemainingItem(), x, y, z, 0F, 0.25F,
                         0F);
             }
             if (!slotStack.isEmpty()) {
@@ -220,14 +221,14 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
     @Nonnull
     public <T> LazyOptional<T> getCapability(Capability<T> cap, @Nullable Direction side) {
         if (!this.isRemoved()) {
-            if (cap.equals(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)) {
+            if (cap.equals(ForgeCapabilities.ITEM_HANDLER)) {
                 if (side == null || side.equals(Direction.UP)) {
                     return inputHandler.cast();
                 } else {
                     return outputHandler.cast();
                 }
             }
-            if (cap.equals(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)) {
+            if (cap.equals(ForgeCapabilities.FLUID_HANDLER)) {
                 return this.fluidTank.cast();
             }
         }
@@ -304,7 +305,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
 
             @Override
             public boolean isFluidValid(FluidStack stack) {
-                return !stack.getFluid().getAttributes().isLighterThanAir();
+                return !stack.getFluid().getFluidType().isLighterThanAir();
             }
         };
     }
@@ -350,7 +351,7 @@ public class CookingPotBlockEntity extends SyncedBlockEntity implements MenuProv
 
     @Override
     public Component getDisplayName() {
-        return new TranslatableComponent("container.sakura.cooking_pot");
+        return Component.translatable("container.sakura.cooking_pot");
     }
 
     public boolean isHeated() {

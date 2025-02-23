@@ -40,33 +40,33 @@ public class BlockRegistry {
             SakuraMod.MODID);
 
     public static final RegistryObject<Block> SAKURA_LEAVES = BLOCKS.register("sakuraleaves",
-            () -> new SakuraLeavesBlock(Block.Properties.of(Material.LEAVES).strength(0.2F).randomTicks()
+            () -> new SakuraLeavesBlock(Block.Properties.copy(Blocks.OAK_LEAVES).strength(0.2F).randomTicks()
                     .sound(SoundType.GRASS).noOcclusion(), ParticleRegistry.SAKURA_LEAF));
 
     public static final RegistryObject<Block> MAPLE_LEAVES_RED = BLOCKS.register("mapleleaves_red",
-            () -> new SakuraLeavesBlock(Block.Properties.of(Material.LEAVES).strength(0.2F).randomTicks()
+            () -> new SakuraLeavesBlock(Block.Properties.copy(Blocks.OAK_LEAVES).strength(0.2F).randomTicks()
                     .sound(SoundType.GRASS).noOcclusion(), ParticleRegistry.RED_MAPLE_LEAF));
     public static final RegistryObject<Block> MAPLE_LEAVES_GREEN = BLOCKS.register("mapleleaves_green",
-            () -> new SakuraLeavesBlock(Block.Properties.of(Material.LEAVES).strength(0.2F).randomTicks()
+            () -> new SakuraLeavesBlock(Block.Properties.copy(Blocks.OAK_LEAVES).strength(0.2F).randomTicks()
                     .sound(SoundType.GRASS).noOcclusion(), ParticleRegistry.GREEN_MAPLE_LEAF));
     public static final RegistryObject<Block> MAPLE_LEAVES_YELLOW = BLOCKS.register("mapleleaves_yellow",
-            () -> new SakuraLeavesBlock(Block.Properties.of(Material.LEAVES).strength(0.2F).randomTicks()
+            () -> new SakuraLeavesBlock(Block.Properties.copy(Blocks.OAK_LEAVES).strength(0.2F).randomTicks()
                     .sound(SoundType.GRASS).noOcclusion(), ParticleRegistry.YELLOW_MAPLE_LEAF));
     public static final RegistryObject<Block> MAPLE_LEAVES_ORANGE = BLOCKS.register("mapleleaves_orange",
-            () -> new SakuraLeavesBlock(Block.Properties.of(Material.LEAVES).strength(0.2F).randomTicks()
+            () -> new SakuraLeavesBlock(Block.Properties.copy(Blocks.OAK_LEAVES).strength(0.2F).randomTicks()
                     .sound(SoundType.GRASS).noOcclusion(), ParticleRegistry.ORANGE_MAPLE_LEAF));
 
     public static final RegistryObject<RotatedPillarBlock> SAKURA_LOG = BLOCKS.register("sakura_log",
-            () -> log(MaterialColor.WOOD, MaterialColor.PODZOL));
+            () -> log(MapColor.WOOD, MapColor.PODZOL));
 
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_SAKURA_LOG = BLOCKS.register("stripped_sakura_log",
-            () -> log(MaterialColor.WOOD, MaterialColor.WOOD));
+            () -> log(MapColor.WOOD, MapColor.WOOD));
 
     public static final RegistryObject<RotatedPillarBlock> SAKURA_WOOD = BLOCKS.register("sakura_wood",
-            () -> log(MaterialColor.PODZOL, MaterialColor.PODZOL));
+            () -> log(MapColor.PODZOL, MapColor.PODZOL));
 
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_SAKURA_WOOD = BLOCKS
-            .register("stripped_sakura_wood", () -> log(MaterialColor.WOOD, MaterialColor.WOOD));
+            .register("stripped_sakura_wood", () -> log(MapColor.WOOD, MapColor.WOOD));
 
     public static final RegistryObject<SaplingBlock> SAKURA_SAPLING = BLOCKS.register("sakura_sapling",
             () -> sapling(new SakuraTreeGrower()));
@@ -78,29 +78,29 @@ public class BlockRegistry {
             MapleTreeSapLogBlock::new);
 
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_MAPLE_LOG = BLOCKS.register("stripped_maple_log",
-            () -> log(MaterialColor.WOOD, MaterialColor.WOOD));
+            () -> log(MapColor.WOOD, MapColor.WOOD));
 
     public static final RegistryObject<RotatedPillarBlock> MAPLE_WOOD = BLOCKS.register("maple_wood",
-            () -> log(MaterialColor.PODZOL, MaterialColor.PODZOL));
+            () -> log(MapColor.PODZOL, MapColor.PODZOL));
 
     public static final RegistryObject<RotatedPillarBlock> STRIPPED_MAPLE_WOOD = BLOCKS.register("stripped_maple_wood",
-            () -> log(MaterialColor.WOOD, MaterialColor.WOOD));
+            () -> log(MapColor.WOOD, MapColor.WOOD));
 
     public static final RegistryObject<RotatedPillarBlock> BAMBOO_BLOCK = BLOCKS.register("bamboo_block",
             BambooBlock::new);
     public static final RegistryObject<RotatedPillarBlock> BAMBOO_BLOCK_SUNBURNT = BLOCKS
-            .register("bamboo_block_sunburnt", () -> simplebambooBlock(MaterialColor.SAND, MaterialColor.WOOD));
+            .register("bamboo_block_sunburnt", () -> simplebambooBlock(MapColor.SAND, MapColor.WOOD));
     public static final RegistryObject<RotatedPillarBlock> BAMBOO_CHARCOAL_BLOCK = BLOCKS.register(
-            "bamboo_charcoal_block", () -> simplebambooBlock(MaterialColor.COLOR_GRAY, MaterialColor.COLOR_BLACK));
+            "bamboo_charcoal_block", () -> simplebambooBlock(MapColor.COLOR_GRAY, MapColor.COLOR_BLACK));
 
     public static final RegistryObject<Block> MAPLE_SAPLING_RED = BLOCKS.register("maple_sapling_red",
-            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_RED, SakuraTreeFeatures.FANCY_MAPLE_RED)));
+            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_RED_KEY, SakuraTreeFeatures.FANCY_MAPLE_RED_KEY)));
     public static final RegistryObject<Block> MAPLE_SAPLING_GREEN = BLOCKS.register("maple_sapling_green",
-            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_GREEN, SakuraTreeFeatures.FANCY_MAPLE_GREEN)));
+            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_GREEN_KEY, SakuraTreeFeatures.FANCY_MAPLE_GREEN_KEY)));
     public static final RegistryObject<Block> MAPLE_SAPLING_YELLOW = BLOCKS.register("maple_sapling_yellow",
-            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_YELLOW, SakuraTreeFeatures.FANCY_MAPLE_YELLOW)));
+            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_YELLOW_KEY, SakuraTreeFeatures.FANCY_MAPLE_YELLOW_KEY)));
     public static final RegistryObject<Block> MAPLE_SAPLING_ORANGE = BLOCKS.register("maple_sapling_orange",
-            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_ORANGE, SakuraTreeFeatures.FANCY_MAPLE_ORANGE)));
+            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_ORANGE_KEY, SakuraTreeFeatures.FANCY_MAPLE_ORANGE_KEY)));
 
     public static final RegistryObject<Block> BAMBOO_PLANT = BLOCKS.register("bamboo_plant", BambooPlant::new);
     public static final RegistryObject<Block> BAMBOOSHOOT = BLOCKS.register("bamboo_shoot", BambooShoot::new);
@@ -184,25 +184,25 @@ public class BlockRegistry {
     
     private static RotatedPillarBlock log(MapColor top, MapColor bark) {
         return new RotatedPillarBlock(BlockBehaviour.Properties
-                .of(Material.WOOD, state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? top : bark))
+                .copy(Blocks.OAK_LOG).mapColor( state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? top : bark))
                 .strength(2.0F).sound(SoundType.WOOD));
     }
 
     private static SaplingBlock sapling(AbstractTreeGrower tree) {
-        return new SaplingBlock(tree, BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks()
+        return new SaplingBlock(tree, BlockBehaviour.Properties.copy(Blocks.GRASS).noCollission().randomTicks()
                 .instabreak().sound(SoundType.GRASS));
     }
 
     private static RotatedPillarBlock simplebambooBlock(MapColor top, MapColor bark) {
         return new RotatedPillarBlock(BlockBehaviour.Properties
-                .of(Material.BAMBOO,
-                        state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? top : bark))
+                .copy(Blocks.BAMBOO).mapColor(state -> (state.getValue(RotatedPillarBlock.AXIS) == Direction.Axis.Y ? top : bark))
+
                 .strength(2.0F).sound(SoundType.BAMBOO));
     }
 
     private static Block plank(MapColor material_color) {
         return new Block(
-                BlockBehaviour.Properties.of(Material.WOOD, material_color).strength(2.0F, 3.0F).sound(SoundType.WOOD));
+                BlockBehaviour.Properties.copy(Blocks.OAK_LOG).mapColor(material_color).strength(2.0F, 3.0F).sound(SoundType.WOOD));
     }
 
 }

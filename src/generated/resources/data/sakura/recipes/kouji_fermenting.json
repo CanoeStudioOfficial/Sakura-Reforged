@@ -1,5 +1,10 @@
 {
   "type": "sakura:fermenting",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 500,
+    "fluidTag": "forge:water/water"
+  },
   "ingredients": [
     {
       "item": "sakura:rice_cooked"
@@ -8,20 +13,15 @@
       "tag": "forge:salt"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:water/water",
-    "amount": 500
+  "recipeTime": 800,
+  "result_fluid": {
+    "amount": 0,
+    "fluid": "minecraft:empty"
   },
   "results": [
     {
-      "item": "sakura:kouji",
-      "count": 2
+      "count": 2,
+      "item": "sakura:kouji"
     }
-  ],
-  "result_fluid": {
-    "fluid": "minecraft:empty",
-    "amount": 0
-  },
-  "experience": 0.0,
-  "recipeTime": 800
+  ]
 }

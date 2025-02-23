@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/russian_spring",
+		"1": "sakura:block/models/russian_spring",
 		"particle": "block/glass"
 	},
 	"elements": [

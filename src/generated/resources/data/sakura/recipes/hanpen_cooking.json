@@ -1,5 +1,10 @@
 {
   "type": "sakura:cooking",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 125,
+    "fluidTag": "forge:water/water"
+  },
   "ingredients": [
     {
       "tag": "forge:salt"
@@ -19,14 +24,9 @@
       "item": "sakura:surimi"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:water/water",
-    "amount": 125
-  },
+  "recipeTime": 200,
   "result": {
-    "item": "sakura:fishcake",
-    "count": 4
-  },
-  "experience": 0.0,
-  "recipeTime": 200
+    "count": 4,
+    "item": "sakura:fishcake"
+  }
 }

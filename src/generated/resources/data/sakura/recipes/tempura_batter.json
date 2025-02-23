@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
   "ingredients": [
     {
       "tag": "forge:flour"
@@ -18,7 +19,7 @@
     }
   ],
   "result": {
-    "item": "sakura:tempura_batter",
-    "count": 8
+    "count": 8,
+    "item": "sakura:tempura_batter"
   }
 }

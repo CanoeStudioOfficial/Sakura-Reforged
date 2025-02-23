@@ -1,5 +1,6 @@
 {
   "type": "sakura:stone_mortar",
+  "experience": 0.0,
   "ingredients": [
     [
       {
@@ -18,11 +19,10 @@
       }
     ]
   ],
+  "recipeTime": 200,
   "results": [
     {
       "item": "sakura:charcoal_powder"
     }
-  ],
-  "experience": 0.0,
-  "recipeTime": 200
+  ]
 }

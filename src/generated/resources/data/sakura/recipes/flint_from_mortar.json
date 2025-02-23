@@ -1,10 +1,12 @@
 {
   "type": "sakura:stone_mortar",
+  "experience": 0.0,
   "ingredients": [
     {
       "tag": "forge:gravel"
     }
   ],
+  "recipeTime": 200,
   "results": [
     {
       "item": "minecraft:sand"
@@ -12,7 +14,5 @@
     {
       "item": "minecraft:flint"
     }
-  ],
-  "experience": 0.0,
-  "recipeTime": 200
+  ]
 }

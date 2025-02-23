@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
   "ingredients": [
     {
       "item": "sakura:rice_cooked"
@@ -15,7 +16,7 @@
     }
   ],
   "result": {
-    "item": "sakura:mochi",
-    "count": 8
+    "count": 8,
+    "item": "sakura:mochi"
   }
 }

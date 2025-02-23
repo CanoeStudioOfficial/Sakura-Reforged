@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/godfather",
+		"1": "sakura:block/models/godfather",
 		"particle": "block/glass"
 	},
 	"elements": [

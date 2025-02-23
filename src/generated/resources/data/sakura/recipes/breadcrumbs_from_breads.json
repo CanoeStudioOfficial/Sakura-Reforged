@@ -1,20 +1,20 @@
 {
   "type": "sakura:stone_mortar",
+  "experience": 0.0,
   "ingredients": [
     {
       "tag": "forge:bread"
     }
   ],
+  "recipeTime": 200,
   "results": [
     {
-      "item": "sakura:breadcrumbs",
-      "count": 2
+      "count": 2,
+      "item": "sakura:breadcrumbs"
     },
     {
-      "item": "sakura:breadcrumbs",
-      "count": 2
+      "count": 2,
+      "item": "sakura:breadcrumbs"
     }
-  ],
-  "experience": 0.0,
-  "recipeTime": 200
+  ]
 }

@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/aviation",
+		"1": "sakura:block/models/aviation",
 		"particle": "block/glass"
 	},
 	"elements": [

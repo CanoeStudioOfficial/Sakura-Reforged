@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/flying_grasshopper",
+		"1": "sakura:block/models/flying_grasshopper",
 		"particle": "block/glass"
 	},
 	"elements": [
