@@ -3,6 +3,7 @@ package cn.mcmod.sakura.data;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.data.client.SakuraBlockStateProvider;
 import cn.mcmod.sakura.data.client.SakuraItemModelProvider;
+import cn.mcmod.sakura.data.compat.SakuraTFCFoodCompatProvider;
 import cn.mcmod.sakura.level.WorldGenerationRegistry;
 import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
 import net.minecraft.core.HolderLookup;
@@ -30,9 +31,11 @@ public class DataGen {
         dataGenerator.addProvider(event.includeServer(),block_tag);
         dataGenerator.addProvider(event.includeServer(),new SakuraItemTagsProvider(packOutput, provider, block_tag, SakuraMod.MODID, existingFileHelper));
         dataGenerator.addProvider(event.includeServer(),new SakuraFluidTagsProvider(packOutput, provider, SakuraMod.MODID, existingFileHelper));
+        dataGenerator.addProvider(event.includeServer(),new SakuraBiomeTagProvider(packOutput, provider, SakuraMod.MODID, existingFileHelper));
         dataGenerator.addProvider(event.includeServer(),new SakuraRecipeProvider(packOutput));
         dataGenerator.addProvider(event.includeServer(),new SakuraLootTableProvider(packOutput));
         dataGenerator.addProvider(event.includeServer(),new SakuraFeatureProvider(packOutput, provider));
 //        dataGenerator.addProvider(event.includeServer(),new SakuraLootModifierProvider(packOutput, SakuraMod.MODID));
+        dataGenerator.addProvider(event.includeServer(),new SakuraTFCFoodCompatProvider(packOutput, existingFileHelper));
     }
 }

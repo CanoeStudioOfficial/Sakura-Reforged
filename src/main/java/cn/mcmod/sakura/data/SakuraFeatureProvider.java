@@ -3,6 +3,7 @@ package cn.mcmod.sakura.data;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.level.WorldGenerationRegistry;
 import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
+import cn.mcmod.sakura.tags.SakuraBiomeTags;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -28,38 +29,17 @@ public class SakuraFeatureProvider extends DatapackBuiltinEntriesProvider {
             new ResourceLocation(SakuraMod.MODID, "add_features") // The registry name
     );
 
-    public SakuraFeatureProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries, new RegistrySetBuilder()
+    public SakuraFeatureProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
+        super(packOutput, registries, new RegistrySetBuilder()
                         .add(Registries.CONFIGURED_FEATURE, bootstrap -> {
                             SakuraTreeFeatures.ENTRY.forEach(
                                     e -> bootstrap.register(e.getA(), e.getB())
                             );
-//                            bootstrap.register(WorldGenerationRegistry.FEATURE_PATCH_BAMBOOSHOOT_KEY,WorldGenerationRegistry.FEATURE_PATCH_BAMBOOSHOOT);
+                            bootstrap.register(WorldGenerationRegistry.FEATURE_PATCH_BAMBOOSHOOT_KEY, WorldGenerationRegistry.FEATURE_PATCH_BAMBOOSHOOT);
                         })
                         .add(Registries.PLACED_FEATURE, bootstrap -> {
-//                            bootstrap.register(WorldGenerationRegistry.PATCH_BAMBOOSHOOT_KEY,WorldGenerationRegistry.PATCH_BAMBOOSHOOT);
+                            bootstrap.register(WorldGenerationRegistry.PATCH_BAMBOOSHOOT_KEY, WorldGenerationRegistry.PATCH_BAMBOOSHOOT);
                         })
-                        .add(ForgeRegistries.Keys.BIOME_MODIFIERS, bootstrap -> {
-                            HolderGetter<Biome> biomes = bootstrap.lookup(Registries.BIOME);
-//                            ForgeRegistries.BIOMES.getEntries().stream().filter(
-//                                    e -> {
-//                                        float temperature = e.getValue().getModifiedClimateSettings().temperature();
-//                                        return temperature > 0.4 && temperature < 1.0;
-//                                    }
-//                            ).forEach(e ->
-//                                    bootstrap.register(ADD_FEATURES,
-//                                            new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-//                                                    HolderSet.direct(biomes.getOrThrow(e.getKey())),
-//                                                    HolderSet.direct(List.of(Holder.direct(WorldGenerationRegistry.PATCH_BAMBOOSHOOT))),
-//                                                    GenerationStep.Decoration.LOCAL_MODIFICATIONS
-//                                            )
-//                                    )
-//                            );
-
-
-                        })
-
-
                 , Set.of(SakuraMod.MODID));
     }
 
