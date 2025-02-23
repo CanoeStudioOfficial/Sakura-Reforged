@@ -13,18 +13,6 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_item": {
-      "conditions": {
-        "items": [
-          {
-            "items": [
-              "sakura:bamboo_sunburnt"
-            ]
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "sakura:bamboo_sunburnt"
@@ -35,7 +23,6 @@
   "requirements": [
     [
       "has_ingredient",
-      "has_item",
       "has_the_recipe"
     ]
   ],

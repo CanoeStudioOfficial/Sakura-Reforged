@@ -1,5 +1,6 @@
 package cn.mcmod.sakura;
 
+import cn.mcmod.sakura.fluid.FluidTypeRegistry;
 import cn.mcmod.sakura.item.CreativeModeTabRegistry;
 import cn.mcmod.sakura.item.enums.SakuraFoodSet;
 import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
@@ -61,6 +62,7 @@ public class SakuraMod {
         FoodRegistry.ITEMS.register(modEventBus);
         FluidRegistry.FLUIDS.register(modEventBus);
         FluidBlockRegistry.BLOCKS.register(modEventBus);
+        FluidTypeRegistry.FLUID_TYPES.register(modEventBus);
         BucketItemRegistry.ITEMS.register(modEventBus);
         ParticleRegistry.PARTICLE_TYPES.register(modEventBus);
         ContainerRegistry.CONTAINER_TYPES.register(modEventBus);

@@ -13,6 +13,18 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
+    "has_item": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "sakura:bamboo_charcoal"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
     "has_the_recipe": {
       "conditions": {
         "recipe": "sakura:bamboo_charcoal_block"
@@ -23,6 +35,7 @@
   "requirements": [
     [
       "has_ingredient",
+      "has_item",
       "has_the_recipe"
     ]
   ],

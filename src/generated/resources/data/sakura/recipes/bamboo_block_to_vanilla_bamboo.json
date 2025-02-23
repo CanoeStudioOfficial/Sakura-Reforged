@@ -4,11 +4,11 @@
   "group": "sakura",
   "ingredients": [
     {
-      "item": "minecraft:bamboo"
+      "item": "sakura:bamboo_block"
     }
   ],
   "result": {
     "count": 9,
-    "item": "sakura:bamboo_block"
+    "item": "minecraft:bamboo"
   }
 }

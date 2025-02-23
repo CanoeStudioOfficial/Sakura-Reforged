@@ -4,7 +4,7 @@
   "group": "sakura",
   "key": {
     "#": {
-      "item": "sakura:bamboo_block"
+      "item": "minecraft:bamboo"
     }
   },
   "pattern": [
@@ -13,7 +13,7 @@
     "###"
   ],
   "result": {
-    "item": "minecraft:bamboo"
+    "item": "sakura:bamboo_block"
   },
   "show_notification": true
 }

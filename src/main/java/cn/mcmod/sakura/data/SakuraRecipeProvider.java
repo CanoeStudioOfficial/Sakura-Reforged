@@ -1040,12 +1040,12 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
                 .addRecipe(consumer -> recipe.save(consumer, new ResourceLocation(SakuraMod.MODID, path)));
     }
 
-    public  ShapedRecipeBuilder makeIngotToBlock(Supplier<? extends Item> ingredient, Supplier<? extends Item> result){
+    public  ShapedRecipeBuilder makeIngotToBlock(Supplier<? extends Item> result, Supplier<? extends Item> ingredient){
         return ShapedRecipeBuilder.shaped(RecipeCategory.MISC,result.get(),1).pattern("###").pattern("###").pattern("###").define('#', ingredient.get())
                 .group("sakura").unlockedBy("has_ingredient",has(ingredient.get()));
     }
 
-    public ShapelessRecipeBuilder makeBlockToIngot(Supplier<? extends Item> ingredient, Supplier<? extends Item> result){
+    public ShapelessRecipeBuilder makeBlockToIngot(Supplier<? extends Item> result, Supplier<? extends Item> ingredient){
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,result.get(),9).requires(ingredient.get())
                 .group("sakura").unlockedBy("has_ingredient",has(ingredient.get()));
     }
