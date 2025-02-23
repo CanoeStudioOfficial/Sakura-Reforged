@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"1": "sakura:models/cup",
-		"2": "sakura:models/black_tea",
-		"particle": "sakura:models/cup"
+		"1": "sakura:block/models/cup",
+		"2": "sakura:block/models/black_tea",
+		"particle": "sakura:block/models/cup"
 	},
 	"elements": [
 		{

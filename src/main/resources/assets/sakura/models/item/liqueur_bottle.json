@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:models/liqueur_bottle",
-		"particle": "sakura:models/liqueur_bottle"
+		"0": "sakura:block/models/liqueur_bottle",
+		"particle": "sakura:block/models/liqueur_bottle"
 	},
 	"elements": [
 		{

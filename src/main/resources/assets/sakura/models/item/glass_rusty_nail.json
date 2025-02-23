@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/rusty_nail",
+		"1": "sakura:block/models/rusty_nail",
 		"particle": "block/glass"
 	},
 	"elements": [

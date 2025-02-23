@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:models/rum_bottle",
-		"particle": "sakura:models/rum_bottle"
+		"0": "sakura:block/models/rum_bottle",
+		"particle": "sakura:block/models/rum_bottle"
 	},
 	"elements": [
 		{

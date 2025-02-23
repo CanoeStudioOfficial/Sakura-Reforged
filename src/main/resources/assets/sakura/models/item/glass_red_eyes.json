@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/red_eye",
+		"1": "sakura:block/models/red_eye",
 		"particle": "block/glass"
 	},
 	"elements": [

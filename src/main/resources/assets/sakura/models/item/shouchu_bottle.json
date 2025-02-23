@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:models/shouchu_bottle",
-		"particle": "sakura:models/shouchu_bottle"
+		"0": "sakura:block/models/shouchu_bottle",
+		"particle": "sakura:block/models/shouchu_bottle"
 	},
 	"elements": [
 		{

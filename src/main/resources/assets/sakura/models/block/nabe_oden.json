@@ -5,10 +5,10 @@
 		"1": "sakura:block/cooking_pot_side",
 		"2": "sakura:block/cooking_pot_top",
 		"3": "sakura:block/cooking_pot_top_side",
-		"4": "sakura:models/dashi",
+		"4": "sakura:block/models/dashi",
 		"5": "sakura:block/mushroom",
-		"6": "sakura:models/bento/fried",
-		"7": "sakura:models/bento/rou",
+		"6": "sakura:block/models/bento/fried",
+		"7": "sakura:block/models/bento/rou",
 		"particle": "sakura:block/cooking_pot_bottom"
 	},
 	"elements": [

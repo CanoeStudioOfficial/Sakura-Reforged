@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/bloody_mary",
+		"1": "sakura:block/models/bloody_mary",
 		"particle": "block/glass"
 	},
 	"elements": [

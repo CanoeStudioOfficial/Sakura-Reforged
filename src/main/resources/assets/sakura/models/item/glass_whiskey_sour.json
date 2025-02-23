@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/whiskey_sour",
+		"1": "sakura:block/models/whiskey_sour",
 		"particle": "block/glass"
 	},
 	"elements": [

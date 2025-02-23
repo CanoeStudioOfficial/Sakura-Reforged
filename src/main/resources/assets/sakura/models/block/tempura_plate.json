@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"5": "sakura:models/bento/tianfuluo",
-		"6": "sakura:models/bento/tianfuluoweiba",
+		"5": "sakura:block/models/bento/tianfuluo",
+		"6": "sakura:block/models/bento/tianfuluoweiba",
 "particle": "sakura:block/plank_bamboo",
 		"1_0": "sakura:block/plank_bamboo"
 	},

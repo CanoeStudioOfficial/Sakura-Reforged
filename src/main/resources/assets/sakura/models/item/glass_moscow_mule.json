@@ -1,9 +1,9 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:models/copper_block",
-		"1": "sakura:models/mule",
-		"particle": "sakura:models/copper_block"
+		"0": "sakura:block/models/copper_block",
+		"1": "sakura:block/models/mule",
+		"particle": "sakura:block/models/copper_block"
 	},
 	"elements": [
 		{

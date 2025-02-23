@@ -4,7 +4,7 @@ loaderVersion="[47,)"
 license="MIT License"
 [[mods]]
 modId="sakura"
-version="${file.jarVersion}"
+version="${mod_version}"
 displayName="Sakura Mod" 
 displayURL="https://www.curseforge.com/minecraft/mc-mods/sakura" 
 logoFile="logo.png"

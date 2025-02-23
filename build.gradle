@@ -53,6 +53,16 @@ legacyForge {
         }
     }
 }
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            mod_version            : version
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml']) {
+        expand replaceProperties
+    }
+}
 
 //minecraft {
 //    runs {

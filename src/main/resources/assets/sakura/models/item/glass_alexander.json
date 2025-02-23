@@ -2,7 +2,7 @@
 	"credit": "Made with Blockbench",
 	"textures": {
 		"0": "block/glass",
-		"1": "sakura:models/alexander",
+		"1": "sakura:block/models/alexander",
 		"particle": "block/glass"
 	},
 	"elements": [

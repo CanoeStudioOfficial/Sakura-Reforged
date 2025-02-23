@@ -1,8 +1,8 @@
 {
 	"credit": "Made with Blockbench",
 	"textures": {
-		"0": "sakura:models/gin_bottle",
-		"particle": "sakura:models/gin_bottle"
+		"0": "sakura:block/models/gin_bottle",
+		"particle": "sakura:block/models/gin_bottle"
 	},
 	"elements": [
 		{
