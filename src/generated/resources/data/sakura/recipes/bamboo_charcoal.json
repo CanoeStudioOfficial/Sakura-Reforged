@@ -1,12 +1,19 @@
 {
-  "type": "minecraft:crafting_shapeless",
-  "ingredients": [
-    {
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sakura",
+  "key": {
+    "#": {
       "item": "sakura:bamboo_charcoal_block"
     }
+  },
+  "pattern": [
+    "###",
+    "###",
+    "###"
   ],
   "result": {
-    "item": "sakura:bamboo_charcoal",
-    "count": 9
-  }
+    "item": "sakura:bamboo_charcoal"
+  },
+  "show_notification": true
 }

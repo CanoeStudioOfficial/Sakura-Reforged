@@ -94,13 +94,13 @@ public class BlockRegistry {
             "bamboo_charcoal_block", () -> simplebambooBlock(MapColor.COLOR_GRAY, MapColor.COLOR_BLACK));
 
     public static final RegistryObject<Block> MAPLE_SAPLING_RED = BLOCKS.register("maple_sapling_red",
-            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_RED, SakuraTreeFeatures.FANCY_MAPLE_RED)));
+            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_RED_KEY, SakuraTreeFeatures.FANCY_MAPLE_RED_KEY)));
     public static final RegistryObject<Block> MAPLE_SAPLING_GREEN = BLOCKS.register("maple_sapling_green",
-            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_GREEN, SakuraTreeFeatures.FANCY_MAPLE_GREEN)));
+            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_GREEN_KEY, SakuraTreeFeatures.FANCY_MAPLE_GREEN_KEY)));
     public static final RegistryObject<Block> MAPLE_SAPLING_YELLOW = BLOCKS.register("maple_sapling_yellow",
-            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_YELLOW, SakuraTreeFeatures.FANCY_MAPLE_YELLOW)));
+            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_YELLOW_KEY, SakuraTreeFeatures.FANCY_MAPLE_YELLOW_KEY)));
     public static final RegistryObject<Block> MAPLE_SAPLING_ORANGE = BLOCKS.register("maple_sapling_orange",
-            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_ORANGE, SakuraTreeFeatures.FANCY_MAPLE_ORANGE)));
+            () -> sapling(new MapleTreeGrower(SakuraTreeFeatures.MAPLE_ORANGE_KEY, SakuraTreeFeatures.FANCY_MAPLE_ORANGE_KEY)));
 
     public static final RegistryObject<Block> BAMBOO_PLANT = BLOCKS.register("bamboo_plant", BambooPlant::new);
     public static final RegistryObject<Block> BAMBOOSHOOT = BLOCKS.register("bamboo_shoot", BambooShoot::new);

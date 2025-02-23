@@ -8,9 +8,12 @@ import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
@@ -25,21 +28,15 @@ import net.minecraft.world.level.levelgen.placement.InSquarePlacement;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.placement.PlacementModifier;
 import net.minecraft.world.level.levelgen.placement.RarityFilter;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 
 public class WorldGenerationRegistry {
-    public static final DeferredRegister<ConfiguredFeature<?, ?>> FEATURES = DeferredRegister
-            .create(Registries.CONFIGURED_FEATURE, SakuraMod.MODID);
-    public static final DeferredRegister<PlacedFeature> PATCHES = DeferredRegister
-            .create(Registries.PLACED_FEATURE, SakuraMod.MODID);
-    
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FEATURE_PATCH_BAMBOOSHOOT = FEATURES.register("patch_bambooshoot", 
-            ()->wildPlantFeature(BlockRegistry.BAMBOOSHOOT, BlockTags.DIRT));
 
-    public static final RegistryObject<PlacedFeature> PATCH_BAMBOOSHOOT = PATCHES.register("patch_bambooshoot", 
-            ()->wildPlantPatch(FEATURE_PATCH_BAMBOOSHOOT, RarityFilter.onAverageOnceEvery(SakuraConfig.CHANCE_BAMBOOSHOOT.get()),
-                    InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome()));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FEATURE_PATCH_BAMBOOSHOOT_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "patch_bambooshoot"));
+    public static final ConfiguredFeature<?, ?> FEATURE_PATCH_BAMBOOSHOOT = wildPlantFeature(BlockRegistry.BAMBOOSHOOT, BlockTags.DIRT);
+
+    public static final ResourceKey<PlacedFeature> PATCH_BAMBOOSHOOT_KEY = ResourceKey.create(Registries.PLACED_FEATURE, new ResourceLocation(SakuraMod.MODID, "patch_bambooshoot"));
+    public static final PlacedFeature PATCH_BAMBOOSHOOT = wildPlantPatch(FEATURE_PATCH_BAMBOOSHOOT, RarityFilter.onAverageOnceEvery(30),
+                    InSquarePlacement.spread(), PlacementUtils.HEIGHTMAP, BiomeFilter.biome());
 
     public static final BlockPos BLOCK_BELOW = new BlockPos(0, -1, 0);
 
@@ -47,9 +44,9 @@ public class WorldGenerationRegistry {
         return new ConfiguredFeature<>(Feature.RANDOM_PATCH, getWildCropConfiguration(wildCrop.get(),
                 64, 1, BlockPredicate.matchesTag(BLOCK_BELOW,blockTag)));
     }
-    private static PlacedFeature wildPlantPatch(RegistryObject<ConfiguredFeature<?, ?>> feature,
+    private static PlacedFeature wildPlantPatch(ConfiguredFeature<?, ?> feature,
             PlacementModifier... modifiers) {
-        return new PlacedFeature(feature.getHolder().get(), Lists.newArrayList(modifiers));
+        return new PlacedFeature(Holder.direct(feature), Lists.newArrayList(modifiers));
     }
     
     private static RandomPatchConfiguration getWildCropConfiguration(Block block, int tries, int xzSpread, BlockPredicate plantedOn) {

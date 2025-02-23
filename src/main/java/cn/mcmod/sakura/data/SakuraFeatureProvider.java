@@ -2,10 +2,8 @@ package cn.mcmod.sakura.data;
 
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.level.WorldGenerationRegistry;
-import net.minecraft.core.HolderGetter;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.HolderSet;
-import net.minecraft.core.RegistrySetBuilder;
+import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
+import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
@@ -19,6 +17,7 @@ import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 
+import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
@@ -30,34 +29,38 @@ public class SakuraFeatureProvider extends DatapackBuiltinEntriesProvider {
     );
 
     public SakuraFeatureProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-        super(output, registries,new RegistrySetBuilder().add(ForgeRegistries.Keys.BIOME_MODIFIERS, bootstrap -> {
-            // Lookup any necessary registries.
-            // Static registries only need to be looked up if you need to grab the tag data.
-            HolderGetter<Biome> biomes = bootstrap.lookup(Registries.BIOME);
+        super(output, registries, new RegistrySetBuilder()
+                        .add(Registries.CONFIGURED_FEATURE, bootstrap -> {
+                            SakuraTreeFeatures.ENTRY.forEach(
+                                    e -> bootstrap.register(e.getA(), e.getB())
+                            );
+//                            bootstrap.register(WorldGenerationRegistry.FEATURE_PATCH_BAMBOOSHOOT_KEY,WorldGenerationRegistry.FEATURE_PATCH_BAMBOOSHOOT);
+                        })
+                        .add(Registries.PLACED_FEATURE, bootstrap -> {
+//                            bootstrap.register(WorldGenerationRegistry.PATCH_BAMBOOSHOOT_KEY,WorldGenerationRegistry.PATCH_BAMBOOSHOOT);
+                        })
+                        .add(ForgeRegistries.Keys.BIOME_MODIFIERS, bootstrap -> {
+                            HolderGetter<Biome> biomes = bootstrap.lookup(Registries.BIOME);
+//                            ForgeRegistries.BIOMES.getEntries().stream().filter(
+//                                    e -> {
+//                                        float temperature = e.getValue().getModifiedClimateSettings().temperature();
+//                                        return temperature > 0.4 && temperature < 1.0;
+//                                    }
+//                            ).forEach(e ->
+//                                    bootstrap.register(ADD_FEATURES,
+//                                            new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
+//                                                    HolderSet.direct(biomes.getOrThrow(e.getKey())),
+//                                                    HolderSet.direct(List.of(Holder.direct(WorldGenerationRegistry.PATCH_BAMBOOSHOOT))),
+//                                                    GenerationStep.Decoration.LOCAL_MODIFICATIONS
+//                                            )
+//                                    )
+//                            );
 
-            HolderGetter<PlacedFeature> placedFeatures = bootstrap.lookup(Registries.PLACED_FEATURE);
 
-
-            ForgeRegistries.BIOMES.getEntries().stream().filter(
-                    e-> {
-                        float temperature = e.getValue().getModifiedClimateSettings().temperature();
-                        return temperature >0.4 && temperature<1.0;
-                    }
-            ).forEach( e->
-                    bootstrap.register(ADD_FEATURES,
-                            new ForgeBiomeModifiers.AddFeaturesBiomeModifier(
-                                    // The biome(s) to generate within
-                                    HolderSet.direct(biomes.getOrThrow(e.getKey())),
-                                    // The feature(s) to generate within the biomes
-                                    HolderSet.direct(placedFeatures.getOrThrow(WorldGenerationRegistry.PATCH_BAMBOOSHOOT.getKey())),
-                                    // The generation step
-                                    GenerationStep.Decoration.LOCAL_MODIFICATIONS
-                            )
-                    )
-            );
-        })
+                        })
 
 
                 , Set.of(SakuraMod.MODID));
     }
+
 }

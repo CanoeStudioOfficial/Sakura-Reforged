@@ -3,6 +3,8 @@ package cn.mcmod.sakura.data;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.data.client.SakuraBlockStateProvider;
 import cn.mcmod.sakura.data.client.SakuraItemModelProvider;
+import cn.mcmod.sakura.level.WorldGenerationRegistry;
+import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -10,10 +12,11 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.NewRegistryEvent;
 
 import java.util.concurrent.CompletableFuture;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = SakuraMod.MODID,bus = Mod.EventBusSubscriber.Bus.MOD)
 public class DataGen {
     @SubscribeEvent
     public static void dataGen(GatherDataEvent event) {
@@ -30,5 +33,6 @@ public class DataGen {
         dataGenerator.addProvider(event.includeServer(),new SakuraRecipeProvider(packOutput));
         dataGenerator.addProvider(event.includeServer(),new SakuraLootTableProvider(packOutput));
         dataGenerator.addProvider(event.includeServer(),new SakuraFeatureProvider(packOutput, provider));
+//        dataGenerator.addProvider(event.includeServer(),new SakuraLootModifierProvider(packOutput, SakuraMod.MODID));
     }
 }

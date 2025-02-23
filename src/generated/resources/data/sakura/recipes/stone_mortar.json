@@ -1,10 +1,6 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "L  ",
-    "###",
-    "###"
-  ],
+  "category": "misc",
   "key": {
     "#": {
       "tag": "forge:cobblestone"
@@ -13,7 +9,13 @@
       "tag": "forge:lumber"
     }
   },
+  "pattern": [
+    "L  ",
+    "###",
+    "###"
+  ],
   "result": {
     "item": "sakura:stone_mortar"
-  }
+  },
+  "show_notification": true
 }

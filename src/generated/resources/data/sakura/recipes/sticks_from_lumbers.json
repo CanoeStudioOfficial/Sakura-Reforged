@@ -1,16 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "#",
-    "#"
-  ],
+  "category": "misc",
   "key": {
     "#": {
       "tag": "forge:lumber"
     }
   },
+  "pattern": [
+    "#",
+    "#"
+  ],
   "result": {
-    "item": "minecraft:stick",
-    "count": 4
-  }
+    "count": 4,
+    "item": "minecraft:stick"
+  },
+  "show_notification": true
 }

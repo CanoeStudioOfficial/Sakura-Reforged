@@ -1,5 +1,10 @@
 {
   "type": "sakura:cooking",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 125,
+    "fluidTag": "forge:food_oil"
+  },
   "ingredients": [
     [
       {
@@ -16,13 +21,8 @@
       "tag": "forge:soysauce"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:food_oil",
-    "amount": 125
-  },
+  "recipeTime": 200,
   "result": {
     "item": "sakura:yakiniku"
-  },
-  "experience": 0.0,
-  "recipeTime": 200
+  }
 }

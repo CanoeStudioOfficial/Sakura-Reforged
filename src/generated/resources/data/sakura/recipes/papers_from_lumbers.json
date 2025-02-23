@@ -1,15 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "###"
-  ],
+  "category": "misc",
   "key": {
     "#": {
       "tag": "forge:lumber"
     }
   },
+  "pattern": [
+    "###"
+  ],
   "result": {
-    "item": "minecraft:paper",
-    "count": 4
-  }
+    "count": 4,
+    "item": "minecraft:paper"
+  },
+  "show_notification": true
 }

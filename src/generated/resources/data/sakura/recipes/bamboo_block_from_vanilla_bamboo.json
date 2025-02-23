@@ -1,16 +1,19 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "sakura",
+  "key": {
+    "#": {
+      "item": "sakura:bamboo_block"
+    }
+  },
   "pattern": [
     "###",
     "###",
     "###"
   ],
-  "key": {
-    "#": {
-      "item": "minecraft:bamboo"
-    }
-  },
   "result": {
-    "item": "sakura:bamboo_block"
-  }
+    "item": "minecraft:bamboo"
+  },
+  "show_notification": true
 }

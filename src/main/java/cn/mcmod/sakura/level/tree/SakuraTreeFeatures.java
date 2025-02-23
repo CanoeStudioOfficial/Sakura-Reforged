@@ -1,9 +1,14 @@
 package cn.mcmod.sakura.level.tree;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.OptionalInt;
 
+import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
-import cn.mcmod.sakura.level.WorldGenerationRegistry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
@@ -15,50 +20,54 @@ import net.minecraft.world.level.levelgen.feature.foliageplacers.FancyFoliagePla
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.FancyTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
-import net.minecraftforge.registries.RegistryObject;
+import oshi.util.tuples.Pair;
 
 public class SakuraTreeFeatures {
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> SAKURA = WorldGenerationRegistry.FEATURES.register("sakura",
-            ()->registryTree(createSimpleBlobTree(BlockRegistry.SAKURA_LOG.get(), BlockRegistry.SAKURA_LEAVES.get()).ignoreVines()));
+    public static List<Pair<ResourceKey<ConfiguredFeature<?, ?>>, ConfiguredFeature<?, ?>>> ENTRY = new ArrayList<>();
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FANCY_SAKURA = WorldGenerationRegistry.FEATURES.register("fancy_sakura",
-            ()->registryTree(createFancyTree(BlockRegistry.SAKURA_LOG.get(), BlockRegistry.SAKURA_LEAVES.get())));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> SAKURA_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "sakura"));
+    public static final ConfiguredFeature<?, ?> SAKURA = registryTree(SAKURA_KEY, createSimpleBlobTree(BlockRegistry.SAKURA_LOG.get(), BlockRegistry.SAKURA_LEAVES.get()).ignoreVines());
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> MAPLE_RED = WorldGenerationRegistry.FEATURES.register("maple_red",
-            ()->registryTree(createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(),BlockRegistry.MAPLE_LEAVES_RED.get(), 5, 2, 0, 2).ignoreVines()));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FANCY_SAKURA_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "fancy_sakura"));
+    public static final ConfiguredFeature<?, ?> FANCY_SAKURA = registryTree(FANCY_SAKURA_KEY, createFancyTree(BlockRegistry.SAKURA_LOG.get(), BlockRegistry.SAKURA_LEAVES.get()));
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FANCY_MAPLE_RED = WorldGenerationRegistry.FEATURES.register("fancy_maple_red",
-            ()->registryTree(createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_RED.get())));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MAPLE_RED_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "sakura_pink"));
+    public static final ConfiguredFeature<?, ?> MAPLE_RED = registryTree(MAPLE_RED_KEY, createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_RED.get(), 5, 2, 0, 2).ignoreVines());
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> MAPLE_YELLOW = WorldGenerationRegistry.FEATURES.register("maple_yellow",
-            ()->registryTree(createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(),BlockRegistry.MAPLE_LEAVES_YELLOW.get(), 5, 2, 0, 2).ignoreVines()));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FANCY_MAPLE_RED_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "fancy_maple_red"));
+    public static final ConfiguredFeature<?, ?> FANCY_MAPLE_RED = registryTree(FANCY_MAPLE_RED_KEY, createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_RED.get()));
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FANCY_MAPLE_YELLOW = WorldGenerationRegistry.FEATURES.register("fancy_maple_yellow",
-            ()->registryTree(createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_YELLOW.get())));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MAPLE_YELLOW_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "maple_yellow"));
+    public static final ConfiguredFeature<?, ?> MAPLE_YELLOW = registryTree(MAPLE_YELLOW_KEY, createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_YELLOW.get(), 5, 2, 0, 2).ignoreVines());
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> MAPLE_ORANGE = WorldGenerationRegistry.FEATURES.register("maple_orange",
-            ()->registryTree(createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(),BlockRegistry.MAPLE_LEAVES_ORANGE.get(), 5, 2, 0, 2).ignoreVines()));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FANCY_MAPLE_YELLOW_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "fancy_maple_yellow"));
+    public static final ConfiguredFeature<?, ?> FANCY_MAPLE_YELLOW = registryTree(FANCY_MAPLE_YELLOW_KEY, createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_YELLOW.get()));
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FANCY_MAPLE_ORANGE = WorldGenerationRegistry.FEATURES.register("fancy_maple_orange", 
-            ()->registryTree(createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_ORANGE.get())));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MAPLE_ORANGE_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "maple_orange"));
+    public static final ConfiguredFeature<?, ?> MAPLE_ORANGE = registryTree(MAPLE_ORANGE_KEY, createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_ORANGE.get(), 5, 2, 0, 2).ignoreVines());
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> MAPLE_GREEN = WorldGenerationRegistry.FEATURES.register("maple_green",
-            ()->registryTree(createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(),BlockRegistry.MAPLE_LEAVES_GREEN.get(), 5, 2, 0, 2).ignoreVines()));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FANCY_MAPLE_ORANGE_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "fancy_maple_orange"));
+    public static final ConfiguredFeature<?, ?> FANCY_MAPLE_ORANGE = registryTree(FANCY_MAPLE_ORANGE_KEY, createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_ORANGE.get()));
 
-    public static final RegistryObject<ConfiguredFeature<?, ?>> FANCY_MAPLE_GREEN = WorldGenerationRegistry.FEATURES.register("fancy_maple_green", 
-            ()->registryTree(createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_GREEN.get())));
+    public static final ResourceKey<ConfiguredFeature<?, ?>> MAPLE_GREEN_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "maple_green"));
+    public static final ConfiguredFeature<?, ?> MAPLE_GREEN = registryTree(MAPLE_GREEN_KEY, createStraightBlobTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_GREEN.get(), 5, 2, 0, 2).ignoreVines());
 
-    private static ConfiguredFeature<?, ?> registryTree(TreeConfiguration.TreeConfigurationBuilder tree){
-        return new ConfiguredFeature<>(Feature.TREE, tree.build());
+    public static final ResourceKey<ConfiguredFeature<?, ?>> FANCY_MAPLE_GREEN_KEY = ResourceKey.create(Registries.CONFIGURED_FEATURE, new ResourceLocation(SakuraMod.MODID, "fancy_maple_green"));
+    public static final ConfiguredFeature<?, ?> FANCY_MAPLE_GREEN = registryTree(FANCY_MAPLE_GREEN_KEY, createFancyTree(BlockRegistry.MAPLE_LOG.get(), BlockRegistry.MAPLE_LEAVES_GREEN.get()));
+
+    private static ConfiguredFeature<?, ?> registryTree(ResourceKey<ConfiguredFeature<?, ?>> key, TreeConfiguration.TreeConfigurationBuilder tree) {
+        ConfiguredFeature<TreeConfiguration, Feature<TreeConfiguration>> feature = new ConfiguredFeature<>(Feature.TREE, tree.build());
+        ENTRY.add(new Pair<>(key, feature));
+        return feature;
     }
-    
+
     private static TreeConfiguration.TreeConfigurationBuilder createSimpleBlobTree(Block log, Block leaves) {
         return createStraightBlobTree(log, leaves, 4, 2, 0, 2);
     }
 
     private static TreeConfiguration.TreeConfigurationBuilder createStraightBlobTree(Block log, Block leaves,
-            int baseHeight, int heightRandA, int heightRandB, int leaves_radius) {
+                                                                                     int baseHeight, int heightRandA, int heightRandB, int leaves_radius) {
         return new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(log),
                 new StraightTrunkPlacer(baseHeight, heightRandA, heightRandB), BlockStateProvider.simple(leaves),
                 new BlobFoliagePlacer(ConstantInt.of(leaves_radius), ConstantInt.of(0), 3),

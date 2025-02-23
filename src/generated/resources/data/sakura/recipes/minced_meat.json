@@ -1,5 +1,6 @@
 {
   "type": "sakura:stone_mortar",
+  "experience": 0.0,
   "ingredients": [
     [
       {
@@ -30,16 +31,15 @@
       }
     ]
   ],
+  "recipeTime": 200,
   "results": [
     {
-      "item": "sakura:minced_meat",
-      "count": 2
+      "count": 2,
+      "item": "sakura:minced_meat"
     },
     {
-      "item": "sakura:minced_meat",
-      "count": 2
+      "count": 2,
+      "item": "sakura:minced_meat"
     }
-  ],
-  "experience": 0.0,
-  "recipeTime": 200
+  ]
 }

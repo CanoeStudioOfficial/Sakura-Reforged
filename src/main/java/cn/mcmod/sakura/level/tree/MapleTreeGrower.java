@@ -15,10 +15,10 @@ import net.minecraftforge.registries.RegistryObject;
 import javax.annotation.Nullable;
 
 public class MapleTreeGrower extends AbstractTreeGrower {
-    private final RegistryObject<ConfiguredFeature<?, ?>>  tree;
-    private final RegistryObject<ConfiguredFeature<?, ?>> fancy_tree;
+    private final ResourceKey<ConfiguredFeature<?, ?>>  tree;
+    private final ResourceKey<ConfiguredFeature<?, ?>> fancy_tree;
 
-    public MapleTreeGrower(RegistryObject<ConfiguredFeature<?, ?>> tree,RegistryObject<ConfiguredFeature<?, ?>> fancy_tree) {
+    public MapleTreeGrower(ResourceKey<ConfiguredFeature<?, ?>> tree,ResourceKey<ConfiguredFeature<?, ?>> fancy_tree) {
         this.tree = tree;
         this.fancy_tree = fancy_tree;
     }
@@ -33,9 +33,9 @@ public class MapleTreeGrower extends AbstractTreeGrower {
     @Override
     protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource random, boolean hasFlowers) {
         if (random.nextInt(10) == 0) {
-            return this.fancy_tree.getKey();
+            return this.fancy_tree;
         } else {
-            return this.tree.getKey();
+            return this.tree;
         }
     }
 }

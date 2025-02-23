@@ -1,5 +1,10 @@
 {
   "type": "sakura:fermenting",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 200,
+    "fluidTag": "forge:water/water"
+  },
   "ingredients": [
     {
       "tag": "forge:grain"
@@ -11,15 +16,10 @@
       "tag": "forge:sugar"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:water/water",
-    "amount": 200
-  },
-  "results": [],
+  "recipeTime": 800,
   "result_fluid": {
-    "fluid": "sakura:beer",
-    "amount": 100
+    "amount": 100,
+    "fluid": "sakura:beer"
   },
-  "experience": 0.0,
-  "recipeTime": 800
+  "results": []
 }

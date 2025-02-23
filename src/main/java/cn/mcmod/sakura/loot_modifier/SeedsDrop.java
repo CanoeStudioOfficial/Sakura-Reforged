@@ -8,7 +8,8 @@ import com.google.common.collect.Lists;
 import com.google.gson.JsonObject;
 
 import cn.mcmod.sakura.item.ItemRegistry;
-import com.mojang.serialization.Codec;
+import com.mojang.datafixers.util.Pair;
+import com.mojang.serialization.*;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
@@ -20,9 +21,24 @@ import net.minecraftforge.common.loot.LootModifier;
 
 public class SeedsDrop {
 	public static class SeedDropModifier extends LootModifier {
-		protected SeedDropModifier(LootItemCondition[] conditionsIn) {
+		public SeedDropModifier(LootItemCondition[] conditionsIn) {
 			super(conditionsIn);
 		}
+
+		public static final Codec<SeedDropModifier> CODEC = Codec.of(
+				new Encoder<SeedDropModifier>() {
+					@Override
+					public <T> DataResult<T> encode(SeedDropModifier seedDropModifier, DynamicOps<T> dynamicOps, T t) {
+						return null;
+					}
+				},
+				new Decoder<SeedDropModifier>() {
+					@Override
+					public <T> DataResult<Pair<SeedDropModifier, T>> decode(DynamicOps<T> dynamicOps, T t) {
+						return null;
+					}
+				}
+		);
 
 		@Nonnull
 		@Override

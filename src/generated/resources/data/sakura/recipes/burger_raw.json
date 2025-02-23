@@ -1,5 +1,6 @@
 {
   "type": "sakura:stone_mortar",
+  "experience": 0.0,
   "ingredients": [
     {
       "item": "sakura:minced_meat"
@@ -14,16 +15,15 @@
       "tag": "forge:eggs"
     }
   ],
+  "recipeTime": 200,
   "results": [
     {
-      "item": "sakura:burger_raw",
-      "count": 2
+      "count": 2,
+      "item": "sakura:burger_raw"
     },
     {
-      "item": "sakura:burger_raw",
-      "count": 2
+      "count": 2,
+      "item": "sakura:burger_raw"
     }
-  ],
-  "experience": 0.0,
-  "recipeTime": 200
+  ]
 }

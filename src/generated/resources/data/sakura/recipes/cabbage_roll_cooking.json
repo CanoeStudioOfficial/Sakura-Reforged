@@ -1,5 +1,10 @@
 {
   "type": "sakura:cooking",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 125,
+    "fluidTag": "forge:water/water"
+  },
   "ingredients": [
     {
       "tag": "forge:salad_ingredients/cabbage"
@@ -22,13 +27,8 @@
       }
     ]
   ],
-  "fluid": {
-    "fluidTag": "forge:water/water",
-    "amount": 125
-  },
+  "recipeTime": 200,
   "result": {
     "item": "sakura:cabbage_roll"
-  },
-  "experience": 0.0,
-  "recipeTime": 200
+  }
 }

@@ -1,15 +1,15 @@
 {
   "type": "sakura:stone_mortar",
+  "experience": 0.0,
   "ingredients": [
     {
       "tag": "sakura:rice/rice"
     }
   ],
+  "recipeTime": 200,
   "results": [
     {
       "item": "sakura:flour_rice"
     }
-  ],
-  "experience": 0.0,
-  "recipeTime": 200
+  ]
 }

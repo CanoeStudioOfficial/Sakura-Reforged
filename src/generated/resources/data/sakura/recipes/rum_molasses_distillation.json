@@ -1,5 +1,10 @@
 {
   "type": "sakura:distillation",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 500,
+    "fluidTag": "forge:water/water"
+  },
   "ingredients": [
     {
       "item": "sakura:molasses"
@@ -11,15 +16,10 @@
       "tag": "forge:yeast"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:water/water",
-    "amount": 500
-  },
-  "results": [],
+  "recipeTime": 400,
   "result_fluid": {
-    "fluid": "sakura:rum",
-    "amount": 100
+    "amount": 100,
+    "fluid": "sakura:rum"
   },
-  "experience": 0.0,
-  "recipeTime": 400
+  "results": []
 }

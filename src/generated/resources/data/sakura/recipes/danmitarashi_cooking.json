@@ -1,5 +1,10 @@
 {
   "type": "sakura:cooking",
+  "experience": 0.0,
+  "fluid": {
+    "amount": 125,
+    "fluidTag": "forge:water/water"
+  },
   "ingredients": [
     {
       "item": "sakura:dango"
@@ -11,13 +16,8 @@
       "tag": "forge:sugar"
     }
   ],
-  "fluid": {
-    "fluidTag": "forge:water/water",
-    "amount": 125
-  },
+  "recipeTime": 200,
   "result": {
     "item": "sakura:danmitarashi"
-  },
-  "experience": 0.0,
-  "recipeTime": 200
+  }
 }

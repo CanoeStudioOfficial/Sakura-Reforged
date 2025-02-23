@@ -10,9 +10,9 @@ public class SakuraTreeGrower extends AbstractTreeGrower {
 	@Override
 	protected ResourceKey<ConfiguredFeature<?, ?>> getConfiguredFeature(RandomSource random, boolean pHasFlowers) {
         if (random.nextInt(10) == 0) {
-            return SakuraTreeFeatures.FANCY_SAKURA.getKey();
+            return SakuraTreeFeatures.FANCY_SAKURA_KEY;
         } else {
-            return SakuraTreeFeatures.SAKURA.getKey();
+            return SakuraTreeFeatures.SAKURA_KEY;
         }
 	}
 

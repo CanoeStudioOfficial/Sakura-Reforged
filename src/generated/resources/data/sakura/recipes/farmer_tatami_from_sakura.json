@@ -4,16 +4,13 @@
     {
       "conditions": [
         {
-          "modid": "farmersdelight",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "farmersdelight"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "S#",
-          "#S"
-        ],
+        "category": "misc",
         "key": {
           "#": {
             "tag": "forge:straw"
@@ -22,10 +19,15 @@
             "item": "farmersdelight:canvas"
           }
         },
+        "pattern": [
+          "S#",
+          "#S"
+        ],
         "result": {
-          "item": "farmersdelight:tatami",
-          "count": 2
-        }
+          "count": 2,
+          "item": "farmersdelight:tatami"
+        },
+        "show_notification": true
       }
     }
   ]

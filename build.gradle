@@ -40,6 +40,7 @@ legacyForge {
         }
         data {
             data()
+            programArguments.addAll '--mod', "sakura", '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
         }
         server {
             server()
@@ -47,7 +48,7 @@ legacyForge {
     }
 
     mods {
-        sakura {
+        "sakura" {
             sourceSet sourceSets.main
         }
     }
@@ -160,7 +161,8 @@ repositories {
 
 dependencies {
 
-    modImplementation ("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:1.4.12-1.20.1")
+    modCompileOnly ("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:1.4.12-1.20.1")
+    modRuntimeOnly ("cn.mcmod_mmf.mysterious_mountain_lib:MMLib:1.4.12-1.20.1")
     // Compile against only the API artifact
     modCompileOnly(("top.theillusivec4.curios:curios-forge:5.4.5+1.20.1:api"))
     // Use the full Curios API jar at runtime
@@ -176,6 +178,7 @@ dependencies {
 
     //implementation ("maven.modrinth:epic-fight:20.9.2")
     modCompileOnly ("maven.modrinth:farmers-delight:1.20.1-1.2.7")
+    modRuntimeOnly ("maven.modrinth:farmers-delight:1.20.1-1.2.7")
 }
 
 // Example for how to get properties into the manifest for reading at runtime.

@@ -346,15 +346,19 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
                 .unlockedBy("has_item", has(SakuraItemTags.LUMBER)).save(consumer);
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BlockRegistry.BAMBOO_BLOCK.get()),RecipeCategory.MISC,BlockRegistry.BAMBOO_CHARCOAL_BLOCK.get(), 0.5F,200)
+                .group("sakura").unlockedBy("has_item", has(BlockRegistry.BAMBOO_BLOCK.get()))
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "bamboo_block_from_smelt"));
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(BlockRegistry.BAMBOO_BLOCK_SUNBURNT.get()),RecipeCategory.MISC,BlockRegistry.BAMBOO_CHARCOAL_BLOCK.get(), 0.5F,200)
+                .group("sakura").unlockedBy("has_item", has(BlockRegistry.BAMBOO_BLOCK_SUNBURNT.get()))
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "bamboo_block_sunburnt_from_smelt"));
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO).get()),RecipeCategory.MISC,ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO_CHARCOAL).get(), 0.5F,200)
+                .group("sakura").unlockedBy("has_item", has(ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO).get()))
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "bamboo_charcoal_from_smelt"));
 
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO_SUNBURNT).get()),RecipeCategory.MISC,ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO_CHARCOAL).get(), 0.5F,200)
+                .group("sakura").unlockedBy("has_item", has(ItemRegistry.MATERIALS.get(SakuraNormalItemSet.BAMBOO_SUNBURNT).get()))
                 .save(consumer, new ResourceLocation(SakuraMod.MODID, "bamboo_charcoal_sunburnt_from_smelt"));
 
     }
@@ -1002,9 +1006,9 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
     private void foodSmeltingRecipes(String name, ItemLike ingredient, ItemLike result, float experience,
             Consumer<FinishedRecipe> consumer) {
         String namePrefix = new ResourceLocation(SakuraMod.MODID, name).toString();
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.FOOD,result, experience,200).save(consumer);
-        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ingredient), RecipeCategory.FOOD,result, experience,600).save(consumer, namePrefix + "_from_campfire_cooking");
-        SimpleCookingRecipeBuilder.smoking(Ingredient.of(ingredient), RecipeCategory.FOOD,result, experience,100).save(consumer, namePrefix + "_from_smoking");
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.FOOD,result, experience,200).unlockedBy("has_ingredient",has(ingredient)).group("sakura").save(consumer);
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(ingredient), RecipeCategory.FOOD,result, experience,600).unlockedBy("has_ingredient",has(ingredient)).group("sakura").save(consumer, namePrefix + "_from_campfire_cooking");
+        SimpleCookingRecipeBuilder.smoking(Ingredient.of(ingredient), RecipeCategory.FOOD,result, experience,100).unlockedBy("has_ingredient",has(ingredient)).group("sakura").save(consumer, namePrefix + "_from_smoking");
     }
 
     public ShapedRecipeBuilder makeLumberToPlank(Supplier<? extends Block> blockOut, Ingredient ingreIn) {
@@ -1037,10 +1041,12 @@ public class SakuraRecipeProvider extends AbstractRecipeProvider {
     }
 
     public  ShapedRecipeBuilder makeIngotToBlock(Supplier<? extends Item> ingredient, Supplier<? extends Item> result){
-        return ShapedRecipeBuilder.shaped(RecipeCategory.MISC,result.get(),1).pattern("###").pattern("###").pattern("###").define('#', ingredient.get());
+        return ShapedRecipeBuilder.shaped(RecipeCategory.MISC,result.get(),1).pattern("###").pattern("###").pattern("###").define('#', ingredient.get())
+                .group("sakura").unlockedBy("has_ingredient",has(ingredient.get()));
     }
 
     public ShapelessRecipeBuilder makeBlockToIngot(Supplier<? extends Item> ingredient, Supplier<? extends Item> result){
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,result.get(),9).requires(ingredient.get());
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC,result.get(),9).requires(ingredient.get())
+                .group("sakura").unlockedBy("has_ingredient",has(ingredient.get()));
     }
 }

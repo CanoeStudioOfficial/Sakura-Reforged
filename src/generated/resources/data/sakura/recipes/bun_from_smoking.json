@@ -1,9 +1,11 @@
 {
   "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.5,
+  "group": "sakura",
   "ingredient": {
     "item": "sakura:dough"
   },
-  "result": "sakura:bun",
-  "experience": 0.5,
-  "cookingtime": 100
+  "result": "sakura:bun"
 }

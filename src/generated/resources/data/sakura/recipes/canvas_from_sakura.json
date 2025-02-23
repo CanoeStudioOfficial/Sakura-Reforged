@@ -4,24 +4,26 @@
     {
       "conditions": [
         {
-          "modid": "farmersdelight",
-          "type": "forge:mod_loaded"
+          "type": "forge:mod_loaded",
+          "modid": "farmersdelight"
         }
       ],
       "recipe": {
         "type": "minecraft:crafting_shaped",
-        "pattern": [
-          "##",
-          "##"
-        ],
+        "category": "misc",
         "key": {
           "#": {
             "tag": "forge:straw"
           }
         },
+        "pattern": [
+          "##",
+          "##"
+        ],
         "result": {
           "item": "farmersdelight:canvas"
-        }
+        },
+        "show_notification": true
       }
     }
   ]

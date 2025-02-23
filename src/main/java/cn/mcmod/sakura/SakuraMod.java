@@ -1,5 +1,6 @@
 package cn.mcmod.sakura;
 
+import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -53,8 +54,6 @@ public class SakuraMod {
         FluidRegistry.FLUIDS.register(modEventBus);
         FluidBlockRegistry.BLOCKS.register(modEventBus);
         BucketItemRegistry.ITEMS.register(modEventBus);
-        WorldGenerationRegistry.FEATURES.register(modEventBus);
-        WorldGenerationRegistry.PATCHES.register(modEventBus);
         ParticleRegistry.PARTICLE_TYPES.register(modEventBus);
         ContainerRegistry.CONTAINER_TYPES.register(modEventBus);
         LootModifiterRegistry.GLM.register(modEventBus);

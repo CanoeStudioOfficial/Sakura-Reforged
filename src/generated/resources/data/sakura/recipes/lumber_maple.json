@@ -1,12 +1,13 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "building",
   "ingredients": [
     {
       "item": "sakura:maple_log"
     }
   ],
   "result": {
-    "item": "sakura:lumber_maple",
-    "count": 8
+    "count": 8,
+    "item": "sakura:lumber_maple"
   }
 }

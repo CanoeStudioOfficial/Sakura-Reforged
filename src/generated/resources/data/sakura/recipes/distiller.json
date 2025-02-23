@@ -1,22 +1,24 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "I": {
+      "tag": "forge:ingots/iron"
+    },
+    "P": {
+      "tag": "minecraft:logs"
+    },
+    "S": {
+      "tag": "forge:lumber"
+    }
+  },
   "pattern": [
     "ISI",
     "PPP",
     "III"
   ],
-  "key": {
-    "S": {
-      "tag": "forge:lumber"
-    },
-    "P": {
-      "tag": "minecraft:logs"
-    },
-    "I": {
-      "tag": "forge:ingots/iron"
-    }
-  },
   "result": {
     "item": "sakura:distiller"
-  }
+  },
+  "show_notification": true
 }
