@@ -1,10 +1,8 @@
 package cn.mcmod.sakura.client.gui;
 
-import com.mojang.blaze3d.vertex.PoseStack;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.container.FermenterContainer;
 import cn.mcmod_mmf.mmlib.client.RenderUtils;
-import cn.mcmod_mmf.mmlib.utils.ClientUtil;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -34,7 +32,7 @@ public class FermenterScreen extends AbstractContainerScreen<FermenterContainer>
     @Override
     protected void renderLabels(GuiGraphics ms, int mouseX, int mouseY) {
         super.renderLabels(ms, mouseX, mouseY);
-        ms.drawString(this.font, this.playerInventoryTitle, 8, this.imageHeight - 96 + 2, 4210752);
+        ms.drawString(this.font, this.playerInventoryTitle, 8, this.imageHeight - 96 + 2, 4210752, false);
     }
 
     @Override

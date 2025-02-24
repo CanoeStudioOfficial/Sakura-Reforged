@@ -6,7 +6,6 @@ import cn.mcmod.sakura.SakuraMod;
 import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 
 public class LootModifiterRegistry {
     public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> GLM = DeferredRegister

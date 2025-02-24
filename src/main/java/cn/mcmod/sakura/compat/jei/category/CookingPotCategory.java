@@ -1,7 +1,5 @@
 package cn.mcmod.sakura.compat.jei.category;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.block.entity.CookingPotBlockEntity;
@@ -45,16 +43,6 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
         arrow = helper.drawableBuilder(backgroundImage, 176, 18, 24, 17).buildAnimated(200, IDrawableAnimated.StartDirection.LEFT, false);
     }
 
-//    @Override
-//    public ResourceLocation getUid() {
-//        return UID;
-//    }
-//
-//    @Override
-//    public Class<? extends CookingPotRecipe> getRecipeClass() {
-//        return CookingPotRecipe.class;
-//    }
-    
     @Override
     public RecipeType<CookingPotRecipe> getRecipeType() {
         return JEIPlugin.COOKING_POT_JEI_TYPE;
@@ -92,8 +80,8 @@ public class CookingPotCategory implements IRecipeCategory<CookingPotRecipe> {
             builder.addSlot(RecipeIngredientRole.INPUT, 1, 1)
             .setFluidRenderer(CookingPotBlockEntity.TANK_CAPACITY, true, 16, 52)
             .addIngredients(ForgeTypes.FLUID_STACK, recipe.getRequiredFluid().getMatchingFluidStacks());
-        
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 120, 22).addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
+        Minecraft minecraft = Minecraft.getInstance();
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 120, 22).addItemStack(recipe.getResultItem(minecraft.level.registryAccess()));
     }
 
     @Override

@@ -2,7 +2,6 @@ package cn.mcmod.sakura.data.client;
 
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod_mmf.mmlib.data.AbstractBlockStateProvider;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;

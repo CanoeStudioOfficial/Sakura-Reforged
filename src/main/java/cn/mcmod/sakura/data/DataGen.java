@@ -4,8 +4,6 @@ import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.data.client.SakuraBlockStateProvider;
 import cn.mcmod.sakura.data.client.SakuraItemModelProvider;
 import cn.mcmod.sakura.data.compat.SakuraTFCFoodCompatProvider;
-import cn.mcmod.sakura.level.WorldGenerationRegistry;
-import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -13,8 +11,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.NewRegistryEvent;
-
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = SakuraMod.MODID,bus = Mod.EventBusSubscriber.Bus.MOD)

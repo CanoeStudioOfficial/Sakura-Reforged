@@ -1,8 +1,6 @@
 package cn.mcmod.sakura.compat.jei.category;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.compat.jei.JEIPlugin;
@@ -44,16 +42,6 @@ public class ChoppingCategory implements IRecipeCategory<ChoppingRecipe> {
                 new ItemStack(BlockRegistry.CHOPPING_BOARD.get()));
     }
 
-//    @Override
-//    public ResourceLocation getUid() {
-//        return UID;
-//    }
-//
-//    @Override
-//    public Class<? extends ChoppingRecipe> getRecipeClass() {
-//        return ChoppingRecipe.class;
-//    }
-
     @Override
     public RecipeType<ChoppingRecipe> getRecipeType() {
         return JEIPlugin.CHOPPING_JEI_TYPE;
@@ -79,7 +67,8 @@ public class ChoppingCategory implements IRecipeCategory<ChoppingRecipe> {
         NonNullList<Ingredient> recipeIngredients = recipe.getIngredients();
         builder.addSlot(RecipeIngredientRole.INPUT, 14, 7).addIngredients(recipeIngredients.get(0));
         builder.addSlot(RecipeIngredientRole.INPUT, 14, 29).addIngredients(recipe.getTool());
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 62, 7).addItemStack(recipe.getResultItem(Minecraft.getInstance().level.registryAccess()));
+        Minecraft minecraft = Minecraft.getInstance();
+		builder.addSlot(RecipeIngredientRole.OUTPUT, 62, 7).addItemStack(recipe.getResultItem(minecraft.level.registryAccess()));
 
         NonNullList<ChanceResult> byproducts = recipe.getByproducts();
         for (int i = 0; i < Math.min(4, byproducts.size()); i++) {

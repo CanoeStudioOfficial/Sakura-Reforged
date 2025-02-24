@@ -5,13 +5,10 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.Lists;
-import com.google.gson.JsonObject;
-
 import cn.mcmod.sakura.item.ItemRegistry;
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.*;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;

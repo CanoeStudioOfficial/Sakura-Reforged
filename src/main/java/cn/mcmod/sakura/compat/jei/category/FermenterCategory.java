@@ -1,7 +1,5 @@
 package cn.mcmod.sakura.compat.jei.category;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.block.entity.FermenterBlockEntity;
@@ -45,16 +43,6 @@ public class FermenterCategory implements IRecipeCategory<FermenterRecipe> {
         bubbles = helper.drawableBuilder(backgroundImage, 176, 35, 18, 18).buildAnimated(18, IDrawableAnimated.StartDirection.BOTTOM, false);
     }
 
-//    @Override
-//    public ResourceLocation getUid() {
-//        return UID;
-//    }
-//
-//    @Override
-//    public Class<? extends FermenterRecipe> getRecipeClass() {
-//        return FermenterRecipe.class;
-//    }
-    
     @Override
     public RecipeType<FermenterRecipe> getRecipeType() {
         return JEIPlugin.FERMENTER_JEI_TYPE;

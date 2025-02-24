@@ -1,7 +1,5 @@
 package cn.mcmod.sakura.compat.jei.category;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.compat.jei.JEIPlugin;
@@ -39,16 +37,6 @@ public class StoneMortarCategory implements IRecipeCategory<StoneMortarRecipe> {
         mortar = helper.createDrawable(backgroundImage, 176, 0, 14, 16);
         basket = helper.createDrawable(backgroundImage, 190, 18, 16, 6);
     }
-
-//    @Override
-//    public ResourceLocation getUid() {
-//        return UID;
-//    }
-//
-//    @Override
-//    public Class<? extends StoneMortarRecipe> getRecipeClass() {
-//        return StoneMortarRecipe.class;
-//    }
     
     @Override
     public RecipeType<StoneMortarRecipe> getRecipeType() {

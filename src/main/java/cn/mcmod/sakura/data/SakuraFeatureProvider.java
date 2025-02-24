@@ -3,22 +3,15 @@ package cn.mcmod.sakura.data;
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.level.WorldGenerationRegistry;
 import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
-import cn.mcmod.sakura.tags.SakuraBiomeTags;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.biome.Biome;
-import net.minecraft.world.level.biome.Biomes;
-import net.minecraft.world.level.levelgen.GenerationStep;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraftforge.common.data.DatapackBuiltinEntriesProvider;
 import net.minecraftforge.common.world.BiomeModifier;
-import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 

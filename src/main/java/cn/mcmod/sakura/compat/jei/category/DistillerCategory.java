@@ -1,7 +1,5 @@
 package cn.mcmod.sakura.compat.jei.category;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.BlockRegistry;
 import cn.mcmod.sakura.block.entity.DistillerBlockEntity;
@@ -47,16 +45,6 @@ public class DistillerCategory implements IRecipeCategory<DistillerRecipe> {
         bubbles = helper.drawableBuilder(backgroundImage, 176, 35, 18, 18).buildAnimated(18, IDrawableAnimated.StartDirection.BOTTOM, false);
     }
 
-//    @Override
-//    public ResourceLocation getUid() {
-//        return UID;
-//    }
-//
-//    @Override
-//    public Class<? extends DistillerRecipe> getRecipeClass() {
-//        return DistillerRecipe.class;
-//    }
-    
     @Override
     public RecipeType<DistillerRecipe> getRecipeType() {
         return JEIPlugin.DISTILLER_JEI_TYPE;

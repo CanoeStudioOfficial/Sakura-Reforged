@@ -3,7 +3,6 @@ package cn.mcmod.sakura.data;
 import cn.mcmod.sakura.fluid.FluidRegistry;
 import cn.mcmod.sakura.tags.SakuraFluidTags;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.FluidTagsProvider;
 import net.minecraft.resources.ResourceLocation;

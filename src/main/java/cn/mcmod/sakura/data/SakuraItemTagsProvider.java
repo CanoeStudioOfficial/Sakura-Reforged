@@ -7,7 +7,6 @@ import cn.mcmod.sakura.item.enums.SakuraFoodSet;
 import cn.mcmod.sakura.item.enums.SakuraNormalItemSet;
 import cn.mcmod.sakura.tags.SakuraItemTags;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;

@@ -9,7 +9,6 @@ import cn.mcmod.sakura.client.render.ChoppingBoardRender;
 import cn.mcmod.sakura.client.render.ObonRender;
 import cn.mcmod.sakura.client.render.StoneMortarRenderer;
 import cn.mcmod.sakura.fluid.FluidRegistry;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -23,7 +22,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, modid = SakuraMod.MODID, value = Dist.CLIENT)
 public class ClientEvents {
 
-    @SubscribeEvent
+    @SuppressWarnings("deprecation")
+	@SubscribeEvent
     public static void clientStuff(final FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(BlockRegistry.SAKURA_SAPLING.get(), RenderType.cutoutMipped());
@@ -52,15 +52,15 @@ public class ClientEvents {
 
     @SubscribeEvent
     public static void onParticleFactoryRegistration(RegisterParticleProvidersEvent event) {
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.SAKURA_LEAF.get(),
+        event.registerSpriteSet(ParticleRegistry.SAKURA_LEAF.get(),
                 FallenLeafParticle.Factory::new);
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.RED_MAPLE_LEAF.get(),
+        event.registerSpriteSet(ParticleRegistry.RED_MAPLE_LEAF.get(),
                 FallenLeafParticle.Factory::new);
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.YELLOW_MAPLE_LEAF.get(),
+        event.registerSpriteSet(ParticleRegistry.YELLOW_MAPLE_LEAF.get(),
                 FallenLeafParticle.Factory::new);
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.GREEN_MAPLE_LEAF.get(),
+        event.registerSpriteSet(ParticleRegistry.GREEN_MAPLE_LEAF.get(),
                 FallenLeafParticle.Factory::new);
-        Minecraft.getInstance().particleEngine.register(ParticleRegistry.ORANGE_MAPLE_LEAF.get(),
+        event.registerSpriteSet(ParticleRegistry.ORANGE_MAPLE_LEAF.get(),
                 FallenLeafParticle.Factory::new);
     }
 

@@ -1,14 +1,9 @@
 package cn.mcmod.sakura.loot_modifier;
 
-import java.util.List;
-
-import com.google.gson.JsonObject;
-
 import cn.mcmod.sakura.item.FoodRegistry;
 import cn.mcmod.sakura.item.enums.SakuraFoodSet;
 import com.mojang.serialization.Codec;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;

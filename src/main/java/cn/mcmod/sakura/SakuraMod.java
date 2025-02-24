@@ -2,13 +2,6 @@ package cn.mcmod.sakura;
 
 import cn.mcmod.sakura.fluid.FluidTypeRegistry;
 import cn.mcmod.sakura.item.CreativeModeTabRegistry;
-import cn.mcmod.sakura.item.enums.SakuraFoodSet;
-import cn.mcmod.sakura.level.tree.SakuraTreeFeatures;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -24,7 +17,6 @@ import cn.mcmod.sakura.fluid.FluidRegistry;
 import cn.mcmod.sakura.item.ComposterRegistry;
 import cn.mcmod.sakura.item.FoodRegistry;
 import cn.mcmod.sakura.item.ItemRegistry;
-import cn.mcmod.sakura.level.WorldGenerationRegistry;
 import cn.mcmod.sakura.loot_modifier.LootModifiterRegistry;
 import cn.mcmod.sakura.recipes.RecipeTypeRegistry;
 import net.minecraft.world.item.Item;
@@ -39,13 +31,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 public class SakuraMod {
     public static final String MODID = "sakura";
     private static final Logger LOGGER = LogUtils.getLogger();
-//    public static final CreativeModeTab GROUP = new CreativeModeTab(MODID) {
-//        @Override
-//        public ItemStack makeIcon() {
-//            return new ItemStack(FoodRegistry.FOODSET.get(SakuraFoodSet.ONIGIRI).get());
-//        }
-//    };
-
 
     public static Item.Properties defaultItemProperties() {
         return new Item.Properties();

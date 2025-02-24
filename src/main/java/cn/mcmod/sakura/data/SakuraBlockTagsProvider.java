@@ -2,7 +2,6 @@ package cn.mcmod.sakura.data;
 
 import cn.mcmod.sakura.block.BlockRegistry;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraftforge.common.data.BlockTagsProvider;
