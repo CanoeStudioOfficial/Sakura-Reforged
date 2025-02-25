@@ -23,7 +23,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.fluids.FluidStack;
 
 public class FermenterCategory implements IRecipeCategory<FermenterRecipe> {
 
@@ -86,7 +85,7 @@ public class FermenterCategory implements IRecipeCategory<FermenterRecipe> {
                 .addItemStack(recipe.getResultItemList().get(inputIndex));
             }
         }
-        if(recipe.getResultFluid() != FluidStack.EMPTY)
+        if(!recipe.getResultFluid().isEmpty())
             builder.addSlot(RecipeIngredientRole.INPUT, 93, 1)
             .setFluidRenderer(FermenterBlockEntity.TANK_CAPACITY, true, 16, 64)
             .addIngredient(ForgeTypes.FLUID_STACK, recipe.getResultFluid());

@@ -52,7 +52,7 @@ public class CookingPotBlock extends BaseEntityBlock {
             Block.box(0.0D, -1.0D, 0.0D, 16.0D, 0.0D, 16.0D));
 
     public CookingPotBlock() {
-        super(Properties.of().strength(0.5F, 5.0F).sound(SoundType.LANTERN));
+        super(Properties.of().noOcclusion().strength(0.5F, 5.0F).sound(SoundType.LANTERN));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH)
                 .setValue(TRAY_SUPPORT, false).setValue(OPEN, false));
     }

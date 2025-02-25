@@ -134,6 +134,7 @@
 	
 	"block.sakura.nabe_sukiyaki": "寿喜烧锅",
 	"block.sakura.nabe_oden": "关东煮锅",
+	
 
 	"item.sakura.machined_fish": "加工鱼肉",
 	"item.sakura.futon": "布团",
@@ -645,6 +646,11 @@
 	"container.sakura.stone_mortar": "石磨",
 	"container.sakura.cooking_pot": "烹饪锅",
 
+	"sakura.block.nabe.not_cooked":"还没煮熟。",
+	
+	"container.sakura.distiller":"蒸馏桶",
+	"container.sakura.fermenter":"酿造桶",
+	
 	"barrel.contains.fluid": "这个桶含有%1$s液体",
 	"barrel.contains.nonfluid": "这个桶是空的",
 
@@ -669,8 +675,6 @@
 
 	"itemGroup.sakura": "樱",
 
-	"sakurawarning.harder_iron_recipe_enabled": "硬核和钢冶炼机制启用，享受锻造的乐趣吧！",
-
 	"wailaharvestability.toolclass.forging_hammer": "锻造锤",
 
 	"sakuratooltip.campfire.fire_remain": "剩余燃料: %1$s Ticks",
@@ -681,39 +685,6 @@
 	"sakuraeffect.exp_up": "经验提升",
 	"sakuraeffect.fire_blade": "火焰之刃",
 	"sakuraeffect.golden_heart": "金色生命",
-	"sakuraeffect.poisom": "毒药",
-	"block.sakura.tatami_tan": "Tan Tatami",
-	"block.sakura.tatami_tan_half": "Half Tan Tatami",
-	"block.sakura.tatami_half": "Half Tatami",
-	"sakura.armor_samurai.texture": "Armor Color",
-	"item.sakura.cooking_pot": "Cooking Pot",
-	"sakura.kimono.texture": "Kimono Texture",
-	"sakura.haori.texture": "Haori Texture",
-	"sakura.katana.wrong_duel_shinai": "You must hold a Shinai with BOTH hands.",
-	"sakura.katana.wrong_duel": "You shouldn't wield two Katanas with both hands.",
-	"sakura.katana.sheath.not_empty_hand": "You should pull out your Katana with an empty hand.",
-	"jei.sakura.category.cooking_pot": "Cooking Pot",
-	"jei.sakura.category.mortar": "Stone Mortar",
-	"jei.sakura.category.barrel": "Barrel",
-	"jei.sakura.category.distillation": "Distillation Barrel",
-	"jei.sakura.category.liquid_item": "Liquid to Bucket",
-	"sakura.config.vanilla_weight": "Vannila Weight",
-	"sakura.config.vanilla_weight.tooltip": "Changes generate rate of Vanilla. Increase value to gen more Vanilla.",
-	"sakura.config.pepper_weight": "Pepper Weight",
-	"sakura.config.pepper_weight.tooltip": "Changes generate rate of Pepper. Increase value to gen more Pepper.",
-	"sakura.config.bambooshot_weight": "BambooShot Weight",
-	"sakura.config.bambooshot_weight.tooltip": "Changes generate rate of BambooShot. Increase value to gen more BambooShot.",
-	"sakura.config.iron_sand_amount": "Iron Sand Amount",
-	"sakura.config.harder_iron_recipe": "Hardcore Iron Ingot Recipes",
-	"sakura.config.hotspring_weight": "Hot Spring Weight",
-	"sakura.config.every_where_sakura_diamond": "Sakura Diamond Generated Everywhere",
-	"sakura.tooltip.campfire.fire_remain": "Remaining fuel: %1$s Ticks",
-	"sakura.tooltip.campfire.item_in": "Item in campfire: %1$s",
-	"sakura.warning.harder_iron_recipe_enabled": "Hardcore Japan-flavored iron smelting mechanics is enabled. Enjoy Forging!",
-	"sakura.effect.scorpion": "Scorpion Venom",
-	"sakura.effect.cannon": "Cannon",
-	"sakura.effect.exp_up": "Experience Up",
-	"sakura.effect.fire_blade": "Fire Blade",
-	"sakura.effect.golden_heart": "Golden Heart",
-	"sakura.effect.poisom": "Poisoning"
+	"sakuraeffect.poisom": "毒药"
+
 }

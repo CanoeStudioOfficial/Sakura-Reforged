@@ -38,7 +38,7 @@ public class FermenterBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     public FermenterBlock() {
-        super(Properties.copy(Blocks.OAK_PLANKS).noOcclusion());
+        super(Properties.copy(Blocks.OAK_PLANKS));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 

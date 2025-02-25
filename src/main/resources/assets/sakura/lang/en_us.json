@@ -129,6 +129,8 @@
     "block.sakura.teishoku_fish_raw":"Raw Fish Teishoku",
     "block.sakura.teishoku_fish_cooked":"Cooked Fish Teishoku",
     "block.sakura.teishoku_fish_salt":"Salted Cooked Fish Teishoku",
+	
+	"block.sakura.chopping_board": "Chopping Board",
 
     "item.sakura.machined_fish":"Machined Fish",
     "item.sakura.futon":"Futon",
@@ -141,6 +143,18 @@
     "item.sakura.shimeji":"Shimeji",
     "item.sakura.edodes":"Edodes",
     "item.sakura.roast_matsutake":"Roasted Matsutake",
+
+    "item.sakura.minced_meat": "Minced Meat",
+	"item.sakura.surimi": "Surimi",
+	"item.sakura.soysauce": "Soysauce",
+	"item.sakura.dashi": "Dashi",
+	"item.sakura.mirin": "Mirin",
+	"item.sakura.sake_kasu": "Sake Kasu",
+	
+	"item.sakura.kamaboko": "Kamaboko",
+	"item.sakura.chikuwa_raw": "Raw Chikuwa",
+	"item.sakura.chikuwa": "Chikuwa",
+	"item.sakura.satsumaage": "Satsumaage",
 
     "item.sakura.nimono_fish":"Fish Nimono",
     "item.sakura.nimono_radish":"Radish Nimono",
@@ -631,18 +645,23 @@
 
     "container.sakura.stone_mortar":"Stone Mortar",
     "container.sakura.cooking_pot":"Cooking Pot",
+	
+	"container.sakura.distiller":"Distillation Barrel",
+	"container.sakura.fermenter":"Fermenting Barrel",
 
     "barrel.contains.fluid":"This barrel contains %1$s liquid",
     "barrel.contains.nonfluid":"This barrel is empty",
+	
+	"sakura.block.nabe.not_cooked":"Not cooked yet.",
 
-    "jei.sakura.category.cooking_pot":"Cooking Pot",
-    "jei.sakura.category.mortar":"Stone Mortar",
-    "jei.sakura.category.barrel":"Barrel",
-    "jei.sakura.category.distillation":"Distillation Barrel",
-    "jei.sakura.category.liquid_item":"Liquid to Bucket",
-    "jei.sakura.category.straw_web":"Open-air Drying",
-    
-    "jei.sakura.category.straw_web":"Open-air Drying",
+    "sakura.jei.cooking":"Cooking Pot",
+    "sakura.jei.stone_mortar":"Stone Mortar",
+    "sakura.jei.fermenting":"Fermenting",
+    "sakura.jei.distillation":"Distillation Barrel",
+	"sakura.jei.chopping":"Chopping",
+    "sakura.jei.liquid_item":"Liquid to Bucket",
+    "sakura.jei.straw_web":"Open-air Drying",
+
     "sakura.jei.chopping.count":"Need %s Cuts",
 
     "entity.sakura.Deer":"Deer",
@@ -671,8 +690,6 @@
     "sakura.tooltip.campfire.fire_remain":"Remaining fuel: %1$s Ticks",
     "sakura.tooltip.campfire.item_in":"Item in campfire: %1$s",
 
-    "sakura.warning.harder_iron_recipe_enabled":"Hardcore Japan-flavored iron smelting mechanics is enabled. Enjoy Forging!",
-
     "wailaharvestability.toolclass.forging_hammer":"Forging Hammer",
 
     "sakura.effect.scorpion":"Scorpion Venom",
@@ -681,4 +698,5 @@
     "sakura.effect.fire_blade":"Fire Blade",
     "sakura.effect.golden_heart":"Golden Heart",
     "sakura.effect.poisom":"Poisoning"
+
 }

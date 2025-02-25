@@ -23,7 +23,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraftforge.fluids.FluidStack;
 
 public class DistillerCategory implements IRecipeCategory<DistillerRecipe> {
 
@@ -88,7 +87,7 @@ public class DistillerCategory implements IRecipeCategory<DistillerRecipe> {
                 .addItemStack(recipe.getResultItemList().get(inputIndex));
             }
         }
-        if(recipe.getResultFluid() != FluidStack.EMPTY)
+        if(!recipe.getResultFluid().isEmpty())
             builder.addSlot(RecipeIngredientRole.INPUT, 93, 1)
             .setFluidRenderer(DistillerBlockEntity.TANK_CAPACITY, true, 16, 64)
             .addIngredient(ForgeTypes.FLUID_STACK, recipe.getResultFluid());

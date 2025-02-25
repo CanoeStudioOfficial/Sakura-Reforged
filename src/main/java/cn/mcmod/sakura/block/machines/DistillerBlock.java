@@ -46,7 +46,7 @@ public class DistillerBlock extends BaseEntityBlock {
     protected static final VoxelShape SHAPE_WITH_TRAY = Shapes.or(Shapes.block(),
             Block.box(0.0D, -1.0D, 0.0D, 16.0D, 0.0D, 16.0D));
     public DistillerBlock() {
-        super(Properties.copy(Blocks.OAK_PLANKS).noOcclusion());
+        super(Properties.copy(Blocks.OAK_PLANKS));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(TRAY_SUPPORT, false));
     }
 
@@ -54,7 +54,7 @@ public class DistillerBlock extends BaseEntityBlock {
     public RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }
-
+    
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return BlockEntityRegistry.DISTILLER.get().create(pos, state);
