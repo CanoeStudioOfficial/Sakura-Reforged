@@ -4,6 +4,7 @@ import java.util.function.Supplier;
 import java.util.function.UnaryOperator;
 
 import cn.mcmod.sakura.SakuraMod;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
@@ -73,45 +74,46 @@ public class FluidRegistry {
     
 
     private static final ForgeFlowingFluid.Properties FOOD_OIL_PROP = 
-            createProp(FOOD_OIL, FOOD_OIL_FLOWING, FluidTypeRegistry.FOOD_OIL, FluidBlockRegistry.FOOD_OIL_BLOCK);
+            createProp(FOOD_OIL, FOOD_OIL_FLOWING, FluidTypeRegistry.FOOD_OIL, FluidBlockRegistry.FOOD_OIL_BLOCK,BucketItemRegistry.FOOD_OIL_BUCKET);
 
     private static final ForgeFlowingFluid.Properties DOBUROKU_PROP = 
-            createProp(DOBUROKU, DOBUROKU_FLOWING, FluidTypeRegistry.DOBUROKU, FluidBlockRegistry.DOBUROKU_BLOCK);
+            createProp(DOBUROKU, DOBUROKU_FLOWING, FluidTypeRegistry.DOBUROKU, FluidBlockRegistry.DOBUROKU_BLOCK,BucketItemRegistry.DOBUROKU_BUCKET);
     
     private static final ForgeFlowingFluid.Properties SAKE_PROP = 
-            createProp(SAKE, SAKE_FLOWING, FluidTypeRegistry.SAKE, FluidBlockRegistry.SAKE_BLOCK);
+            createProp(SAKE, SAKE_FLOWING, FluidTypeRegistry.SAKE, FluidBlockRegistry.SAKE_BLOCK,BucketItemRegistry.SAKE_BUCKET);
     
     private static final ForgeFlowingFluid.Properties SHOUCHU_PROP = 
-            createProp(SHOUCHU, SHOUCHU_FLOWING, FluidTypeRegistry.SHOUCHU, FluidBlockRegistry.SHOUCHU_BLOCK);
+            createProp(SHOUCHU, SHOUCHU_FLOWING, FluidTypeRegistry.SHOUCHU, FluidBlockRegistry.SHOUCHU_BLOCK,BucketItemRegistry.SHOUCHU_BUCKET);
     
     private static final ForgeFlowingFluid.Properties BEER_PROP = 
-            createProp(BEER, BEER_FLOWING, FluidTypeRegistry.BEER, FluidBlockRegistry.BEER_BLOCK);
+            createProp(BEER, BEER_FLOWING, FluidTypeRegistry.BEER, FluidBlockRegistry.BEER_BLOCK,BucketItemRegistry.BEER_BUCKET);
     
     private static final ForgeFlowingFluid.Properties BRANDY_PROP = 
-            createProp(BRANDY, BRANDY_FLOWING, FluidTypeRegistry.BRANDY, FluidBlockRegistry.BRANDY_BLOCK);
+            createProp(BRANDY, BRANDY_FLOWING, FluidTypeRegistry.BRANDY, FluidBlockRegistry.BRANDY_BLOCK,BucketItemRegistry.BRANDY_BUCKET);
     
     private static final ForgeFlowingFluid.Properties WHISKEY_PROP = 
-            createProp(WHISKEY, WHISKEY_FLOWING, FluidTypeRegistry.WHISKEY, FluidBlockRegistry.WHISKEY_BLOCK);
+            createProp(WHISKEY, WHISKEY_FLOWING, FluidTypeRegistry.WHISKEY, FluidBlockRegistry.WHISKEY_BLOCK,BucketItemRegistry.WHISKEY_BUCKET);
     
     private static final ForgeFlowingFluid.Properties RUM_PROP = 
-            createProp(RUM, RUM_FLOWING, FluidTypeRegistry.RUM, FluidBlockRegistry.RUM_BLOCK);
+            createProp(RUM, RUM_FLOWING, FluidTypeRegistry.RUM, FluidBlockRegistry.RUM_BLOCK,BucketItemRegistry.RUM_BUCKET);
     
     private static final ForgeFlowingFluid.Properties RED_WINE_PROP = 
-            createProp(RED_WINE, RED_WINE_FLOWING, FluidTypeRegistry.RED_WINE, FluidBlockRegistry.RED_WINE_BLOCK);
+            createProp(RED_WINE, RED_WINE_FLOWING, FluidTypeRegistry.RED_WINE, FluidBlockRegistry.RED_WINE_BLOCK,BucketItemRegistry.RED_WINE_BUCKET);
     
     private static final ForgeFlowingFluid.Properties WHITE_WINE_PROP = 
-            createProp(WHITE_WINE, WHITE_WINE_FLOWING, FluidTypeRegistry.WHITE_WINE, FluidBlockRegistry.WHITE_WINE_BLOCK);
+            createProp(WHITE_WINE, WHITE_WINE_FLOWING, FluidTypeRegistry.WHITE_WINE, FluidBlockRegistry.WHITE_WINE_BLOCK,BucketItemRegistry.WHITE_WINE_BUCKET);
     
     private static final ForgeFlowingFluid.Properties CHAMPAGNE_PROP = 
-            createProp(CHAMPAGNE, CHAMPAGNE_FLOWING, FluidTypeRegistry.CHAMPAGNE, FluidBlockRegistry.CHAMPAGNE_BLOCK);
+            createProp(CHAMPAGNE, CHAMPAGNE_FLOWING, FluidTypeRegistry.CHAMPAGNE, FluidBlockRegistry.CHAMPAGNE_BLOCK,BucketItemRegistry.CHAMPAGNE_BUCKET);
     
     private static ForgeFlowingFluid.Properties createProp(
             Supplier<? extends Fluid> still, 
             Supplier<? extends Fluid> flowing,
             RegistryObject<FluidType> fluidType,
-            Supplier<? extends LiquidBlock> block){
+            Supplier<? extends LiquidBlock> block,
+            Supplier<? extends Item> bucket){
 
-        UnaryOperator<ForgeFlowingFluid.Properties> blockProperties = p->p.block(block).slopeFindDistance(3).explosionResistance(100F);
+        UnaryOperator<ForgeFlowingFluid.Properties> blockProperties = p->p.block(block).bucket(bucket).slopeFindDistance(3).explosionResistance(100F);
         return blockProperties.apply(new ForgeFlowingFluid.Properties(fluidType ,still, flowing));
     }
 }

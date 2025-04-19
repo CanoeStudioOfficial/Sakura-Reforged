@@ -2,6 +2,7 @@ package cn.mcmod.sakura.block.machines;
 
 import javax.annotation.Nullable;
 
+import cn.mcmod.sakura.SakuraMod;
 import cn.mcmod.sakura.block.entity.BlockEntityRegistry;
 import cn.mcmod.sakura.block.entity.FermenterBlockEntity;
 import net.minecraft.core.BlockPos;
@@ -27,7 +28,9 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
@@ -71,8 +74,9 @@ public class FermenterBlock extends BaseEntityBlock {
         if (handler != null && handler instanceof FluidBucketWrapper) {
             if (cookingPot.getOutputFluidTank().isPresent()) {
                 FluidTank outTank = cookingPot.getOutputFluidTank().orElse(null);
-                if(FluidUtil.interactWithFluidHandler(player, handIn, outTank))
-                    return InteractionResult.SUCCESS;
+                if(!outTank.getFluid().isEmpty())
+                    if(FluidUtil.interactWithFluidHandler(player, handIn, outTank))
+                        return InteractionResult.SUCCESS;
             }
             FluidUtil.interactWithFluidHandler(player, handIn, cookingPot.getInputFluidTank().orElse(null));
             return InteractionResult.SUCCESS;
