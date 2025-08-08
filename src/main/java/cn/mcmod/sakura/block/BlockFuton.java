@@ -201,7 +201,7 @@ public class BlockFuton extends BlockFacing {
 	}
 
 	@Override
-	public EnumPushReaction getMobilityFlag(IBlockState state) {
+	public EnumPushReaction getPushReaction(IBlockState state) {
 		return EnumPushReaction.DESTROY;
 	}
 
@@ -227,7 +227,7 @@ public class BlockFuton extends BlockFacing {
 	}
 
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
+		EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta);
 		return (meta & 8) > 0
 				? this.getDefaultState().withProperty(PART, EnumPartType.HEAD).withProperty(FACING, enumfacing)
 						.withProperty(OCCUPIED, Boolean.valueOf((meta & 4) > 0))
