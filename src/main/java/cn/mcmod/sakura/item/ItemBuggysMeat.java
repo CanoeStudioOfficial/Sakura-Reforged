@@ -13,7 +13,7 @@ import java.util.List;
 public class ItemBuggysMeat extends ItemFood {
     public ItemBuggysMeat(int amount, float saturation, boolean isWolfFood) {
         super(amount, saturation, isWolfFood);
-        this.setUnlocalizedName("sakura.buggys_meat");
+        this.setTranslationKey("sakura.buggys_meat");
     }
 
     @SideOnly(Side.CLIENT)

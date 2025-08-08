@@ -33,7 +33,7 @@ public class ItemSamuraiArmors extends ItemArmor {
 			EntityEquipmentSlot equipmentSlotIn) {
 		super(materialIn, renderIndexIn, equipmentSlotIn);
 		this.isNormal = is_normal;
-		setUnlocalizedName(SakuraMain.MODID + "." + name);
+		setTranslationKey(SakuraMain.MODID + "." + name);
 	}
 
     public static final Map<String,Boolean> armorIDs = Maps.newHashMap();

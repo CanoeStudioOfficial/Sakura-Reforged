@@ -165,8 +165,8 @@ public class BlockFuton extends BlockFacing {
 		int k = pos.getZ();
 
 		for (int l = 0; l <= 1; ++l) {
-			int i1 = i - enumfacing.getFrontOffsetX() * l - 1;
-			int j1 = k - enumfacing.getFrontOffsetZ() * l - 1;
+			int i1 = i - enumfacing.getXOffset() * l - 1;
+			int j1 = k - enumfacing.getZOffset() * l - 1;
 			int k1 = i1 + 2;
 			int l1 = j1 + 2;
 

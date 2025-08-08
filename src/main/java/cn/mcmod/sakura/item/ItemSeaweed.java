@@ -24,7 +24,7 @@ import net.minecraftforge.common.IPlantable;
 
 public class ItemSeaweed extends Item implements IPlantable {
     public ItemSeaweed() {
-        this.setUnlocalizedName("sakura.seaweed_raw");
+        this.setTranslationKey("sakura.seaweed_raw");
     }
 
     @Override

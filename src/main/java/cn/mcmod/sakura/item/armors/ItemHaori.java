@@ -27,7 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemHaori extends ItemArmor {
     public ItemHaori() {
         super(ItemLoader.KIMONO_MATERIAL, 0, EntityEquipmentSlot.CHEST);
-        setUnlocalizedName(SakuraMain.MODID + "." + "haori");
+        setTranslationKey(SakuraMain.MODID + "." + "haori");
     }
     
     @SideOnly(Side.CLIENT)

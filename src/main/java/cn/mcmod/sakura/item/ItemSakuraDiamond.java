@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 public class ItemSakuraDiamond extends Item {
 
     public ItemSakuraDiamond() {
-        this.setUnlocalizedName("sakura.sakura_diamond");
+        this.setTranslationKey("sakura.sakura_diamond");
     }
 
     @Override

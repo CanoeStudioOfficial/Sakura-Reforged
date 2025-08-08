@@ -103,7 +103,7 @@ public class TileEntityMapleCauldron extends TileEntity implements ITickable, II
     protected void refresh() {
         if (hasWorld() && !world.isRemote) {
             IBlockState state = world.getBlockState(pos);
-            world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
+            world.markAndNotifyBlock(pos, world.getChunk(pos), state, state, 11);
         }
     }
 

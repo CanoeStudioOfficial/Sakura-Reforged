@@ -21,7 +21,7 @@ public class ItemSheath extends Item {
     public ItemSheath() {
         this.maxStackSize = 1;
         this.setMaxDamage(ToolMaterial.WOOD.getMaxUses());
-        this.setUnlocalizedName(SakuraMain.MODID + "." + "sheath");
+        this.setTranslationKey(SakuraMain.MODID + "." + "sheath");
 
     }
 

@@ -30,7 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemKimono extends ItemArmor {
     public ItemKimono() {
         super(ItemLoader.KIMONO_MATERIAL, 0, EntityEquipmentSlot.LEGS);
-        setUnlocalizedName(SakuraMain.MODID + "." + "kimono");
+        setTranslationKey(SakuraMain.MODID + "." + "kimono");
     }
     
     public static final List<String> KimonoIDs = Lists.newArrayList();

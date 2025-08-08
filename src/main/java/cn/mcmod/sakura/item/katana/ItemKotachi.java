@@ -41,7 +41,7 @@ public class ItemKotachi extends Item {
         this.material = material;
         this.maxStackSize = 1;
         this.setMaxDamage((int) (material.getMaxUses()*0.75f));
-        this.setUnlocalizedName(SakuraMain.MODID + "." + name);
+        this.setTranslationKey(SakuraMain.MODID + "." + name);
         this.attackDamage = material.getAttackDamage();
         this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)

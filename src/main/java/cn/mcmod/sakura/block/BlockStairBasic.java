@@ -8,7 +8,7 @@ public class BlockStairBasic extends BlockStairs {
 	protected BlockStairBasic(IBlockState modelState) {
 		super(modelState);
 		  this.useNeighborBrightness = true;
-		    this.setCreativeTab(modelState.getBlock().getCreativeTabToDisplayOn());
+		    this.setCreativeTab(modelState.getBlock().getCreativeTab());
 	}
 
 }

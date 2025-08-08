@@ -27,7 +27,7 @@ public class ItemShinai extends ItemSword {
 
     public ItemShinai(String name) {
     	super(ToolMaterial.WOOD);
-        this.setUnlocalizedName(SakuraMain.MODID + "." + name);
+        this.setTranslationKey(SakuraMain.MODID + "." + name);
         this.attackDamage = 2.0F + ToolMaterial.WOOD.getAttackDamage();
     }
 

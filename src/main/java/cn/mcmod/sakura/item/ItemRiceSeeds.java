@@ -24,7 +24,7 @@ import net.minecraftforge.common.IPlantable;
 
 public class ItemRiceSeeds extends Item implements IPlantable {
     public ItemRiceSeeds() {
-        this.setUnlocalizedName("sakura.rice_seeds");
+        this.setTranslationKey("sakura.rice_seeds");
     }
 
     @Override
