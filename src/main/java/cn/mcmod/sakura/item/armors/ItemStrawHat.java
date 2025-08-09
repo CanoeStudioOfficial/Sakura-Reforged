@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemStrawHat extends ItemArmor {
     public ItemStrawHat() {
         super(ItemLoader.STRAW_MATERIAL, 0, EntityEquipmentSlot.HEAD);
-        setUnlocalizedName(SakuraMain.MODID + "." + "strawhat");
+        setTranslationKey(SakuraMain.MODID + "." + "strawhat");
     }
 
     @SideOnly(Side.CLIENT)

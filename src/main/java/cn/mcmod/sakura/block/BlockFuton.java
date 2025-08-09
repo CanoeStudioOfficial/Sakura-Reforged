@@ -165,8 +165,8 @@ public class BlockFuton extends BlockFacing {
 		int k = pos.getZ();
 
 		for (int l = 0; l <= 1; ++l) {
-			int i1 = i - enumfacing.getFrontOffsetX() * l - 1;
-			int j1 = k - enumfacing.getFrontOffsetZ() * l - 1;
+			int i1 = i - enumfacing.getXOffset() * l - 1;
+			int j1 = k - enumfacing.getZOffset() * l - 1;
 			int k1 = i1 + 2;
 			int l1 = j1 + 2;
 
@@ -201,7 +201,7 @@ public class BlockFuton extends BlockFacing {
 	}
 
 	@Override
-	public EnumPushReaction getMobilityFlag(IBlockState state) {
+	public EnumPushReaction getPushReaction(IBlockState state) {
 		return EnumPushReaction.DESTROY;
 	}
 
@@ -227,7 +227,7 @@ public class BlockFuton extends BlockFacing {
 	}
 
 	public IBlockState getStateFromMeta(int meta) {
-		EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
+		EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta);
 		return (meta & 8) > 0
 				? this.getDefaultState().withProperty(PART, EnumPartType.HEAD).withProperty(FACING, enumfacing)
 						.withProperty(OCCUPIED, Boolean.valueOf((meta & 4) > 0))

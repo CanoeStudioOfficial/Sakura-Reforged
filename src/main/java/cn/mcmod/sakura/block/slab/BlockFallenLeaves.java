@@ -76,8 +76,8 @@ public class BlockFallenLeaves extends BlockBase implements IShearable, IGrowabl
     }
     @Override
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer(){
-        return Blocks.LEAVES.getBlockLayer();
+    public BlockRenderLayer getRenderLayer(){
+        return Blocks.LEAVES.getRenderLayer();
     }
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {

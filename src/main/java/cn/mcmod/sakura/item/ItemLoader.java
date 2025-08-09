@@ -53,12 +53,12 @@ public class ItemLoader {
     		"cup"
     });
     
-    public static Item SAKURA_AXE = new ItemAxeBlank(SAKURA_TOOLMATERIAL,9.0F,-3.3F).setUnlocalizedName("sakura.sakura_axe");
-    public static Item SAKURA_PICKAXE = new ItemPickaxeBlank(SAKURA_TOOLMATERIAL).setUnlocalizedName("sakura.sakura_pickaxe");
-    public static Item SAKURA_HOE = new ItemHoeBlank(SAKURA_TOOLMATERIAL).setUnlocalizedName("sakura.sakura_hoe");
-    public static Item SAKURA_SHOVEL = new ItemShovelBlank(SAKURA_TOOLMATERIAL).setUnlocalizedName("sakura.sakura_shovel");
+    public static Item SAKURA_AXE = new ItemAxeBlank(SAKURA_TOOLMATERIAL,9.0F,-3.3F).setTranslationKey("sakura.sakura_axe");
+    public static Item SAKURA_PICKAXE = new ItemPickaxeBlank(SAKURA_TOOLMATERIAL).setTranslationKey("sakura.sakura_pickaxe");
+    public static Item SAKURA_HOE = new ItemHoeBlank(SAKURA_TOOLMATERIAL).setTranslationKey("sakura.sakura_hoe");
+    public static Item SAKURA_SHOVEL = new ItemShovelBlank(SAKURA_TOOLMATERIAL).setTranslationKey("sakura.sakura_shovel");
     
-    public static Item BROOM = new ItemBroom(STRAW_TOOLMATERIAL).setUnlocalizedName("sakura.broom");
+    public static Item BROOM = new ItemBroom(STRAW_TOOLMATERIAL).setTranslationKey("sakura.broom");
     
     public static Item SAMURAI_HELMET=new ItemSamuraiArmors("samurai_helmet", false, SAMURAI_MATERIAL, 0, EntityEquipmentSlot.HEAD);
     public static Item SAMURAI_CHEST=new ItemSamuraiArmors("samurai_chest", false, SAMURAI_MATERIAL, 0, EntityEquipmentSlot.CHEST);
@@ -74,20 +74,20 @@ public class ItemLoader {
     
     public static Item SEAWEED_RAW = new ItemSeaweed();
     
-    public static Item TOMATO = new ItemFood(2, false).setUnlocalizedName("sakura.tomato");
-    public static Item TOMATO_SEEDS = new ItemSeeds(BlockLoader.TOMATOCROP, Blocks.FARMLAND).setUnlocalizedName("sakura.tomato_seeds");
-    public static Item EGGPLANT = new ItemFood(2, false).setUnlocalizedName("sakura.eggplant");
-    public static Item EGGPLANT_SEEDS = new ItemSeeds(BlockLoader.EGGPLANTCROP, Blocks.FARMLAND).setUnlocalizedName("sakura.eggplant_seeds");
-    public static Item CABBAGE = new ItemFood(2, false).setUnlocalizedName("sakura.cabbage");
-    public static Item CABBAGE_SEEDS = new ItemSeeds(BlockLoader.CABBAGECROP, Blocks.FARMLAND).setUnlocalizedName("sakura.cabbage_seeds");
-    public static Item RADISH = new ItemFood(2, false).setUnlocalizedName("sakura.radish");
-    public static Item TARO = new ItemSeedFood(2, 0.2F, BlockLoader.TARO_CROP, Blocks.FARMLAND).setUnlocalizedName("sakura.taro");
-    public static Item RADISH_SEEDS = new ItemSeeds(BlockLoader.RADISHCROP, Blocks.FARMLAND).setUnlocalizedName("sakura.radish_seeds");
-    public static Item RED_BEAN = new ItemSeeds(BlockLoader.REDBEANCROP, Blocks.FARMLAND).setUnlocalizedName("sakura.red_bean");
-    public static Item BUCKWHEAT = new ItemSeeds(BlockLoader.BUCKWHEATCROP, Blocks.FARMLAND).setUnlocalizedName("sakura.buckwheat");
-    public static Item RAPESEED = new ItemSeeds(BlockLoader.RAPESEEDCROP, Blocks.FARMLAND).setUnlocalizedName("sakura.rapeseeds");
-    public static Item ONION = new ItemFood(2, false).setUnlocalizedName("sakura.onion");
-    public static Item ONION_SEEDS = new ItemSeeds(BlockLoader.ONIONCROP, Blocks.FARMLAND).setUnlocalizedName("sakura.onion_seeds");
+    public static Item TOMATO = new ItemFood(2, false).setTranslationKey("sakura.tomato");
+    public static Item TOMATO_SEEDS = new ItemSeeds(BlockLoader.TOMATOCROP, Blocks.FARMLAND).setTranslationKey("sakura.tomato_seeds");
+    public static Item EGGPLANT = new ItemFood(2, false).setTranslationKey("sakura.eggplant");
+    public static Item EGGPLANT_SEEDS = new ItemSeeds(BlockLoader.EGGPLANTCROP, Blocks.FARMLAND).setTranslationKey("sakura.eggplant_seeds");
+    public static Item CABBAGE = new ItemFood(2, false).setTranslationKey("sakura.cabbage");
+    public static Item CABBAGE_SEEDS = new ItemSeeds(BlockLoader.CABBAGECROP, Blocks.FARMLAND).setTranslationKey("sakura.cabbage_seeds");
+    public static Item RADISH = new ItemFood(2, false).setTranslationKey("sakura.radish");
+    public static Item TARO = new ItemSeedFood(2, 0.2F, BlockLoader.TARO_CROP, Blocks.FARMLAND).setTranslationKey("sakura.taro");
+    public static Item RADISH_SEEDS = new ItemSeeds(BlockLoader.RADISHCROP, Blocks.FARMLAND).setTranslationKey("sakura.radish_seeds");
+    public static Item RED_BEAN = new ItemSeeds(BlockLoader.REDBEANCROP, Blocks.FARMLAND).setTranslationKey("sakura.red_bean");
+    public static Item BUCKWHEAT = new ItemSeeds(BlockLoader.BUCKWHEATCROP, Blocks.FARMLAND).setTranslationKey("sakura.buckwheat");
+    public static Item RAPESEED = new ItemSeeds(BlockLoader.RAPESEEDCROP, Blocks.FARMLAND).setTranslationKey("sakura.rapeseeds");
+    public static Item ONION = new ItemFood(2, false).setTranslationKey("sakura.onion");
+    public static Item ONION_SEEDS = new ItemSeeds(BlockLoader.ONIONCROP, Blocks.FARMLAND).setTranslationKey("sakura.onion_seeds");
     
     public static ItemFoodBase FOODSET = new ItemFoodBase(SakuraMain.MODID,"foodset", 64,
            new FoodInfo[]{
@@ -358,7 +358,7 @@ public class ItemLoader {
             });
     public static Item POT = new ItemPot();
     public static Item KNIFE_NOODLE = new ItemKnifeNoodle(ToolMaterial.IRON);
-    public static Item KNIFE_FISH = new ItemKnifeNoodle(ToolMaterial.IRON).setUnlocalizedName(SakuraMain.MODID+"."+"knife_fish");
+    public static Item KNIFE_FISH = new ItemKnifeNoodle(ToolMaterial.IRON).setTranslationKey(SakuraMain.MODID+"."+"knife_fish");
 
     public static Item KATANA = new ItemKatana(Item.ToolMaterial.IRON, "katana");
     public static Item TACHI = new ItemKatana(TACHI_TOOLMATERIAL, "tachi");
@@ -375,12 +375,12 @@ public class ItemLoader {
     public static Item FUTON = new ItemFuton();
     public static ItemSheathKatana KATANA_SHEATH = new ItemSheathKatana(KATANA);
     public static ItemSheathKatana SAKURAKATANA_SHEATH = new ItemSheathKatana(SAKURAKATANA);
-    public static Item STONE_HAMMER = new ItemHammer(ToolMaterial.STONE).setUnlocalizedName("sakura.stone_hammer");
-    public static Item IRON_HAMMER = new ItemHammer(ToolMaterial.IRON).setUnlocalizedName("sakura.iron_hammer");
-    public static Item SAKURA_HAMMER = new ItemHammer(SAKURA_TOOLMATERIAL).setUnlocalizedName("sakura.sakura_hammer");
+    public static Item STONE_HAMMER = new ItemHammer(ToolMaterial.STONE).setTranslationKey("sakura.stone_hammer");
+    public static Item IRON_HAMMER = new ItemHammer(ToolMaterial.IRON).setTranslationKey("sakura.iron_hammer");
+    public static Item SAKURA_HAMMER = new ItemHammer(SAKURA_TOOLMATERIAL).setTranslationKey("sakura.sakura_hammer");
    
-    public static Item SAKURA_KNIFE_NOODLE = new ItemKnifeNoodle(SAKURA_TOOLMATERIAL).setMaxDamage(SAKURA_TOOLMATERIAL.getMaxUses()).setUnlocalizedName(SakuraMain.MODID+"."+"sakura_knife_noodle");
-    public static Item SAKURA_KNIFE_FISH = new ItemKnifeNoodle(SAKURA_TOOLMATERIAL).setMaxDamage(SAKURA_TOOLMATERIAL.getMaxUses()).setUnlocalizedName(SakuraMain.MODID+"."+"sakura_knife_fish");
+    public static Item SAKURA_KNIFE_NOODLE = new ItemKnifeNoodle(SAKURA_TOOLMATERIAL).setMaxDamage(SAKURA_TOOLMATERIAL.getMaxUses()).setTranslationKey(SakuraMain.MODID+"."+"sakura_knife_noodle");
+    public static Item SAKURA_KNIFE_FISH = new ItemKnifeNoodle(SAKURA_TOOLMATERIAL).setMaxDamage(SAKURA_TOOLMATERIAL.getMaxUses()).setTranslationKey(SakuraMain.MODID+"."+"sakura_knife_fish");
     
     public static Item IMOGARANAWA = new ItemMetaDurability(SakuraMain.MODID, "imogaranawa", 15, ItemStack.EMPTY, new String[] {
     		"imogaranawa"
@@ -408,7 +408,7 @@ public class ItemLoader {
         register(POT);
         register(KIMONO);
         register(HAORI);
-        register(BAMBOO_DOOR.setUnlocalizedName("sakura.bamboo_door"));
+        register(BAMBOO_DOOR.setTranslationKey("sakura.bamboo_door"));
         register(TOMATO);
         register(TOMATO_SEEDS);
         register(EGGPLANT);
@@ -439,7 +439,7 @@ public class ItemLoader {
         register(MATERIAL);
         register(IMOGARANAWA);
         register(FOODSET);
-        register(HYDRA_RAMEN.setUnlocalizedName("sakura.hydra_ramen"));
+        register(HYDRA_RAMEN.setTranslationKey("sakura.hydra_ramen"));
         register(BUGGYS_MEAT);
     	register(BENTO);
     	register(FUTON);

@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 public class ItemFuton extends Item {
 	public ItemFuton() {
-		setUnlocalizedName("sakura.futon");
+		setTranslationKey("sakura.futon");
 	}
 
     /**
@@ -49,7 +49,7 @@ public class ItemFuton extends Item {
             }
 
             int i = MathHelper.floor(player.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-            EnumFacing enumfacing = EnumFacing.getHorizontal(i);
+            EnumFacing enumfacing = EnumFacing.byHorizontalIndex(i);
             BlockPos blockpos = pos.offset(enumfacing);
             ItemStack itemstack = player.getHeldItem(hand);
 

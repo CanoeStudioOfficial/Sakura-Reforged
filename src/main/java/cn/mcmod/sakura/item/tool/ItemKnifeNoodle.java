@@ -9,7 +9,7 @@ public class ItemKnifeNoodle extends ItemSword {
 	public ItemKnifeNoodle(ToolMaterial material) {
 //		ToolMaterial.IRON
 		super(material);
-		this.setUnlocalizedName(SakuraMain.MODID+"."+"knife_noodle");
+		this.setTranslationKey(SakuraMain.MODID+"."+"knife_noodle");
 		this.setMaxDamage(material.getMaxUses());
 	}
     @Override

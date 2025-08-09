@@ -84,7 +84,7 @@ public class BlockShoji extends Block implements ITileEntityProvider {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta % 6))
+        return getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta % 6))
                 .withProperty(OPEN, meta >= 6);
     }
 
@@ -202,7 +202,7 @@ public class BlockShoji extends Block implements ITileEntityProvider {
     }
     @SideOnly(Side.CLIENT)
     @Override
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

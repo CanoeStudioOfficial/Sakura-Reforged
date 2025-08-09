@@ -32,7 +32,7 @@ public class ItemSheathKatana extends Item {
     	katana=blade;
         this.maxStackSize = 1;
         this.setMaxDamage(blade.getMaxDamage());
-        this.setUnlocalizedName(blade.getUnlocalizedName().substring(5)+"_sheath");
+        this.setTranslationKey(blade.getTranslationKey().substring(5)+"_sheath");
     }
 
     @Override

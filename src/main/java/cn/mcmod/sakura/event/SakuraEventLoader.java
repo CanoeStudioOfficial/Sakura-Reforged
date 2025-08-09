@@ -78,7 +78,7 @@ public class SakuraEventLoader {
     public static void addFishingLoot(ItemStack stack,int weight){
         LootCondition[] lootConditions = new LootCondition[0];
         LootFunction[] setMeta = new LootFunction[] { new SetMetadata(lootConditions, new RandomValueRange(stack.getMetadata())) };
-        LootEntry entry = new LootEntryItem(stack.getItem(), weight, 0, setMeta, lootConditions, stack.getUnlocalizedName());
+        LootEntry entry = new LootEntryItem(stack.getItem(), weight, 0, setMeta, lootConditions, stack.getTranslationKey());
 
         FishinglootPools.add(entry);
     }
@@ -108,7 +108,7 @@ public class SakuraEventLoader {
     private static void giveItem(EntityPlayerMP player,ItemStack item) {
 		NBTTagCompound playerData = player.getEntityData();
 		NBTTagCompound data = getTagSafe(playerData, EntityPlayer.PERSISTED_NBT_TAG);
-		StringBuilder builder =new StringBuilder(item.getUnlocalizedName().substring(5)).append("_has");
+		StringBuilder builder =new StringBuilder(item.getTranslationKey().substring(5)).append("_has");
 		if (!data.getBoolean(builder.toString())) {
 			ItemHandlerHelper.giveItemToPlayer(player, item);
 			data.setBoolean(builder.toString(), true);

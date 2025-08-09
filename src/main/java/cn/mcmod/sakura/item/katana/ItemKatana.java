@@ -41,7 +41,7 @@ public class ItemKatana extends Item {
         this.material = material;
         this.maxStackSize = 1;
         this.setMaxDamage(material.getMaxUses());
-        this.setUnlocalizedName(SakuraMain.MODID + "." + name);
+        this.setTranslationKey(SakuraMain.MODID + "." + name);
         this.attackDamage = 3.0F + material.getAttackDamage();
         this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)

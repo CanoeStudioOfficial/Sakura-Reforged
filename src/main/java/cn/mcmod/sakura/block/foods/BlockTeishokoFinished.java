@@ -44,7 +44,7 @@ public class BlockTeishokoFinished extends BlockFacing {
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		boolean isplate = ((meta & 4) == 1);
-		EnumFacing enumfacing = EnumFacing.getHorizontal(meta);
+		EnumFacing enumfacing = EnumFacing.byHorizontalIndex(meta);
 
 		return this.getDefaultState().withProperty(isPlate, isplate).withProperty(FACING, enumfacing);
 	}

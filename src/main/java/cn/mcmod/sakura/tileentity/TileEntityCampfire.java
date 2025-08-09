@@ -40,7 +40,7 @@ public class TileEntityCampfire extends TileEntity implements ITickable {
 	protected void refresh() {
 		if (hasWorld() && !world.isRemote) {
 			IBlockState state = world.getBlockState(pos);
-			world.markAndNotifyBlock(pos, world.getChunkFromBlockCoords(pos), state, state, 11);
+			world.markAndNotifyBlock(pos, world.getChunk(pos), state, state, 11);
 		}
 	}
     private int burnTime;
