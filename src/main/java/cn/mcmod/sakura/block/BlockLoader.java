@@ -252,7 +252,7 @@ public class BlockLoader {
 		FluidRegistry.addBucketForFluid(HOT_SPRING_WATER_FLUID);
 		HOT_SPRING_WATER=registerFluidBlock(HOT_SPRING_WATER_FLUID, new BlockFluidBasic(HOT_SPRING_WATER_FLUID){
 		    @Override
-		    public void onEntityCollidedWithBlock(World par1World, BlockPos pos, IBlockState state, Entity par5Entity) {
+		    public void onEntityCollision(World par1World, BlockPos pos, IBlockState state, Entity par5Entity) {
 		        if (!par1World.isRemote) {
 		            if (par5Entity instanceof EntityLivingBase) {
 		                EntityLivingBase entityLiving = (EntityLivingBase)par5Entity;
