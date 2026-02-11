@@ -145,16 +145,22 @@ public class TileEntityCampfirePot extends TileEntity implements ITickable, ISid
 			            }
 			            
 			    	    for(int i=0;i<9;i++){
-			    	    	if(!(this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).isEmpty())){
-			    	    		if(this.inventory.get(i).getCount()==1){
-			    	    		this.inventory.set(i, this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i)).copy());
+			    	    	ItemStack stack = this.inventory.get(i);
+			    	    	if(!stack.isEmpty()){
+			    	    		ItemStack containerItem = stack.getItem().getContainerItem(stack);
+			    	    		if(!containerItem.isEmpty()){
+			    	    			if(stack.getCount()==1){
+			    	    				this.inventory.set(i, containerItem.copy());
+			    	    			} else {
+			    	    				stack.shrink(1);
+			    	    				if (!(stack.getItem() instanceof ItemMetaDurability)) {
+			    	    					Block.spawnAsEntity(getWorld(), getPos(), containerItem.copy());
+			    	    				}
+			    	    			}
+			    	    		} else {
+			    	    			stack.shrink(1);
 			    	    		}
-			    	    		else this.decrStackSize(i, 1);
-
-			    	    		if (! (this.inventory.get(i).getItem() instanceof ItemMetaDurability)) {
-                                    Block.spawnAsEntity(getWorld(), getPos(), this.inventory.get(i).getItem().getContainerItem(this.inventory.get(i).copy()));
-                                }
-			    	    	}else this.decrStackSize(i, 1);
+			    	    	}
 			    	    }
 			            flag1 = true;
 			        }
