@@ -21,7 +21,7 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
 public class BlockStrawWeb extends BlockFacing implements ITileEntityProvider  {
-	protected static final AxisAlignedBB CARPET_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.0625D, 1.0D);
+	protected static final AxisAlignedBB CARPET_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.125D, 1.0D);
 	public BlockStrawWeb() {
 		super(Material.WOOD, false);
 		this.setSoundType(SoundType.WOOD);

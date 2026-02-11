@@ -19,13 +19,17 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import cn.mcmod.sakura.api.recipes.BarrelRecipes;
 import cn.mcmod.sakura.api.recipes.LiquidToItemRecipe;
 
-public class TileEntityBarrel extends TileEntity implements ITickable, IInventory {
+public class TileEntityBarrel extends TileEntity implements ITickable, ISidedInventory {
 	private static final String TAG_PROCESS = "processTimer";
 	public FluidTank tank = new FluidTank(3000) {
 		@Override
@@ -194,7 +198,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 		if (this.world.getTileEntity(this.pos) != this) {
 			return false;
 		}
-		return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+		return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 128.0D;
 	}
 
 	@Override
@@ -248,7 +252,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 
 	@Override
@@ -257,6 +261,9 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
 		}
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new SidedInvWrapper(this, facing));
+		}
 		return super.getCapability(capability, facing);
 	}
 
@@ -264,6 +271,24 @@ public class TileEntityBarrel extends TileEntity implements ITickable, IInventor
 	public boolean shouldRefresh(World world, BlockPos pos, @Nonnull IBlockState oldState,
 			@Nonnull IBlockState newState) {
 		return oldState.getBlock() != newState.getBlock();
+	}
+
+	private static final int[] SLOTS_TOP = new int[]{0, 1, 2, 3};
+	private static final int[] SLOTS_BOTTOM = new int[]{4};
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) {
+		return side == EnumFacing.DOWN ? SLOTS_BOTTOM : SLOTS_TOP;
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+		return isItemValidForSlot(index, itemStackIn);
+	}
+
+	@Override
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
+		return index == 4;
 	}
 
 	@Nonnull

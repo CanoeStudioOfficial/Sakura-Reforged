@@ -19,12 +19,16 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
+
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import cn.mcmod.sakura.api.recipes.LiquidToItemRecipe;
 
-public class TileEntityFluidOut extends TileEntity implements ITickable, IInventory {
+public class TileEntityFluidOut extends TileEntity implements ITickable, ISidedInventory {
 	public FluidTank tank = new FluidTank(10000) {
 		@Override
 		protected void onContentsChanged() {
@@ -135,7 +139,7 @@ public class TileEntityFluidOut extends TileEntity implements ITickable, IInvent
 		if (this.world.getTileEntity(this.pos) != this) {
 			return false;
 		}
-		return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+		return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 128.0D;
 	}
 
 	@Override
@@ -168,7 +172,7 @@ public class TileEntityFluidOut extends TileEntity implements ITickable, IInvent
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 
 	@Override
@@ -176,6 +180,9 @@ public class TileEntityFluidOut extends TileEntity implements ITickable, IInvent
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
+		}
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new SidedInvWrapper(this, facing));
 		}
 		return super.getCapability(capability, facing);
 	}
@@ -277,6 +284,24 @@ public class TileEntityFluidOut extends TileEntity implements ITickable, IInvent
 	public int getFieldCount() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	private static final int[] SLOTS_TOP = new int[]{0};
+	private static final int[] SLOTS_BOTTOM = new int[]{1};
+
+	@Override
+	public int[] getSlotsForFace(EnumFacing side) {
+		return side == EnumFacing.DOWN ? SLOTS_BOTTOM : SLOTS_TOP;
+	}
+
+	@Override
+	public boolean canInsertItem(int index, ItemStack itemStackIn, EnumFacing direction) {
+		return isItemValidForSlot(index, itemStackIn);
+	}
+
+	@Override
+	public boolean canExtractItem(int index, ItemStack stack, EnumFacing direction) {
+		return index == 1;
 	}
 
 }

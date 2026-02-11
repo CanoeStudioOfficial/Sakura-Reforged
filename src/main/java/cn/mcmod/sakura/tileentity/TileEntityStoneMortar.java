@@ -17,6 +17,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.wrapper.SidedInvWrapper;
+
 import java.util.ArrayList;
 
 import javax.annotation.Nullable;
@@ -167,7 +171,7 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, ISid
         if (this.world.getTileEntity(this.pos) != this) {
             return false;
         }
-		return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64.0D;
+		return player.getDistanceSq(this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 128.0D;
     }
 
     @Override
@@ -273,20 +277,32 @@ public class TileEntityStoneMortar extends TileEntity implements ITickable, ISid
         switch (enumFacing) {
             case DOWN:
                 return OUTPUT_SLOTS;
-            case UP:
-                return INPUT_SLOTS;
             default:
-                return new int[0];
+                return INPUT_SLOTS;
         }
     }
 
     @Override
     public boolean canInsertItem(int i, ItemStack itemStack, EnumFacing enumFacing) {
-        return true;
+        return i < 4 && isItemValidForSlot(i, itemStack);
     }
 
     @Override
     public boolean canExtractItem(int i, ItemStack itemStack, EnumFacing enumFacing) {
-        return true;
+        return i >= 4;
+    }
+
+    @Override
+    public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+        return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+    }
+
+    @Override
+    @Nullable
+    public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+        if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new SidedInvWrapper(this, facing));
+        }
+        return super.getCapability(capability, facing);
     }
 }
