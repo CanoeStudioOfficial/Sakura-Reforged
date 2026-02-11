@@ -87,27 +87,27 @@ public class ItemSheathKatana extends Item {
     		EntityPlayer player = (EntityPlayer) entityIn;
     		blade.damageItem(2, player);
 	        if(hand == EnumHand.MAIN_HAND){
-	    		ItemStack offhand =player.getHeldItem(EnumHand.OFF_HAND);
-	    		boolean flag1 =!(offhand.isEmpty());
-	    		if(flag1) {
+	    		ItemStack offhand = player.getHeldItemOffhand();
+	    		if(!offhand.isEmpty()) {
+	    			player.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
 	    			if (!player.inventory.addItemStackToInventory(offhand)) {
 	    				player.dropItem(offhand, false);
 	                }
-	                player.sendStatusMessage(new TextComponentTranslation("sakura.katana.sheath.not_empty_hand", new Object()), false);
+	                player.sendStatusMessage(new TextComponentTranslation("sakura.katana.sheath.not_empty_hand"), false);
 	    		}
-	    		player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, blade);
-	    		player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, new ItemStack(ItemLoader.SHEATH));
+	    		player.setHeldItem(EnumHand.OFF_HAND, blade);
+	    		player.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(ItemLoader.SHEATH));
 	        }else if(hand == EnumHand.OFF_HAND){
-				ItemStack mainhand =player.getHeldItem(EnumHand.MAIN_HAND);
-				boolean flag1 =!(mainhand.isEmpty());
-	    		if(flag1) {
+				ItemStack mainhand = player.getHeldItemMainhand();
+	    		if(!mainhand.isEmpty()) {
+	    			player.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
 	    			if (!player.inventory.addItemStackToInventory(mainhand)) {
 	    				player.dropItem(mainhand, false);
 	                }
-	                player.sendStatusMessage(new TextComponentTranslation("sakura.katana.sheath.not_empty_hand", new Object()), false);
+	                player.sendStatusMessage(new TextComponentTranslation("sakura.katana.sheath.not_empty_hand"), false);
 	    		}
-	    		player.setItemStackToSlot(EntityEquipmentSlot.MAINHAND, blade);
-	    		player.setItemStackToSlot(EntityEquipmentSlot.OFFHAND, new ItemStack(ItemLoader.SHEATH));	
+	    		player.setHeldItem(EnumHand.MAIN_HAND, blade);
+	    		player.setHeldItem(EnumHand.OFF_HAND, new ItemStack(ItemLoader.SHEATH));	
 	        	}
 	        }
 	}
