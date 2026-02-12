@@ -215,7 +215,7 @@ public class TileEntityDistillation extends TileEntity implements ITickable, ISi
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return index<3;
+		return index <= 3;
 	}
 
 	public int getField(int id) {
@@ -261,6 +261,9 @@ public class TileEntityDistillation extends TileEntity implements ITickable, ISi
 	@Nullable
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+			if (facing == EnumFacing.DOWN) {
+				return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(resultTank);
+			}
 			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
 		}
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {

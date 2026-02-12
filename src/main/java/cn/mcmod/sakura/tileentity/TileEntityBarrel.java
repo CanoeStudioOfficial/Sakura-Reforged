@@ -213,7 +213,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, ISidedInv
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return index<3;
+		return index <= 3;
 	}
 
 	public int getField(int id) {
@@ -259,6 +259,9 @@ public class TileEntityBarrel extends TileEntity implements ITickable, ISidedInv
 	@Nullable
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+			if (facing == EnumFacing.DOWN) {
+				return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(resultTank);
+			}
 			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
 		}
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
