@@ -67,7 +67,33 @@ public class MortarRecipes {
     }
 
     public void ClearRecipe(Object[] inputs) {
-    	RecipesList.remove(inputs);
+    	RecipesList.entrySet().removeIf(entry -> {
+    		Object[] key = entry.getKey();
+    		if (key.length != inputs.length) return false;
+    		for (int i = 0; i < key.length; i++) {
+    			Object obj1 = key[i];
+    			Object obj2 = inputs[i];
+    			if (obj1 instanceof ItemStack && obj2 instanceof ItemStack) {
+    				if (!ItemStack.areItemsEqual((ItemStack) obj1, (ItemStack) obj2)) return false;
+    			} else if (obj1 instanceof String && obj2 instanceof String) {
+    				if (!obj1.equals(obj2)) return false;
+    			} else {
+    				return false;
+    			}
+    		}
+    		return true;
+    	});
+	}
+
+    public void ClearRecipeByOutput(ItemStack[] outputs) {
+    	RecipesList.entrySet().removeIf(entry -> {
+    		ItemStack[] value = entry.getValue();
+    		if (value.length != outputs.length) return false;
+    		for (int i = 0; i < value.length; i++) {
+    			if (!ItemStack.areItemsEqual(value[i], outputs[i])) return false;
+    		}
+    		return true;
+    	});
 	}
 	
     public void ClearAllRecipe() {

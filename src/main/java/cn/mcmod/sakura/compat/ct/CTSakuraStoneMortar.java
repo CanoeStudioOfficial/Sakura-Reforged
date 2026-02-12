@@ -29,6 +29,17 @@ public class CTSakuraStoneMortar {
 		    SakuraRecipeRegister.getInstance().actions.add(new Removal(array));
 		}
 	}
+
+	@ZenMethod
+	public static void RemoveRecipeByOutput(IItemStack[] output) {
+		if(output.length>0){
+			ItemStack[] array = new ItemStack[output.length];
+		    for(int i = 0; i < output.length;i++){
+		    	array[i]=CraftTweakerMC.getItemStack(output[i]);
+			}
+		    SakuraRecipeRegister.getInstance().actions.add(new RemovalByOutput(array));
+		}
+	}
 	@ZenMethod
 	public static void AddRecipe(IIngredient[] input,IItemStack[] output) {
 		if(input.length>0&&output.length>0){
@@ -66,12 +77,46 @@ public class CTSakuraStoneMortar {
         public void apply()
         {
         	MortarRecipes.instance().ClearRecipe(itemInput);
+        	boolean allStacks = true;
+            for(Object obj : itemInput) {
+                if(!(obj instanceof ItemStack)) {
+                    allStacks = false;
+                    break;
+                }
+            }
+            if(allStacks) {
+                ItemStack[] outputArray = new ItemStack[itemInput.length];
+                for(int i=0; i<itemInput.length; i++) outputArray[i] = (ItemStack)itemInput[i];
+                MortarRecipes.instance().ClearRecipeByOutput(outputArray);
+            }
         }
 
         @Override
         public String describe()
         {
             return "Removing a recipe for Stone Mortar";
+        }
+    }
+
+    private static final class RemovalByOutput implements IAction
+    {
+        private final ItemStack[] itemOutput;
+
+        private RemovalByOutput(ItemStack[] itemOutput)
+        {
+            this.itemOutput = itemOutput;
+        }
+
+        @Override
+        public void apply()
+        {
+        	MortarRecipes.instance().ClearRecipeByOutput(itemOutput);
+        }
+
+        @Override
+        public String describe()
+        {
+            return "Removing a recipe for Stone Mortar by output";
         }
     }
 	
