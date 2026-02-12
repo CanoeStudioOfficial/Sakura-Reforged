@@ -297,13 +297,13 @@ public class DrinksLoader {
 	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "levitation")), 100, 0)
 	    		},
 	    		new PotionEffect[]{
-	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "strength")), 400, 1),		
-	    		},
-	    		new PotionEffect[]{
 	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "strength")), 200, 0),		
 	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "absorption")), 200, 0),		
 	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "health_boost")), 200, 0)
 		    	},
+	    		new PotionEffect[]{
+	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "strength")), 400, 1),		
+	    		},
 	    		new PotionEffect[]{
 	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "instant_health")), 2, 1),		
 	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "regeneration")), 200, 0),		
