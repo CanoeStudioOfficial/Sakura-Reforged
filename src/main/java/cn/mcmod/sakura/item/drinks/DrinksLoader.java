@@ -192,7 +192,7 @@ public class DrinksLoader {
 				new FoodInfo("glass_whiskey_sour", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				new FoodInfo("glass_gimlet", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				new FoodInfo("glass_tequila_sunrise", 2, 0.5F, false, 50F, 2F, 0, 0,1F, 0, 0, 0, 0),
-				new FoodInfo("glass_flying_grasshopper", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
+				new FoodInfo("glass_flying_grasshopper", 2, 0.5F, false, 50F, 2F, 1F, 1F, 0F, 0, 0, 0, 0),
 				new FoodInfo("glass_eggnog", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 1F, 0, 0, 0),
 				new FoodInfo("glass_scorpion", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
 				new FoodInfo("glass_moscow_mule", 2, 0.5F, false, 50F, 2F, 1F, 0F, 0F, 0, 0, 0, 0),
@@ -356,6 +356,9 @@ public class DrinksLoader {
     				new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "jump_boost")), 200, 5),		
 	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "speed")), 200, 1),			
 		    	},
+	    		new PotionEffect[]{
+	    			new PotionEffect(ForgeRegistries.POTIONS.getValue(new ResourceLocation("minecraft", "regeneration")), 200, 0),		
+	    		},
 	    		new PotionEffect[]{
     				new PotionEffect(PotionLoader.poisom_big, 200, 0),
 		    	},
