@@ -50,6 +50,24 @@ public class LiquidToItemRecipe {
 
 		return ItemStack.EMPTY;
 	}
+
+	public boolean isIngredient(ItemStack stack) {
+		for (Map<Object, ItemStack> map : RecipesList.values()) {
+			for (Object obj : map.keySet()) {
+				if (obj instanceof ItemStack) {
+					if (ItemStack.areItemsEqual(stack, (ItemStack) obj)) {
+						return true;
+					}
+				} else if (obj instanceof String) {
+					String dict = (String) obj;
+					NonNullList<ItemStack> ore = OreDictionary.getOres(dict);
+					if (!ore.isEmpty() && RecipesUtil.getInstance().containsMatch(true, ore, stack))
+						return true;
+				}
+			}
+		}
+		return false;
+	}
 	
 	public FluidStack getResultFluid(FluidStack fluid) {
 		for (FluidStack entry : RecipesList.keySet()) {

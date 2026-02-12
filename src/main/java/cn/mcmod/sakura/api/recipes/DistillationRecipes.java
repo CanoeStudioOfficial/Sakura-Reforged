@@ -115,6 +115,24 @@ public class DistillationRecipes {
 
 		return null;
 	}
+
+	public boolean isIngredient(ItemStack stack) {
+		for (Pair<FluidStack, Object[]> recipe : RecipesList.keySet()) {
+			for (Object ingredient : recipe.getRight()) {
+				if (ingredient instanceof ItemStack) {
+					if (ItemStack.areItemsEqual((ItemStack) ingredient, stack)) {
+						return true;
+					}
+				} else if (ingredient instanceof String) {
+					NonNullList<ItemStack> ores = OreDictionary.getOres((String) ingredient);
+					if (!ores.isEmpty() && RecipesUtil.getInstance().containsMatch(false, ores, stack)) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
   
     public void ClearRecipe(FluidStack input) {
     	for (Entry<Pair<FluidStack, Object[]>,List<FluidStack>> entry : RecipesList.entrySet()) {

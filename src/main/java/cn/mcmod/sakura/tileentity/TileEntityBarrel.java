@@ -213,7 +213,13 @@ public class TileEntityBarrel extends TileEntity implements ITickable, ISidedInv
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return index <= 3;
+		if (index == 3) {
+			return LiquidToItemRecipe.instance().isIngredient(stack);
+		}
+		if (index < 3) {
+			return BarrelRecipes.getInstance().isIngredient(stack);
+		}
+		return false;
 	}
 
 	public int getField(int id) {
@@ -276,7 +282,7 @@ public class TileEntityBarrel extends TileEntity implements ITickable, ISidedInv
 		return oldState.getBlock() != newState.getBlock();
 	}
 
-	private static final int[] SLOTS_TOP = new int[]{0, 1, 2, 3};
+	private static final int[] SLOTS_TOP = new int[]{3, 0, 1, 2};
 	private static final int[] SLOTS_BOTTOM = new int[]{4};
 
 	@Override

@@ -154,7 +154,7 @@ public class TileEntityFluidOut extends TileEntity implements ITickable, ISidedI
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return index == 0;
+		return index == 0 && LiquidToItemRecipe.instance().isIngredient(stack);
 	}
 
 	@Override
