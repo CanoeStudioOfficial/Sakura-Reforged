@@ -26,44 +26,50 @@ public class MortarRecipes {
     }
 
     public ItemStack[] getResult(List<ItemStack> inputs) {
-        ItemStack[] retStack = new ItemStack[0];
-
-        for(Entry<Object[], ItemStack[]> entry : RecipesList.entrySet()){
-            boolean flg1 = true;
-            if ((inputs.size() != entry.getKey().length)) 
+        for (Entry<Object[], ItemStack[]> entry : RecipesList.entrySet()) {
+            Object[] requiredIngredients = entry.getKey();
+            if (inputs.size() != requiredIngredients.length) {
                 continue;
-        	for (Object obj1 : entry.getKey()) {
-        		boolean flg2 = false;
-        		for (ItemStack input:inputs) {
-        			if(input.isEmpty()) break;
-                	if(obj1 instanceof ItemStack){
-                		ItemStack stack1 = (ItemStack) obj1;
-    	                if (ItemStack.areItemsEqual(stack1, input)) {
-    	                	inputs.remove(input);
-    	                    flg2 = true;
-    	                    break;
-    	                }
-                    }else if(obj1 instanceof String){
-                    	NonNullList<ItemStack> ore = OreDictionary.getOres((String) obj1);
-                    	if (!ore.isEmpty()&&RecipesUtil.getInstance().containsMatch(false, ore, input)) {
-    	                	inputs.remove(input);
-                            flg2 = true;
-    	                    break;
+            }
+
+            NonNullList<ItemStack> remainingInputs = NonNullList.create();
+            for (ItemStack stack : inputs) {
+                remainingInputs.add(stack.copy());
+            }
+
+            boolean allMatched = true;
+            for (Object ingredient : requiredIngredients) {
+                boolean found = false;
+                for (int i = 0; i < remainingInputs.size(); i++) {
+                    ItemStack input = remainingInputs.get(i);
+                    if (input.isEmpty()) continue;
+                    if (ingredient instanceof ItemStack) {
+                        if (ItemStack.areItemsEqual((ItemStack) ingredient, input)) {
+                            remainingInputs.remove(i);
+                            found = true;
+                            break;
+                        }
+                    } else if (ingredient instanceof String) {
+                        NonNullList<ItemStack> ores = OreDictionary.getOres((String) ingredient);
+                        if (!ores.isEmpty() && RecipesUtil.getInstance().containsMatch(false, ores, input)) {
+                            remainingInputs.remove(i);
+                            found = true;
+                            break;
                         }
                     }
                 }
-                if (!flg2) {
-                    flg1 = false;
+                if (!found) {
+                    allMatched = false;
                     break;
                 }
             }
 
-            if (flg1) {
+            if (allMatched && remainingInputs.isEmpty()) {
                 return entry.getValue();
             }
         }
-        
-        return retStack;
+
+        return new ItemStack[0];
     }
 
     public void ClearRecipe(Object[] inputs) {
