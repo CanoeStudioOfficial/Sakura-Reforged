@@ -67,35 +67,45 @@ public class PotRecipes {
 
 	private Pair<Object[], ItemStack> checkItems(List<ItemStack> inputs) {
 		for (Entry<Pair<Object[], ItemStack>, List<FluidStack>> entry : RecipesList.entrySet()) {
-            boolean flg1 = true;
-            if ((inputs.size() != entry.getKey().getLeft().length)) 
-                continue;
-        	for (Object obj1 : entry.getKey().getLeft()) {
-        		boolean flg2 = false;
-        		for (ItemStack input:inputs) {
-                	if(obj1 instanceof ItemStack){
-                		ItemStack stack1 = (ItemStack) obj1;
-    	                if (ItemStack.areItemsEqual(stack1, input)) {
-    	                    flg2 = true;
-    	                    break;
-    	                }
-                    }else if(obj1 instanceof String){
-                    	NonNullList<ItemStack> ore = OreDictionary.getOres((String) obj1);
-                    	if (!ore.isEmpty()&&RecipesUtil.getInstance().containsMatch(false, ore, input)) {
-                            flg2 = true;
-    	                    break;
-                        }
-                    }
-                }
-                if (!flg2) {
-                    flg1 = false;
-                    break;
-                }
-            }
+			Object[] requiredIngredients = entry.getKey().getLeft();
+			if (inputs.size() != requiredIngredients.length) {
+				continue;
+			}
 
-            if (flg1) {
-                return entry.getKey();
-            }
+			NonNullList<ItemStack> remainingInputs = NonNullList.create();
+			for (ItemStack stack : inputs) {
+				remainingInputs.add(stack.copy());
+			}
+
+			boolean allMatched = true;
+			for (Object ingredient : requiredIngredients) {
+				boolean found = false;
+				for (int i = 0; i < remainingInputs.size(); i++) {
+					ItemStack input = remainingInputs.get(i);
+					if (ingredient instanceof ItemStack) {
+						if (ItemStack.areItemsEqual((ItemStack) ingredient, input)) {
+							remainingInputs.remove(i);
+							found = true;
+							break;
+						}
+					} else if (ingredient instanceof String) {
+						NonNullList<ItemStack> ores = OreDictionary.getOres((String) ingredient);
+						if (!ores.isEmpty() && RecipesUtil.getInstance().containsMatch(false, ores, input)) {
+							remainingInputs.remove(i);
+							found = true;
+							break;
+						}
+					}
+				}
+				if (!found) {
+					allMatched = false;
+					break;
+				}
+			}
+
+			if (allMatched && remainingInputs.isEmpty()) {
+				return entry.getKey();
+			}
 		}
 		return null;
 	}
