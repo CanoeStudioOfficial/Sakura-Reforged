@@ -111,7 +111,7 @@ public class ContainerStoneMortar extends Container {
                 }
             }
 
-            if (itemStack1.getCount() == 0)
+            if (itemstack1.getCount() == 0)
             {
                 slot.putStack(ItemStack.EMPTY);
             }
@@ -120,14 +120,14 @@ public class ContainerStoneMortar extends Container {
                 slot.onSlotChanged();
             }
 
-            if (itemStack1.getCount() == itemStack.getCount())
+            if (itemstack1.getCount() == itemstack.getCount())
             {
                 return ItemStack.EMPTY;
             }
 
-            slot.onTake(par1EntityPlayer, itemStack1);
+            slot.onTake(playerIn, itemstack1);
         }
 
-        return itemStack;
+        return itemstack;
     }
 }
