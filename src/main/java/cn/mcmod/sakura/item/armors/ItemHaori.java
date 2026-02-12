@@ -30,9 +30,13 @@ public class ItemHaori extends ItemArmor {
         setTranslationKey(SakuraMain.MODID + "." + "haori");
     }
     
+    private static ModelHaori model;
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default) {
-    	return ItemKimono.getKimonoModel(entityLiving, itemStack, new ModelHaori());
+    	if (model == null) {
+    		model = new ModelHaori();
+    	}
+    	return ItemKimono.getKimonoModel(entityLiving, itemStack, model);
     }
 
     @Override

@@ -67,11 +67,13 @@ public class ItemSamuraiArmors extends ItemArmor {
 	}
 
 	@SideOnly(Side.CLIENT)
+	private ModelBiped model1;
+	@SideOnly(Side.CLIENT)
+	private ModelBiped model2;
+
+	@SideOnly(Side.CLIENT)
 	public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot,
 			ModelBiped _default) {
-		ModelBiped model1 = null;
-		ModelBiped model2 = null;
-		ModelBiped model = null;
 		if (model1 == null) {
 			model1 = isNormal?new ModelSamuraiArmors2(armorSlot, 2, 1.0F):new ModelSamuraiArmors(armorSlot, 3, 1.0F);
 		}
@@ -79,7 +81,6 @@ public class ItemSamuraiArmors extends ItemArmor {
 			model2 = isNormal?new ModelSamuraiArmors2(armorSlot, 2, 0.5F):new ModelSamuraiArmors(armorSlot, 3, 0.5F);
 		}
 
-		model = ClientUtils.getInstance().getCustomArmorModel(entityLiving, itemStack, armorSlot, model, model1, model2);
-		return model;
+		return ClientUtils.getInstance().getCustomArmorModel(entityLiving, itemStack, armorSlot, null, model1, model2);
 	}
 }

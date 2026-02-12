@@ -18,9 +18,13 @@ public class ItemStrawHat extends ItemArmor {
         setTranslationKey(SakuraMain.MODID + "." + "strawhat");
     }
 
+    private static ModelStrawHat model;
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default) {
-        return new ModelStrawHat();
+        if (model == null) {
+            model = new ModelStrawHat();
+        }
+        return model;
     }
 
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {

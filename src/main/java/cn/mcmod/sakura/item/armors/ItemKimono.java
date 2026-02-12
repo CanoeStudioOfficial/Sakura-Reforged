@@ -36,9 +36,13 @@ public class ItemKimono extends ItemArmor {
     public static final List<String> KimonoIDs = Lists.newArrayList();
     public static final TagPropertyString texture_name = new TagPropertyString("texture_name");
     
+    private static ModelKimono model;
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, net.minecraft.client.model.ModelBiped _default) {
-    	return getKimonoModel(entityLiving, itemStack, new ModelKimono());
+    	if (model == null) {
+    		model = new ModelKimono();
+    	}
+    	return getKimonoModel(entityLiving, itemStack, model);
     }
 
     @Override
