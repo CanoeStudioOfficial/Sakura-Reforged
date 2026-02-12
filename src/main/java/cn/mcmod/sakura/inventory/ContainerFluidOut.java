@@ -52,62 +52,46 @@ public class ContainerFluidOut extends Container {
      * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
      */
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
-    {
-        // 0-1: Contain inventory
-        // 2-28: Player inventory
-        // 29-38: Hot bar in the player inventory
-
-        ItemStack itemStack = ItemStack.EMPTY;
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+        ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
-        if (slot != null && slot.getHasStack())
-        {
-            ItemStack itemStack1 = slot.getStack();
-            itemStack = itemStack1.copy();
+        if (slot != null && slot.getHasStack()) {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
 
-            if (index >= 0 && index <= 4){
-                if (!this.mergeItemStack(itemStack1, 2, 38, true))
-                {
+            if (index < 2) {
+                if (!this.mergeItemStack(itemstack1, 2, this.inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-
-                slot.onSlotChange(itemStack1, itemStack);
-            }
-            else if (index >= 5){
-            	if (index >= 5 && index < 32){
-                    if (!this.mergeItemStack(itemStack1, 29, 38, false))
-                    {
-                        return ItemStack.EMPTY;
+                slot.onSlotChange(itemstack1, itemstack);
+            } else {
+                if (!this.mergeItemStack(itemstack1, 0, 2, false)) {
+                    if (index >= 2 && index < 29) {
+                        if (!this.mergeItemStack(itemstack1, 29, this.inventorySlots.size(), false)) {
+                            return ItemStack.EMPTY;
+                        }
+                    } else if (index >= 29 && index < this.inventorySlots.size()) {
+                        if (!this.mergeItemStack(itemstack1, 2, 29, false)) {
+                            return ItemStack.EMPTY;
+                        }
                     }
                 }
-                else if (index >= 29 && index < 38 && !this.mergeItemStack(itemStack1, 2, 29, false))
-                {
-                    return ItemStack.EMPTY;
-                }
-            }
-            else if (!this.mergeItemStack(itemStack1, 2, 38, false))
-            {
-                return ItemStack.EMPTY;
             }
 
-            if (itemStack1.getCount() == 0)
-            {
+            if (itemstack1.isEmpty()) {
                 slot.putStack(ItemStack.EMPTY);
-            }
-            else
-            {
+            } else {
                 slot.onSlotChanged();
             }
 
-            if (itemStack1.getCount() == itemStack.getCount())
-            {
+            if (itemstack1.getCount() == itemstack.getCount()) {
                 return ItemStack.EMPTY;
             }
 
-            slot.onTake(par1EntityPlayer, itemStack1);
+            slot.onTake(playerIn, itemstack1);
         }
 
-        return itemStack;
+        return itemstack;
     }
 }

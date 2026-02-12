@@ -73,43 +73,31 @@ public class ContainerMapleCauldron extends Container {
      * Called when a player shift-clicks on a slot. You must override this or you will crash when someone does that.
      */
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer par1EntityPlayer, int index)
-    {
-        // 0: Contain inventory
-        // 1-27: Player inventory
-        // 28-36: Hot bar in the player inventory
-
-        ItemStack itemStack = ItemStack.EMPTY;
+    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+        ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
-        if (slot != null && slot.getHasStack())
-        {
-            ItemStack itemStack1 = slot.getStack();
-            itemStack = itemStack1.copy();
+        if (slot != null && slot.getHasStack()) {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
 
-            if (index == 0){
-                if (!this.mergeItemStack(itemStack1, 1, 37, true))
-                {
+            if (index < 1) {
+                if (!this.mergeItemStack(itemstack1, 1, this.inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-
-                slot.onSlotChange(itemStack1, itemStack);
-            }
-            else if (index >= 1){
-            	if (index >= 1 && index < 28){
-                    if (!this.mergeItemStack(itemStack1, 28, 37, false))
-                    {
-                        return ItemStack.EMPTY;
+                slot.onSlotChange(itemstack1, itemstack);
+            } else {
+                if (!this.mergeItemStack(itemstack1, 0, 1, false)) {
+                    if (index >= 1 && index < 28) {
+                        if (!this.mergeItemStack(itemstack1, 28, this.inventorySlots.size(), false)) {
+                            return ItemStack.EMPTY;
+                        }
+                    } else if (index >= 28 && index < this.inventorySlots.size()) {
+                        if (!this.mergeItemStack(itemstack1, 1, 28, false)) {
+                            return ItemStack.EMPTY;
+                        }
                     }
                 }
-                else if (index >= 28 && index < 37 && !this.mergeItemStack(itemStack1, 1, 28, false))
-                {
-                    return ItemStack.EMPTY;
-                }
-            }
-            else if (!this.mergeItemStack(itemStack1, 1, 37, false))
-            {
-                return ItemStack.EMPTY;
             }
 
             if (itemStack1.getCount() == 0)
