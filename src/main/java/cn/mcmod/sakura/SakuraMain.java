@@ -23,7 +23,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 @Mod(modid = Tags.MOD_ID, name = Tags.MOD_NAME, version = Tags.VERSION,dependencies = "required-after:mm_lib@[2.2.0,) ;")
 public class SakuraMain {
     public static final String MODID = Tags.MOD_ID;
-
+    public static final String NAME = Tags.MOD_NAME;
 
 
     @Instance(SakuraMain.MODID)
