@@ -101,7 +101,7 @@ public class BlockGrapeLeaves extends BlockBase implements IPlantable, IGrowable
 	}
 
 	@SideOnly(Side.CLIENT)
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 

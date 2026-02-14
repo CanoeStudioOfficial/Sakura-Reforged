@@ -38,7 +38,7 @@ public class BlockMapleSyrupCauldron extends BlockContainer implements ITileEnti
     }
 
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
 

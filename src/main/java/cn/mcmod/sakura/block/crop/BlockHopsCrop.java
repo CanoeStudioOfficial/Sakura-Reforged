@@ -106,7 +106,7 @@ public class BlockHopsCrop extends BlockBase implements IPlantable, IGrowable, I
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public BlockRenderLayer getBlockLayer() {
+	public BlockRenderLayer getRenderLayer() {
 		return BlockRenderLayer.CUTOUT;
 	}
 
