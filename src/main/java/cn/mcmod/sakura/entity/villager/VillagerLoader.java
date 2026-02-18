@@ -33,7 +33,7 @@ public class VillagerLoader {
 		event.getRegistry().registerAll(wa_villager,wa_kimono_villager);
 		VillagerRegistry.VillagerCareer silk = new VillagerRegistry.VillagerCareer(wa_kimono_villager, "wa_silk");
 		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.MATERIAL,2,59),new PriceInfo(1, 3)));
-		silk.addTrade(1, new SimpleBuy(new ItemStack(ItemLoader.MATERIAL,4,59),new PriceInfo(2, 5)));
+		silk.addTrade(1, new SimpleBuy(new ItemStack(ItemLoader.MATERIAL,4,59),new PriceInfo(6, 9)));
 		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.KIMONO),new PriceInfo(10, 14)));
 		silk.addTrade(1, new SimpleSell(new ItemStack(ItemLoader.HAORI),new PriceInfo(10, 14)));
 		
