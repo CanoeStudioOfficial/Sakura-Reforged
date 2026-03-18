@@ -66,7 +66,17 @@ public class SakuraOreDictLoader {
         OreDictionary.registerOre("treeLeaves", new ItemStack(BlockLoader.SAKURA_LEAVES, 1));
         
         OreDictionary.registerOre("treeLeaves", new ItemStack(BlockLoader.UME_LEAVES, 1));
-        
+
+        OreDictionary.registerOre("treeSapling", new ItemStack(BlockLoader.MAPLE_SAPLING_RED, 1));
+        OreDictionary.registerOre("treeSapling", new ItemStack(BlockLoader.MAPLE_SAPLING_ORANGE, 1));
+        OreDictionary.registerOre("treeSapling", new ItemStack(BlockLoader.MAPLE_SAPLING_YELLOW, 1));
+        OreDictionary.registerOre("treeSapling", new ItemStack(BlockLoader.MAPLE_SAPLING_GREEN, 1));
+        OreDictionary.registerOre("treeSapling", new ItemStack(BlockLoader.SAKURA_SAPLING, 1));
+
+        OreDictionary.registerOre("sakuraDiamond", new ItemStack(BlockLoader.SAKURA_DIAMOND_BLOCK, 1));
+        OreDictionary.registerOre("sakuraDiamond", new ItemStack(ItemLoader.SAKURA_DIAMOND, 1));
+        OreDictionary.registerOre("sakuraDiamond", new ItemStack(BlockLoader.SAKURA_DIAMOND_ORE, 1));
+
         OreDictionary.registerOre("sakuraLeaves", new ItemStack(BlockLoader.SAKURA_LEAVES, 1));
 		OreDictionary.registerOre("cropMaplesyrup", new ItemStack(ItemLoader.MATERIAL, 1,49));
 		OreDictionary.registerOre("listAllsugar", new ItemStack(ItemLoader.MATERIAL, 1,49));
