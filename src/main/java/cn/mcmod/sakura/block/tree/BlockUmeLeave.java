@@ -182,11 +182,22 @@ public class BlockUmeLeave extends BlockLeaves implements IPlantable, IGrowable,
 		super.updateTick(worldIn, pos, state, rand);
 
 		if (!worldIn.isAreaLoaded(pos, 1))
-			return; // Forge: prevent loading unloaded chunks when checking
-					// neighbor's light
+			return; 
 		if (worldIn.getLightFromNeighbors(pos.up()) >= 9) {
 			int i = this.getAge(state);
 			if (i < this.getMaxAge()) {
+				boolean hasLog = false;
+				for (EnumFacing facing : EnumFacing.values()) {
+					IBlockState neighborState = worldIn.getBlockState(pos.offset(facing));
+					if (neighborState.getBlock() == BlockLoader.UME_LOG) {
+						hasLog = true;
+						break;
+					}
+				}
+				
+				if (!hasLog) {
+					return;
+				}
 
 				float f = getGrowthChance(this, worldIn, pos);
 
