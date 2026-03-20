@@ -98,13 +98,21 @@ public class GuiBarrel extends GuiContainer {
         int l = (this.height - this.ySize) / 2;
         
         if (this.tilePot.getTank().getFluid() != null) {
-            String fluidAmount = this.tilePot.getTank().getFluidAmount() + " mb";
-            this.fontRenderer.drawString(fluidAmount, k + 18, l + 10, 0xFFFFFF);
+            String fluidName = this.tilePot.getTank().getFluid().getLocalizedName();
+            int amount = this.tilePot.getTank().getFluidAmount();
+            int capacity = this.tilePot.getTank().getCapacity();
+            int percentage = (amount * 100) / capacity;
+            String fluidInfo = String.format("%s: %d/%d mb (%d%%)", fluidName, amount, capacity, percentage);
+            this.fontRenderer.drawString(fluidInfo, k + 18, l + 10, 0xFFFFFF);
         }
         
         if (this.tilePot.getResultTank().getFluid() != null) {
-            String resultAmount = this.tilePot.getResultTank().getFluidAmount() + " mb";
-            this.fontRenderer.drawString(resultAmount, k + 89, l + 10, 0xFFFFFF);
+            String fluidName = this.tilePot.getResultTank().getFluid().getLocalizedName();
+            int amount = this.tilePot.getResultTank().getFluidAmount();
+            int capacity = this.tilePot.getResultTank().getCapacity();
+            int percentage = (amount * 100) / capacity;
+            String fluidInfo = String.format("%s: %d/%d mb (%d%%)", fluidName, amount, capacity, percentage);
+            this.fontRenderer.drawString(fluidInfo, k + 89, l + 10, 0xFFFFFF);
         }
     }
 

@@ -85,8 +85,12 @@ public class GuiCampfirePot extends GuiContainer {
         int l = (this.height - this.ySize) / 2;
         
         if (this.tilePot.getTank().getFluid() != null) {
-            String fluidAmount = this.tilePot.getTank().getFluidAmount() + " mb";
-            this.fontRenderer.drawString(fluidAmount, k + 140, l + 10, 0xFFFFFF);
+            String fluidName = this.tilePot.getTank().getFluid().getLocalizedName();
+            int amount = this.tilePot.getTank().getFluidAmount();
+            int capacity = this.tilePot.getTank().getCapacity();
+            int percentage = (amount * 100) / capacity;
+            String fluidInfo = String.format("%s: %d/%d mb (%d%%)", fluidName, amount, capacity, percentage);
+            this.fontRenderer.drawString(fluidInfo, k + 140, l + 10, 0xFFFFFF);
         }
 
     }
