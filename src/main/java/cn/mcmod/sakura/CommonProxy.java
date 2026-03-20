@@ -8,6 +8,8 @@ import cn.mcmod.sakura.entity.SakuraEntityRegister;
 import cn.mcmod.sakura.entity.villager.VillagerCreationWA;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
+import cn.mcmod.sakura.packet.PacketClearFluid;
+import cn.mcmod.sakura.packet.PacketClearFluidHandler;
 import cn.mcmod.sakura.packet.PacketKeyMessage;
 import cn.mcmod.sakura.packet.PacketKeyMessageHandler;
 import cn.mcmod.sakura.potion.PotionLoader;
@@ -71,6 +73,7 @@ public class CommonProxy {
         }
         network = NetworkRegistry.INSTANCE.newSimpleChannel(SakuraMain.MODID);
     	network.registerMessage(new PacketKeyMessageHandler(),PacketKeyMessage.class,0,Side.SERVER);
+    	network.registerMessage(new PacketClearFluidHandler(),PacketClearFluid.class,1,Side.SERVER);
     }
 
     public void postInit(FMLPostInitializationEvent event) {

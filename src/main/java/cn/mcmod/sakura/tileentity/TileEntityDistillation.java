@@ -270,7 +270,10 @@ public class TileEntityDistillation extends TileEntity implements ITickable, ISi
 			if (facing == EnumFacing.DOWN) {
 				return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(resultTank);
 			}
-			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
+			if (facing == EnumFacing.UP) {
+				return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
+			}
+			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new DualFluidTankWrapper(tank, resultTank, false));
 		}
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new SidedInvWrapper(this, facing));

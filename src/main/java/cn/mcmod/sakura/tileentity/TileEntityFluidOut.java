@@ -17,7 +17,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -64,7 +66,33 @@ public class TileEntityFluidOut extends TileEntity implements ITickable, ISidedI
 	@Override
 	public void update() {
 		if (!world.isRemote) {
+			FillInput();
 			DrainInput();
+		}
+	}
+	
+	private void FillInput() {
+		ItemStack itemstack = this.inventory.get(0);
+		if (!itemstack.isEmpty()) {
+			IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(itemstack);
+			if (fluidHandler != null) {
+				FluidStack fluid = fluidHandler.drain(Integer.MAX_VALUE, false);
+				if (fluid != null) {
+					int filled = this.tank.fill(fluid, false);
+					if (filled > 0) {
+						FluidStack drained = fluidHandler.drain(filled, true);
+						this.tank.fill(drained, true);
+						
+						ItemStack emptyContainer = fluidHandler.getContainer();
+						if (emptyContainer.isEmpty()) {
+							itemstack.shrink(1);
+						} else {
+							this.inventory.set(0, emptyContainer);
+						}
+						this.markDirty();
+					}
+				}
+			}
 		}
 	}
 

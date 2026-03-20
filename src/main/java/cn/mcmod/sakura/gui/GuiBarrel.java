@@ -1,8 +1,13 @@
 package cn.mcmod.sakura.gui;
 
+
+import cn.mcmod.sakura.CommonProxy;
+import cn.mcmod.sakura.SakuraMain;
 import cn.mcmod.sakura.inventory.ContainerBarrel;
+import cn.mcmod.sakura.packet.PacketClearFluid;
 import cn.mcmod.sakura.tileentity.TileEntityBarrel;
 import cn.mcmod_mmf.mmlib.util.ClientUtils;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -16,10 +21,30 @@ public class GuiBarrel extends GuiContainer {
     private static final ResourceLocation mortarGuiTextures = new ResourceLocation("sakura:textures/gui/barrel.png");
 
     private TileEntityBarrel tilePot;
+    private static final int BUTTON_CLEAR_INPUT = 0;
+    private static final int BUTTON_CLEAR_OUTPUT = 1;
 
     public GuiBarrel(InventoryPlayer inventory, TileEntityBarrel tile) {
         super(new ContainerBarrel(inventory, tile));
         this.tilePot = tile;
+    }
+    
+    @Override
+    public void initGui() {
+        super.initGui();
+        int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+        this.buttonList.add(new GuiButton(BUTTON_CLEAR_INPUT, k + 5, l + 5, 16, 20, "X"));
+        this.buttonList.add(new GuiButton(BUTTON_CLEAR_OUTPUT, k + 76, l + 5, 16, 20, "X"));
+    }
+    
+    @Override
+    protected void actionPerformed(GuiButton button) {
+        if (button.id == BUTTON_CLEAR_INPUT) {
+            CommonProxy.getNetwork().sendToServer(new PacketClearFluid(tilePot.getPos().getX(), tilePot.getPos().getY(), tilePot.getPos().getZ(), 0));
+        } else if (button.id == BUTTON_CLEAR_OUTPUT) {
+            CommonProxy.getNetwork().sendToServer(new PacketClearFluid(tilePot.getPos().getX(), tilePot.getPos().getY(), tilePot.getPos().getZ(), 1));
+        }
     }
 
     @Override
@@ -68,6 +93,19 @@ public class GuiBarrel extends GuiContainer {
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
+        
+        int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+        
+        if (this.tilePot.getTank().getFluid() != null) {
+            String fluidAmount = this.tilePot.getTank().getFluidAmount() + " mb";
+            this.fontRenderer.drawString(fluidAmount, k + 18, l + 10, 0xFFFFFF);
+        }
+        
+        if (this.tilePot.getResultTank().getFluid() != null) {
+            String resultAmount = this.tilePot.getResultTank().getFluidAmount() + " mb";
+            this.fontRenderer.drawString(resultAmount, k + 89, l + 10, 0xFFFFFF);
+        }
     }
 
 }

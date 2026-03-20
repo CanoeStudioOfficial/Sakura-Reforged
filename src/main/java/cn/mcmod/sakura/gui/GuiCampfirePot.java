@@ -80,6 +80,14 @@ public class GuiCampfirePot extends GuiContainer {
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
+        
+        int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+        
+        if (this.tilePot.getTank().getFluid() != null) {
+            String fluidAmount = this.tilePot.getTank().getFluidAmount() + " mb";
+            this.fontRenderer.drawString(fluidAmount, k + 140, l + 10, 0xFFFFFF);
+        }
 
     }
 

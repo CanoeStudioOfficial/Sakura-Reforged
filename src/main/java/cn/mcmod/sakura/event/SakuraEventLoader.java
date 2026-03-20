@@ -53,6 +53,36 @@ public class SakuraEventLoader {
     		event.setBurnTime(1600);
     	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.BAMBOO_CHARCOAL_BLOCK)))
     		event.setBurnTime(8000);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.BAMBOO_PLANK)))
+    		event.setBurnTime(300);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.BAMBOO_FENCE)))
+    		event.setBurnTime(300);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.BAMBOO_PLANK_STAIR)))
+    		event.setBurnTime(300);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.BAMBOO_PLANK_SLAB)))
+    		event.setBurnTime(150);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.STRAW_BLOCK)))
+    		event.setBurnTime(200);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.STRAW_BLOCK_STAIR)))
+    		event.setBurnTime(200);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.STRAW_BLOCK_SLAB)))
+    		event.setBurnTime(100);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.SAKURA_LOG)))
+    		event.setBurnTime(300);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.SAKURA_PLANK)))
+    		event.setBurnTime(300);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.SAKURA_PLANK_STAIR)))
+    		event.setBurnTime(300);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.SAKURA_PLANK_SLAB)))
+    		event.setBurnTime(150);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.MAPLE_LOG)))
+    		event.setBurnTime(300);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.MAPLE_PLANK)))
+    		event.setBurnTime(300);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.MAPLE_PLANK_STAIR)))
+    		event.setBurnTime(300);
+    	if(ItemStack.areItemsEqual(event.getItemStack(), new ItemStack(BlockLoader.MAPLE_PLANK_SLAB)))
+    		event.setBurnTime(150);
 	}
     
     @SubscribeEvent(priority = EventPriority.HIGHEST)

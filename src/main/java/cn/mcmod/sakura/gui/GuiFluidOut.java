@@ -1,8 +1,11 @@
 package cn.mcmod.sakura.gui;
 
+import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.inventory.ContainerFluidOut;
+import cn.mcmod.sakura.packet.PacketClearFluid;
 import cn.mcmod.sakura.tileentity.TileEntityFluidOut;
 import cn.mcmod_mmf.mmlib.util.ClientUtils;
+import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -16,10 +19,26 @@ public class GuiFluidOut extends GuiContainer {
     private static final ResourceLocation mortarGuiTextures = new ResourceLocation("sakura:textures/gui/barrel_out.png");
 
     private TileEntityFluidOut tilePot;
+    private static final int BUTTON_CLEAR = 0;
 
     public GuiFluidOut(InventoryPlayer inventory, TileEntityFluidOut tile) {
         super(new ContainerFluidOut(inventory, tile));
         this.tilePot = tile;
+    }
+    
+    @Override
+    public void initGui() {
+        super.initGui();
+        int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+        this.buttonList.add(new GuiButton(BUTTON_CLEAR, k + 5, l + 5, 16, 20, "X"));
+    }
+    
+    @Override
+    protected void actionPerformed(GuiButton button) {
+        if (button.id == BUTTON_CLEAR) {
+            CommonProxy.getNetwork().sendToServer(new PacketClearFluid(tilePot.getPos().getX(), tilePot.getPos().getY(), tilePot.getPos().getZ(), 0));
+        }
     }
 
     @Override
@@ -46,6 +65,14 @@ public class GuiFluidOut extends GuiContainer {
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
+        
+        int k = (this.width - this.xSize) / 2;
+        int l = (this.height - this.ySize) / 2;
+        
+        if (this.tilePot.getTank().getFluid() != null) {
+            String fluidAmount = this.tilePot.getTank().getFluidAmount() + " mb";
+            this.fontRenderer.drawString(fluidAmount, k + 140, l + 10, 0xFFFFFF);
+        }
     }
 
 }
