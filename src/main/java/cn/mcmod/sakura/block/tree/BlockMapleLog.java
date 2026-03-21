@@ -43,7 +43,8 @@ public class BlockMapleLog extends BlockLog {
 			for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4))) {
 				IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-				if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)) {
+				if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)
+						&& iblockstate.getBlock() != BlockLoader.UME_LEAVES) {
 					iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
 				}
 			}

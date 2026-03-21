@@ -1,12 +1,9 @@
 package cn.mcmod.sakura.gui;
 
 
-import cn.mcmod.sakura.CommonProxy;
 import cn.mcmod.sakura.inventory.ContainerDistillation;
-import cn.mcmod.sakura.packet.PacketClearFluid;
 import cn.mcmod.sakura.tileentity.TileEntityDistillation;
 import cn.mcmod_mmf.mmlib.util.ClientUtils;
-import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -20,30 +17,10 @@ public class GuiDistillation extends GuiContainer {
     private static final ResourceLocation mortarGuiTextures = new ResourceLocation("sakura:textures/gui/barrel.png");
 
     private TileEntityDistillation tilePot;
-    private static final int BUTTON_CLEAR_INPUT = 0;
-    private static final int BUTTON_CLEAR_OUTPUT = 1;
 
     public GuiDistillation(InventoryPlayer inventory, TileEntityDistillation tile) {
         super(new ContainerDistillation(inventory, tile));
         this.tilePot = tile;
-    }
-    
-    @Override
-    public void initGui() {
-        super.initGui();
-        int k = (this.width - this.xSize) / 2;
-        int l = (this.height - this.ySize) / 2;
-        this.buttonList.add(new GuiButton(BUTTON_CLEAR_INPUT, k + 5, l + 5, 16, 20, "X"));
-        this.buttonList.add(new GuiButton(BUTTON_CLEAR_OUTPUT, k + 76, l + 5, 16, 20, "X"));
-    }
-    
-    @Override
-    protected void actionPerformed(GuiButton button) {
-        if (button.id == BUTTON_CLEAR_INPUT) {
-            CommonProxy.getNetwork().sendToServer(new PacketClearFluid(tilePot.getPos().getX(), tilePot.getPos().getY(), tilePot.getPos().getZ(), 0));
-        } else if (button.id == BUTTON_CLEAR_OUTPUT) {
-            CommonProxy.getNetwork().sendToServer(new PacketClearFluid(tilePot.getPos().getX(), tilePot.getPos().getY(), tilePot.getPos().getZ(), 1));
-        }
     }
 
     @Override
@@ -92,27 +69,6 @@ public class GuiDistillation extends GuiContainer {
         this.drawDefaultBackground();
         super.drawScreen(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
-        
-        int k = (this.width - this.xSize) / 2;
-        int l = (this.height - this.ySize) / 2;
-        
-        if (this.tilePot.getTank().getFluid() != null) {
-            String fluidName = this.tilePot.getTank().getFluid().getLocalizedName();
-            int amount = this.tilePot.getTank().getFluidAmount();
-            int capacity = this.tilePot.getTank().getCapacity();
-            int percentage = (amount * 100) / capacity;
-            String fluidInfo = String.format("%s: %d/%d mb (%d%%)", fluidName, amount, capacity, percentage);
-            this.fontRenderer.drawString(fluidInfo, k + 18, l + 10, 0xFFFFFF);
-        }
-        
-        if (this.tilePot.getResultTank().getFluid() != null) {
-            String fluidName = this.tilePot.getResultTank().getFluid().getLocalizedName();
-            int amount = this.tilePot.getResultTank().getFluidAmount();
-            int capacity = this.tilePot.getResultTank().getCapacity();
-            int percentage = (amount * 100) / capacity;
-            String fluidInfo = String.format("%s: %d/%d mb (%d%%)", fluidName, amount, capacity, percentage);
-            this.fontRenderer.drawString(fluidInfo, k + 89, l + 10, 0xFFFFFF);
-        }
     }
 
 }

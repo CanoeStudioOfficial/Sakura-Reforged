@@ -257,26 +257,23 @@ public class TileEntityBarrel extends TileEntity implements ITickable, ISidedInv
 	 */
 
 	@Override
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
+	}
+
+	@Override
 	@Nullable
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			if (facing == EnumFacing.DOWN) {
 				return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(resultTank);
 			}
-			if (facing == EnumFacing.UP) {
-				return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
-			}
-			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new DualFluidTankWrapper(tank, resultTank, false));
+			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank);
 		}
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new SidedInvWrapper(this, facing));
 		}
 		return super.getCapability(capability, facing);
-	}
-	
-	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 
 	@Override
