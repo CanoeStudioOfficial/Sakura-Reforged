@@ -2,6 +2,7 @@ package cn.mcmod.sakura.world.gen;
 
 import cn.mcmod.sakura.block.BlockLoader;
 import cn.mcmod.sakura.block.tree.BlockUmeLeave;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -13,7 +14,7 @@ import java.util.Random;
 
 public class WorldGenUmeTree extends WorldGenAbstractTree {
     private static final IBlockState DEFAULT_TRUNK = BlockLoader.UME_LOG.getDefaultState();
-    private static final IBlockState DEFAULT_LEAF = BlockLoader.UME_LEAVES.getDefaultState().withProperty(BlockUmeLeave.AGE, 0);
+    private static final IBlockState DEFAULT_LEAF = BlockLoader.UME_LEAVES.getDefaultState().withProperty(BlockUmeLeave.AGE, 0).withProperty(BlockLeaves.CHECK_DECAY, true).withProperty(BlockLeaves.DECAYABLE, true);
     /**
      * The minimum height of a generated tree.
      */
