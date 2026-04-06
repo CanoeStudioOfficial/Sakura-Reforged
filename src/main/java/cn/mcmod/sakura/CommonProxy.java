@@ -8,10 +8,13 @@ import cn.mcmod.sakura.entity.SakuraEntityRegister;
 import cn.mcmod.sakura.entity.villager.VillagerCreationWA;
 import cn.mcmod.sakura.item.ItemLoader;
 import cn.mcmod.sakura.item.drinks.DrinksLoader;
+import cn.mcmod.sakura.packet.PacketClearFluid;
+import cn.mcmod.sakura.packet.PacketClearFluidHandler;
 import cn.mcmod.sakura.packet.PacketKeyMessage;
 import cn.mcmod.sakura.packet.PacketKeyMessageHandler;
 import cn.mcmod.sakura.potion.PotionLoader;
 import cn.mcmod.sakura.tileentity.TileEntityRegistry;
+import cn.mcmod.sakura.util.SakuraFuelHandler;
 import cn.mcmod.sakura.util.SakuraRecipeRegister;
 import cn.mcmod.sakura.world.gen.WorldGenLoader;
 import net.minecraft.block.Block;
@@ -56,6 +59,7 @@ public class CommonProxy {
     }
 
     public void init(FMLInitializationEvent event) {
+    	MinecraftForge.EVENT_BUS.register(new SakuraFuelHandler());
     	MinecraftForge.ORE_GEN_BUS.register(WorldGenLoader.getInstance());
     	MinecraftForge.TERRAIN_GEN_BUS.register(WorldGenLoader.getInstance());
     	WorldGenLoader.getInstance().WorldGenRegister();
@@ -71,6 +75,7 @@ public class CommonProxy {
         }
         network = NetworkRegistry.INSTANCE.newSimpleChannel(SakuraMain.MODID);
     	network.registerMessage(new PacketKeyMessageHandler(),PacketKeyMessage.class,0,Side.SERVER);
+    	network.registerMessage(new PacketClearFluidHandler(),PacketClearFluid.class,1,Side.SERVER);
     }
 
     public void postInit(FMLPostInitializationEvent event) {

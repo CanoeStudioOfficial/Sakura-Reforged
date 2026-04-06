@@ -27,6 +27,8 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import cn.mcmod.sakura.api.recipes.LiquidToItemRecipe;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class TileEntityFluidOut extends TileEntity implements ITickable, ISidedInventory {
 	public FluidTank tank = new FluidTank(10000) {
@@ -64,8 +66,48 @@ public class TileEntityFluidOut extends TileEntity implements ITickable, ISidedI
 	@Override
 	public void update() {
 		if (!world.isRemote) {
+			FillInput();
 			DrainInput();
 		}
+	}
+
+	private void FillInput() {
+		ItemStack inputStack = this.inventory.get(0);
+		if (inputStack.isEmpty()) return;
+		
+		IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(inputStack.copy());
+		if (fluidHandler == null) return;
+		
+		FluidStack fluidInItem = fluidHandler.drain(Integer.MAX_VALUE, false);
+		if (fluidInItem == null || fluidInItem.amount <= 0) return;
+		
+		int filled = this.tank.fill(fluidInItem, false);
+		if (filled <= 0) return;
+		
+		FluidStack actualDrained = fluidHandler.drain(filled, true);
+		if (actualDrained == null || actualDrained.amount <= 0) return;
+		
+		this.tank.fill(actualDrained, true);
+		
+		ItemStack containerItem = fluidHandler.getContainer();
+		if (containerItem != null && !containerItem.isEmpty()) {
+			inputStack.shrink(1);
+			if (inputStack.isEmpty()) {
+				this.inventory.set(0, containerItem);
+			} else {
+				if (!this.inventory.get(1).isEmpty() && 
+					this.inventory.get(1).isItemEqual(containerItem) && 
+					this.inventory.get(1).getCount() < this.inventory.get(1).getMaxStackSize()) {
+					this.inventory.get(1).grow(1);
+				} else if (this.inventory.get(1).isEmpty()) {
+					this.inventory.set(1, containerItem);
+				}
+			}
+		} else {
+			inputStack.shrink(1);
+		}
+		
+		this.markDirty();
 	}
 
 	@Override
@@ -154,7 +196,19 @@ public class TileEntityFluidOut extends TileEntity implements ITickable, ISidedI
 
 	@Override
 	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		return index == 0 && LiquidToItemRecipe.instance().isIngredient(stack);
+		if (index == 0) {
+			if (LiquidToItemRecipe.instance().isIngredient(stack)) {
+				return true;
+			}
+			IFluidHandlerItem fluidHandler = FluidUtil.getFluidHandler(stack);
+			if (fluidHandler != null) {
+				FluidStack fluidInItem = fluidHandler.drain(Integer.MAX_VALUE, false);
+				if (fluidInItem != null && fluidInItem.amount > 0) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override
