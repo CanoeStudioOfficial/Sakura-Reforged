@@ -22,6 +22,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -206,5 +207,24 @@ public class BlockShoji extends Block implements ITileEntityProvider {
     {
         return BlockRenderLayer.CUTOUT;
     }
-    
+
+    @Override
+    @Nullable
+    public RayTraceResult collisionRayTrace(IBlockState blockState, World worldIn, BlockPos pos, Vec3d start, Vec3d end) {
+        AxisAlignedBB boundingBox = this.getBoundingBox(blockState, worldIn, pos);
+        RayTraceResult result = this.rayTraceShoji(pos, start, end, boundingBox);
+        if (result != null) {
+            return result;
+        }
+        return super.collisionRayTrace(blockState, worldIn, pos, start, end);
+    }
+
+    @Nullable
+    private RayTraceResult rayTraceShoji(BlockPos pos, Vec3d start, Vec3d end, AxisAlignedBB boundingBox) {
+        Vec3d vec3d = start.subtract(pos.getX(), pos.getY(), pos.getZ());
+        Vec3d vec3d1 = end.subtract(pos.getX(), pos.getY(), pos.getZ());
+        RayTraceResult raytraceresult = boundingBox.calculateIntercept(vec3d, vec3d1);
+        return raytraceresult == null ? null : new RayTraceResult(raytraceresult.hitVec.add(pos.getX(), pos.getY(), pos.getZ()), raytraceresult.sideHit, pos);
+    }
+
 }
