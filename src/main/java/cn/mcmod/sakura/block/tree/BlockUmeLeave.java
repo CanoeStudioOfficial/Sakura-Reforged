@@ -72,7 +72,7 @@ public class BlockUmeLeave extends BlockLeaves implements IPlantable, IGrowable,
 	 * Whether this IGrowable can grow
 	 */
 	public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient) {
-		return !this.isMaxAge(state);
+		return state.getValue(DECAYABLE) && !this.isMaxAge(state);
 	}
 
 	public boolean canUseBonemeal(World worldIn, Random rand, BlockPos pos, IBlockState state) {
@@ -98,8 +98,7 @@ public class BlockUmeLeave extends BlockLeaves implements IPlantable, IGrowable,
 						BlockPos blockpos = pos.add(j1, k1, l1);
 						IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-						if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)
-								&& iblockstate.getBlock() != this) {
+						if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)) {
 							iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
 						}
 					}
