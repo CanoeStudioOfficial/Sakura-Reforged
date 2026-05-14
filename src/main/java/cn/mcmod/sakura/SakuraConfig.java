@@ -63,6 +63,11 @@ public class SakuraConfig {
 	@Config.Comment("Whether to enable spawn sakura diamond in every biome.")
 	public static boolean every_where_sakura_diamond = false;
 
+	@Config.LangKey(config + "enable_village_structure")
+	@Config.RequiresMcRestart
+	@Config.Comment("Whether to enable village structure generation.")
+	public static boolean enable_village_structure = true;
+
 	@SubscribeEvent
 	public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
 		if (event.getModID().equals(SakuraMain.MODID)) {

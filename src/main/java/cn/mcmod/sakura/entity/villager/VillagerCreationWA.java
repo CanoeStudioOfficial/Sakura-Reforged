@@ -3,6 +3,7 @@ package cn.mcmod.sakura.entity.villager;
 import java.util.List;
 import java.util.Random;
 
+import cn.mcmod.sakura.SakuraConfig;
 import cn.mcmod.sakura.SakuraMain;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
@@ -21,6 +22,9 @@ public class VillagerCreationWA implements IVillageCreationHandler{
 	}
 	@Override
 	public PieceWeight getVillagePieceWeight(Random random, int i) {
+		if (!SakuraConfig.enable_village_structure) {
+			return null;
+		}
 		return new PieceWeight(WAVillagerHouse.class, 50, MathHelper.getInt(random, i, 4 + i));
 	}
 
