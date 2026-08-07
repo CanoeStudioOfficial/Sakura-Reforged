@@ -59,9 +59,9 @@ dependencies {
     implementation "CraftTweaker2:CraftTweaker2-API:4.1.20.705"
     implementation "CraftTweaker2:ZenScript:4.1.20.705"
 
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rfg.deobf(fileTree(dir: 'libs', include: ['*.jar']))
 
-    compileOnly('mezz:jei:4.25.5')
+    compileOnly 'mezz:jei:4.25.5'
 
     compileOnly "vazkii.patchouli:Patchouli:1.0-16.84"
     compileOnly "blusunrize:ImmersiveEngineering:0.12-89-515"
