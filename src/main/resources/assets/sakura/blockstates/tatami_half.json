@@ -14,51 +14,51 @@
       "inventory" : {
          "model" : "half_slab"
       },
-      "half=bottom,facing=north" : {
+      "facing=north,half=bottom" : {
          "model" : "half_slab",
          "y" : 0
       },
-      "half=bottom,facing=south" : {
+      "facing=south,half=bottom" : {
          "model" : "half_slab",
          "y" : 180
       },
-      "half=bottom,facing=west" : {
+      "facing=west,half=bottom" : {
          "model" : "half_slab",
          "y" : 270
       },
-      "half=bottom,facing=east" : {
+      "facing=east,half=bottom" : {
          "model" : "half_slab",
          "y" : 90
       },
-      "half=top,facing=north" : {
+      "facing=north,half=top" : {
          "model" : "upper_slab",
          "y" : 0
       },
-      "half=top,facing=south" : {
+      "facing=south,half=top" : {
          "model" : "upper_slab",
          "y" : 180
       },
-      "half=top,facing=west" : {
+      "facing=west,half=top" : {
          "model" : "upper_slab",
          "y" : 270
       },
-      "half=top,facing=east" : {
+      "facing=east,half=top" : {
          "model" : "upper_slab",
          "y" : 90
       },
-      "half=full,facing=north" : {
+      "facing=north,half=full" : {
          "model" : "minecraft:cube_all",
          "y" : 0
       },
-      "half=full,facing=south" : {
+      "facing=south,half=full" : {
          "model" : "minecraft:cube_all",
          "y" : 180
       },
-      "half=full,facing=west" : {
+      "facing=west,half=full" : {
          "model" : "minecraft:cube_all",
          "y" : 270
       },
-      "half=full,facing=east" : {
+      "facing=east,half=full" : {
          "model" : "minecraft:cube_all",
          "y" : 90
       }
