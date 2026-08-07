@@ -14,19 +14,53 @@
       "inventory" : {
          "model" : "half_slab"
       },
-      "facing" : {
-         "north" : {
-            "y" : 0
-         },
-         "south" : {
-            "y" : 180
-         },
-         "west" : {
-            "y" : 270
-         },
-         "east" : {
-            "y" : 90
-         }
+      "half=bottom,facing=north" : {
+         "model" : "half_slab",
+         "y" : 0
+      },
+      "half=bottom,facing=south" : {
+         "model" : "half_slab",
+         "y" : 180
+      },
+      "half=bottom,facing=west" : {
+         "model" : "half_slab",
+         "y" : 270
+      },
+      "half=bottom,facing=east" : {
+         "model" : "half_slab",
+         "y" : 90
+      },
+      "half=top,facing=north" : {
+         "model" : "upper_slab",
+         "y" : 0
+      },
+      "half=top,facing=south" : {
+         "model" : "upper_slab",
+         "y" : 180
+      },
+      "half=top,facing=west" : {
+         "model" : "upper_slab",
+         "y" : 270
+      },
+      "half=top,facing=east" : {
+         "model" : "upper_slab",
+         "y" : 90
+      },
+      "half=full,facing=north" : {
+         "model" : "minecraft:cube_all",
+         "y" : 0
+      },
+      "half=full,facing=south" : {
+         "model" : "minecraft:cube_all",
+         "y" : 180
+      },
+      "half=full,facing=west" : {
+         "model" : "minecraft:cube_all",
+         "y" : 270
+      },
+      "half=full,facing=east" : {
+         "model" : "minecraft:cube_all",
+         "y" : 90
       }
    }
 }

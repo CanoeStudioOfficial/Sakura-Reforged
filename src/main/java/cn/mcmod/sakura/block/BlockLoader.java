@@ -22,7 +22,6 @@ import cn.mcmod.sakura.item.ItemShoji;
 import cn.mcmod_mmf.mmlib.block.BlockBase;
 import cn.mcmod_mmf.mmlib.block.BlockFacing;
 import cn.mcmod_mmf.mmlib.block.slab.BlockCarpetFacing;
-import cn.mcmod_mmf.mmlib.block.slab.BlockHalfFacing;
 import cn.mcmod_mmf.mmlib.block.slab.BlockSlabBase;
 import cn.mcmod_mmf.mmlib.item.ItemSlabBase;
 import cn.mcmod_mmf.mmlib.register.BlockRegister;
@@ -162,10 +161,10 @@ public class BlockLoader {
     public static Block TATAMI = new BlockTatami(false);
     public static Block TATAMI_NS = new BlockTatami(true);
     
-	public static BlockFacing TATAMI_TAN_HALF=(BlockFacing) new BlockHalfFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
-	public static BlockFacing TATAMI_TAN_NS_HALF=(BlockFacing) new BlockHalfFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
-    public static Block TATAMI_HALF = new BlockHalfTatami(false);
-    public static Block TATAMI_NS_HALF = new BlockHalfTatami(true);
+	public static BlockTatamiSlab TATAMI_TAN_HALF = new BlockTatamiSlab(Material.GRASS, false, true);
+	public static BlockTatamiSlab TATAMI_TAN_NS_HALF = new BlockTatamiSlab(Material.GRASS, true, true);
+    public static BlockTatamiSlab TATAMI_HALF = new BlockTatamiSlab(Material.CLOTH, false, false);
+    public static BlockTatamiSlab TATAMI_NS_HALF = new BlockTatamiSlab(Material.CLOTH, true, false);
     
 	public static BlockFacing TATAMI_TAN_CARPET=(BlockFacing) new BlockCarpetFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.5F);
 	public static BlockFacing TATAMI_TAN_NS_CARPET=(BlockFacing) new BlockCarpetFacing(Material.GRASS).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.5F);
@@ -192,10 +191,10 @@ public class BlockLoader {
 	public static Block BAMBOO_STAIR = new BlockStairBasic(BAMBOO_BLOCK.getDefaultState());
 	public static Block BAMBOO_SUNBURNT_STAIR = new BlockStairBasic(BAMBOO_BLOCK_SUNBURNT.getDefaultState());
 	
-	public static Block STRAW_BLOCK_SLAB = new BlockBambooSlab(Material.WOOD).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
-	public static Block SAKURA_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
-	public static Block BAMBOO_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
-	public static Block MAPLE_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
+	public static BlockSlabBase STRAW_BLOCK_SLAB = (BlockSlabBase) new BlockBambooSlab(Material.WOOD).setSoundType(SoundType.PLANT).setHardness(0.25F).setResistance(0.5F);
+	public static BlockSlabBase SAKURA_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
+	public static BlockSlabBase BAMBOO_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
+	public static BlockSlabBase MAPLE_PLANK_SLAB = new BlockBambooSlab(Material.WOOD);
 	
 	public static Block FALLEN_LEAVES_MAPLE_RED =new BlockFallenLeaves(Material.LEAVES).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.2F);
 	public static Block FALLEN_LEAVES_MAPLE_GREEN =new BlockFallenLeaves(Material.LEAVES).setSoundType(SoundType.PLANT).setHardness(0.15F).setResistance(0.2F);
@@ -330,7 +329,7 @@ public class BlockLoader {
         register(BAMBOOSHOOT, new ItemBlock(BAMBOOSHOOT), "bamboo_shoot");
         register(BAMBOO_PLANK, new ItemBlock(BAMBOO_PLANK), "plank_bamboo");
         register(BAMBOO_PLANK_STAIR, new ItemBlock(BAMBOO_PLANK_STAIR), "stairs_plank_bamboo");
-        register(BAMBOO_PLANK_SLAB, new ItemBlock(BAMBOO_PLANK_SLAB), "slab_plank_bamboo");
+        register(BAMBOO_PLANK_SLAB, new ItemSlabBase(BAMBOO_PLANK_SLAB), "slab_plank_bamboo");
         register(BAMBOO_BLOCK, new ItemBlock(BAMBOO_BLOCK), "bamboo_block");
         register(BAMBOO_CHARCOAL_BLOCK, new ItemBlock(BAMBOO_CHARCOAL_BLOCK), "bamboo_charcoal_block");
         register(BAMBOO_BLOCK_SUNBURNT, new ItemBlock(BAMBOO_BLOCK_SUNBURNT), "bamboo_block_sunburnt");
@@ -350,18 +349,17 @@ public class BlockLoader {
         register(WHITE_LANTERN, new ItemBlock(WHITE_LANTERN), "white_lantern");
         register(STRAW_BLOCK, new ItemBlock(STRAW_BLOCK), "straw_block");
         register(STRAW_BLOCK_STAIR, new ItemBlock(STRAW_BLOCK_STAIR), "straw_stair");
-        register(STRAW_BLOCK_SLAB, new ItemBlock(STRAW_BLOCK_SLAB), "slab_straw_block");
+        register(STRAW_BLOCK_SLAB, new ItemSlabBase(STRAW_BLOCK_SLAB), "slab_straw_block");
         register(TATAMI_TAN, new ItemBlock(TATAMI_TAN), "tatami_tan");
         register(TATAMI, new ItemBlock(TATAMI), "tatami");
         register(TATAMI_TAN_NS, new ItemBlock(TATAMI_TAN_NS), "tatami_tan_ns");
         register(TATAMI_NS, new ItemBlock(TATAMI_NS), "tatami_ns");
         
-        // Half tatami are ordinary placeable blocks, so keep the normal
-        // inventory stack size instead of inheriting a one-item special case.
-        register(TATAMI_TAN_HALF, new ItemBlock(TATAMI_TAN_HALF).setMaxStackSize(64), "tatami_tan_half");
-        register(TATAMI_HALF, new ItemBlock(TATAMI_HALF).setMaxStackSize(64), "tatami_half");
-        register(TATAMI_TAN_NS_HALF, new ItemBlock(TATAMI_TAN_NS_HALF).setMaxStackSize(64), "tatami_tan_ns_half");
-        register(TATAMI_NS_HALF, new ItemBlock(TATAMI_NS_HALF).setMaxStackSize(64), "tatami_ns_half");
+        // Tatami half blocks use the same slab item behavior as vanilla slabs.
+        register(TATAMI_TAN_HALF, new ItemSlabBase(TATAMI_TAN_HALF), "tatami_tan_half");
+        register(TATAMI_HALF, new ItemSlabBase(TATAMI_HALF), "tatami_half");
+        register(TATAMI_TAN_NS_HALF, new ItemSlabBase(TATAMI_TAN_NS_HALF), "tatami_tan_ns_half");
+        register(TATAMI_NS_HALF, new ItemSlabBase(TATAMI_NS_HALF), "tatami_ns_half");
         
         register(TATAMI_TAN_CARPET, new ItemBlock(TATAMI_TAN_CARPET), "tatami_tan_carpet");
         register(TATAMI_CARPET, new ItemBlock(TATAMI_CARPET), "tatami_carpet");
@@ -386,13 +384,13 @@ public class BlockLoader {
 		register(MAPLE_LOG_SAP, new ItemBlock(MAPLE_LOG_SAP), "maple_log_sap");
         register(MAPLE_PLANK, new ItemBlock(MAPLE_PLANK), "plank_maple");
         register(MAPLE_PLANK_STAIR, new ItemBlock(MAPLE_PLANK_STAIR), "stairs_plank_maple");
-        register(MAPLE_PLANK_SLAB, new ItemBlock(MAPLE_PLANK_SLAB), "slab_plank_maple");
+        register(MAPLE_PLANK_SLAB, new ItemSlabBase(MAPLE_PLANK_SLAB), "slab_plank_maple");
         register(SAKURA_LEAVES, new ItemBlock(SAKURA_LEAVES), "sakuraleaves");
 		register(SAKURA_SAPLING, new ItemBlock(SAKURA_SAPLING), "sakura_sapling");
 		register(SAKURA_LOG, new ItemBlock(SAKURA_LOG), "sakura_log");
         register(SAKURA_PLANK, new ItemBlock(SAKURA_PLANK), "plank_sakura");
         register(SAKURA_PLANK_STAIR, new ItemBlock(SAKURA_PLANK_STAIR), "stairs_plank_sakura");
-        register(SAKURA_PLANK_SLAB, new ItemBlock(SAKURA_PLANK_SLAB), "slab_plank_sakura");
+        register(SAKURA_PLANK_SLAB, new ItemSlabBase(SAKURA_PLANK_SLAB), "slab_plank_sakura");
         
         register(UME_LEAVES, new ItemBlock(UME_LEAVES), "umeleaves");
 		register(UME_SAPLING, new ItemBlock(UME_SAPLING), "ume_sapling");
