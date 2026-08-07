@@ -41,12 +41,13 @@ public class BlockNoren extends BlockFacing {
 				&& worldIn.getBlockState(pos).getBlock() != this;
 	}
 
-	protected boolean canSustainNoren(IBlockState state) {
-		return state.isFullCube();
+	protected boolean canSustainNoren(IBlockAccess worldIn, BlockPos supportPos, IBlockState state) {
+		return state.getBlockFaceShape(worldIn, supportPos, EnumFacing.DOWN) == BlockFaceShape.SOLID;
 	}
 
 	public boolean canBlockStay(World worldIn, BlockPos pos) {
-		return this.canSustainNoren(worldIn.getBlockState(pos.up()));
+		BlockPos supportPos = pos.up();
+		return this.canSustainNoren(worldIn, supportPos, worldIn.getBlockState(supportPos));
 	}
 
 	@Override

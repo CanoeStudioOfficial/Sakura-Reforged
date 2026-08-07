@@ -356,10 +356,12 @@ public class BlockLoader {
         register(TATAMI_TAN_NS, new ItemBlock(TATAMI_TAN_NS), "tatami_tan_ns");
         register(TATAMI_NS, new ItemBlock(TATAMI_NS), "tatami_ns");
         
-        register(TATAMI_TAN_HALF, new ItemBlock(TATAMI_TAN_HALF), "tatami_tan_half");
-        register(TATAMI_HALF, new ItemBlock(TATAMI_HALF), "tatami_half");
-        register(TATAMI_TAN_NS_HALF, new ItemBlock(TATAMI_TAN_NS_HALF), "tatami_tan_ns_half");
-        register(TATAMI_NS_HALF, new ItemBlock(TATAMI_NS_HALF), "tatami_ns_half");
+        // Half tatami are ordinary placeable blocks, so keep the normal
+        // inventory stack size instead of inheriting a one-item special case.
+        register(TATAMI_TAN_HALF, new ItemBlock(TATAMI_TAN_HALF).setMaxStackSize(64), "tatami_tan_half");
+        register(TATAMI_HALF, new ItemBlock(TATAMI_HALF).setMaxStackSize(64), "tatami_half");
+        register(TATAMI_TAN_NS_HALF, new ItemBlock(TATAMI_TAN_NS_HALF).setMaxStackSize(64), "tatami_tan_ns_half");
+        register(TATAMI_NS_HALF, new ItemBlock(TATAMI_NS_HALF).setMaxStackSize(64), "tatami_ns_half");
         
         register(TATAMI_TAN_CARPET, new ItemBlock(TATAMI_TAN_CARPET), "tatami_tan_carpet");
         register(TATAMI_CARPET, new ItemBlock(TATAMI_CARPET), "tatami_carpet");

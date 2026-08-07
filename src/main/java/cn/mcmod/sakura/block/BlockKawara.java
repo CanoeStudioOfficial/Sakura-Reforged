@@ -53,11 +53,15 @@ public class BlockKawara extends BlockFacing
   private static EnumShape getStairsShape(IBlockState p_185706_0_, IBlockAccess p_185706_1_, BlockPos p_185706_2_)
   {
     EnumFacing enumfacing = p_185706_0_.getValue(FACING);
-    IBlockState iblockstate = p_185706_1_.getBlockState(p_185706_2_.offset(enumfacing.getOpposite()));
+    // The front neighbour determines an outer corner, while the back
+    // neighbour determines an inner corner.  The old implementation checked
+    // these in the opposite order, which rotated inverted corners incorrectly.
+    IBlockState iblockstate = p_185706_1_.getBlockState(p_185706_2_.offset(enumfacing));
     if (isBlockStairs(iblockstate))
     {
       EnumFacing enumfacing1 = iblockstate.getValue(FACING);
-      if (enumfacing1.getAxis() != p_185706_0_.getValue(FACING).getAxis())
+      if (enumfacing1.getAxis() != enumfacing.getAxis()
+          && isDifferentStairs(p_185706_0_, p_185706_1_, p_185706_2_, enumfacing1.getOpposite()))
       {
         if (enumfacing1 == enumfacing.rotateYCCW()) {
           return EnumShape.OUTER_LEFT;
@@ -65,11 +69,12 @@ public class BlockKawara extends BlockFacing
         return EnumShape.OUTER_RIGHT;
       }
     }
-    IBlockState iblockstate1 = p_185706_1_.getBlockState(p_185706_2_.offset(enumfacing));
+    IBlockState iblockstate1 = p_185706_1_.getBlockState(p_185706_2_.offset(enumfacing.getOpposite()));
     if (isBlockStairs(iblockstate1))
     {
       EnumFacing enumfacing2 = iblockstate1.getValue(FACING);
-      if (enumfacing2.getAxis() != p_185706_0_.getValue(FACING).getAxis())
+      if (enumfacing2.getAxis() != enumfacing.getAxis()
+          && isDifferentStairs(p_185706_0_, p_185706_1_, p_185706_2_, enumfacing2))
       {
         if (enumfacing2 == enumfacing.rotateYCCW()) {
           return EnumShape.INNER_LEFT;
@@ -78,6 +83,12 @@ public class BlockKawara extends BlockFacing
       }
     }
     return EnumShape.STRAIGHT;
+  }
+
+  private static boolean isDifferentStairs(IBlockState state, IBlockAccess worldIn, BlockPos pos, EnumFacing side)
+  {
+    IBlockState neighbour = worldIn.getBlockState(pos.offset(side));
+    return !isBlockStairs(neighbour) || neighbour.getValue(FACING) != state.getValue(FACING);
   }
   
   public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)

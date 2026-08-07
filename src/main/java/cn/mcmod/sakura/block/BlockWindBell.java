@@ -6,6 +6,7 @@ import cn.mcmod_mmf.mmlib.block.BlockFacing;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumFacing;
@@ -50,7 +51,7 @@ public class BlockWindBell extends BlockFacing {
 
     public boolean canBlockStay(World worldIn, BlockPos pos) {
         IBlockState state = worldIn.getBlockState(pos.up());
-        return !worldIn.isAirBlock(pos.up())&&state.isSideSolid(worldIn, pos.up(), EnumFacing.DOWN);
+        return state.getBlockFaceShape(worldIn, pos.up(), EnumFacing.DOWN) == BlockFaceShape.SOLID;
     }
     @Override
     public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {

@@ -1210,7 +1210,7 @@ public class SakuraRecipeRegister {
                 "cropPumpkin",
                 "cropPumpkin",
                 "listAllsugar",
-                "foodSoysause"
+                "foodSoysauce"
                 },
                 getUniversalFluid("water", 200));
         PotRecipes.getInstance().addRecipes(
@@ -1219,7 +1219,7 @@ public class SakuraRecipeRegister {
                 "cropRadish",
                 "cropRadish",
                 "listAllsugar",
-                "foodSoysause"
+                "foodSoysauce"
                 },
                 getUniversalFluid("water", 200));
         PotRecipes.getInstance().addRecipes(
@@ -1227,8 +1227,7 @@ public class SakuraRecipeRegister {
                 new Object[]{
                 "listAllfishraw",
                 "dustSalt",
-                "foodMiso",
-                "foodSoysause"
+                "foodMiso"
                 },
                 getUniversalFluid("water", 200));
         PotRecipes.getInstance().addRecipes(
@@ -1238,7 +1237,7 @@ public class SakuraRecipeRegister {
                 "listAllveggie",
                 "listAllveggie",
                 "dustSalt",
-                "foodSoysause"
+                "foodSoysauce"
                 },
                 getUniversalFluid("water", 200));
         PotRecipes.getInstance().addRecipes(

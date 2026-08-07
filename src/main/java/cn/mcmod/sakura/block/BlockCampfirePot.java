@@ -120,17 +120,19 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
 		            return true;
 		        }
 		        
-		        if (WorldUtil.getInstance().isItemFuel(stack)) {
-		            tileEntityCampfire.setField(0, (tileEntityCampfire.getField(0) + TileEntityFurnace.getItemBurnTime(stack)));
-		            setState(true, worldIn, pos);
+                // Fuel is an ignition action, not a speed-up action.  Do not let
+                // repeated right clicks keep adding burn time to an active pot.
+                if (!tileEntityCampfire.isBurning() && WorldUtil.getInstance().isItemFuel(stack)) {
+                    tileEntityCampfire.setField(0, (tileEntityCampfire.getField(0) + TileEntityFurnace.getItemBurnTime(stack)));
+                    setState(true, worldIn, pos);
 					if(stack.getItem().hasContainerItem(stack)) stack = stack.getItem().getContainerItem(stack);
 						else stack.shrink(1);
 		            return true;
 		        }
 
-		        if (stack.getItem() == Items.FLINT_AND_STEEL) {
-		        	tileEntityCampfire.setField(0, (tileEntityCampfire.getField(0) + 10000));
-		        	setState(true, worldIn, pos);
+                if (!tileEntityCampfire.isBurning() && stack.getItem() == Items.FLINT_AND_STEEL) {
+                    tileEntityCampfire.setField(0, (tileEntityCampfire.getField(0) + 10000));
+                    setState(true, worldIn, pos);
 		            stack.damageItem(1, playerIn);
 		            return true;
 		        }
@@ -151,12 +153,11 @@ public class BlockCampfirePot extends BlockContainer implements ITileEntityProvi
     public static void setState(boolean active, World worldIn, BlockPos pos) {
         TileEntity tileentity = worldIn.getTileEntity(pos);
         keepInventory = true;
-        if (active) {
-            worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_LIT.getDefaultState());
-            worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_LIT.getDefaultState());
-        } else {
-        	worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
-            worldIn.setBlockState(pos, BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState());
+        IBlockState targetState = active
+                ? BlockLoader.CAMPFIRE_POT_LIT.getDefaultState()
+                : BlockLoader.CAMPFIRE_POT_IDLE.getDefaultState();
+        if (worldIn.getBlockState(pos).getBlock() != targetState.getBlock()) {
+            worldIn.setBlockState(pos, targetState);
         }
         keepInventory = false;
         if (tileentity != null) {
